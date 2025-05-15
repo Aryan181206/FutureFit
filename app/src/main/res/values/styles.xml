@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <!-- Style for RadioButtons to look like CardView -->
+    <style name="RadioButtonCardStyle">
+        <item name="android:background">@drawable/radio_card_background</item>
+        <item name="android:layout_marginBottom">10dp</item>
+        <item name="android:padding">16dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:buttonTint">@color/Sky</item> <!-- Optional -->
+    </style>
+
+</resources>

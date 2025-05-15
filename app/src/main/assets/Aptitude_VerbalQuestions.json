@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "text": "Choose the correct synonym for the word: *Abundant*",
+    "options": ["Scarce", "Plentiful", "Rare", "Empty"],
+    "correctAnswer": "Plentiful"
+  },
+  {
+    "id": 2,
+    "text": "Choose the antonym of the word: *Generous*",
+    "options": ["Selfish", "Kind", "Loyal", "Helpful"],
+    "correctAnswer": "Selfish"
+  },
+  {
+    "id": 3,
+    "text": "Fill in the blank: She _____ to the market before the rain started.",
+    "options": ["go", "gone", "went", "going"],
+    "correctAnswer": "went"
+  },
+  {
+    "id": 4,
+    "text": "Identify the correctly spelled word:",
+    "options": ["Recieve", "Receive", "Receeve", "Receve"],
+    "correctAnswer": "Receive"
+  },
+  {
+    "id": 5,
+    "text": "Find the word most opposite in meaning to: *Hostile*",
+    "options": ["Friendly", "Angry", "Cruel", "Wicked"],
+    "correctAnswer": "Friendly"
+  },
+  {
+    "id": 6,
+    "text": "Choose the best word to complete the sentence: He is known for his _____ in speaking the truth.",
+    "options": ["honesty", "dishonest", "truth", "honest"],
+    "correctAnswer": "honesty"
+  },
+  {
+    "id": 7,
+    "text": "Select the correct form of the verb: He _____ a book now.",
+    "options": ["read", "reads", "is reading", "has read"],
+    "correctAnswer": "is reading"
+  },
+  {
+    "id": 8,
+    "text": "Choose the correctly punctuated sentence:",
+    "options": ["What a nice day it is", "What a nice day it is!", "What a nice day it is.", "What a nice day it is,"],
+    "correctAnswer": "What a nice day it is!"
+  },
+  {
+    "id": 9,
+    "text": "Which one is a noun?",
+    "options": ["Jump", "Quick", "Happiness", "Run"],
+    "correctAnswer": "Happiness"
+  },
+  {
+    "id": 10,
+    "text": "Find the synonym of the word: *Rapid*",
+    "options": ["Slow", "Fast", "Hard", "Smooth"],
+    "correctAnswer": "Fast"
+  },
+  {
+    "id": 11,
+    "text": "Choose the correct sentence:",
+    "options": ["He don't know.", "He doesn't knows.", "He doesn't know.", "He don't knows."],
+    "correctAnswer": "He doesn't know."
+  },
+  {
+    "id": 12,
+    "text": "What is the plural form of 'child'?",
+    "options": ["Childs", "Children", "Childes", "Childrens"],
+    "correctAnswer": "Children"
+  },
+  {
+    "id": 13,
+    "text": "Choose the appropriate word: The sun rises in the _____",
+    "options": ["East", "West", "North", "South"],
+    "correctAnswer": "East"
+  },
+  {
+    "id": 14,
+    "text": "Identify the adjective: The tall man entered the room.",
+    "options": ["man", "entered", "room", "tall"],
+    "correctAnswer": "tall"
+  },
+  {
+    "id": 15,
+    "text": "Which word is a preposition?",
+    "options": ["Under", "Go", "Fast", "Book"],
+    "correctAnswer": "Under"
+  }
+]

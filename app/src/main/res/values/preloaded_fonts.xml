@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <array name="preloaded_fonts" translatable="false">
+        <item>@font/</item>
+        <item>@font/albert_sans_thin</item>
+        <item>@font/alfa_slab_one</item>
+        <item>@font/aoboshi_one</item>
+        <item>@font/ar_one_sans</item>
+        <item>@font/archivo_black</item>
+        <item>@font/baloo_thambi</item>
+        <item>@font/monda</item>
+        <item>@font/poppins_thin</item>
+    </array>
+</resources>

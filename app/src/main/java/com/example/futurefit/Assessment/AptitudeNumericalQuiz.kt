@@ -1,0 +1,167 @@
+package com.example.futurefit.Assessment
+
+import android.annotation.SuppressLint
+import android.os.Bundle
+import android.os.CountDownTimer
+import android.widget.Button
+import android.widget.ProgressBar
+import android.widget.RadioButton
+import android.widget.RadioGroup
+import android.widget.TextView
+import android.widget.Toast
+import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AppCompatActivity
+import androidx.core.view.ViewCompat
+import androidx.core.view.WindowInsetsCompat
+import com.example.futurefit.R
+import com.google.gson.Gson
+import com.google.gson.reflect.TypeToken
+import java.io.InputStreamReader
+
+class AptitudeNumericalQuiz : AppCompatActivity() {
+
+
+    private lateinit var timerText: TextView
+    private lateinit var countDownTimer: CountDownTimer
+    private val totalTimeInMillis: Long = 5 * 60 * 1000  // 5 minutes
+
+    private lateinit var questionText: TextView
+    private lateinit var optionsGroup: RadioGroup
+    private lateinit var nextButton: Button
+    private lateinit var scoreText: TextView
+    private lateinit var progressBar: ProgressBar
+
+
+    private var currentQuestionIndex = 0
+    private var score = 0
+    private var questions: List<Question> = listOf()
+
+
+    // private val db = FirebaseFirestore.getInstance()
+
+
+    data class Question(
+        val id: Int,
+        val text: String,
+        val options: List<String>,
+        val correctAnswer: String
+    )
+
+
+    @SuppressLint("MissingInflatedId")
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        enableEdgeToEdge()
+        setContentView(R.layout.activity_aptitude_numerical_quiz)
+
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
+            insets
+        }
+
+
+        timerText = findViewById(R.id.timerText)
+        questionText = findViewById(R.id.questionText)
+        optionsGroup = findViewById(R.id.optionsGroup)
+        nextButton = findViewById(R.id.nextButton)
+        scoreText = findViewById(R.id.scoreText)
+        progressBar = findViewById(R.id.progressBar2)
+
+        startTimer()
+        loadQuestions()
+        setupProgressBar()
+        displayQuestion()
+
+        nextButton.setOnClickListener {
+            val selectedOptionId = optionsGroup.checkedRadioButtonId
+            if(selectedOptionId == -1){
+                Toast.makeText(this,"You can't skip", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+            val selectedRadioButton : RadioButton =findViewById(selectedOptionId)
+            val selectedAnswer = selectedRadioButton.text.toString()
+
+            if(selectedAnswer == questions[currentQuestionIndex].correctAnswer){
+                score++
+            }else{
+            }
+
+            currentQuestionIndex++
+
+            if (currentQuestionIndex < questions.size){
+                displayQuestion()
+            }else{
+                finishQuiz()
+            }
+        }
+    }
+    private fun startTimer() {
+        countDownTimer = object : CountDownTimer(totalTimeInMillis, 1000) {
+            override fun onTick(millisUntilFinished: Long) {
+                val minutes = millisUntilFinished / 1000 / 60
+                val seconds = (millisUntilFinished / 1000) % 60
+                val timeFormatted = String.format("%02d:%02d", minutes, seconds)
+                timerText.text = "Time Left: $timeFormatted"
+            }
+
+            override fun onFinish() {
+                Toast.makeText(this@AptitudeNumericalQuiz, "Time's up!", Toast.LENGTH_SHORT).show()
+                finishQuiz()
+            }
+        }.start()
+    }
+
+    private fun loadQuestions(){
+        val json = assets.open("Aptitude_NumericalSkillsQuestions.json")
+        val reader = InputStreamReader(json)
+        val gson = Gson()
+        val questionListType = object : TypeToken<List<Question>>(){}.type
+        questions = gson.fromJson(reader, questionListType)
+    }
+
+    private fun setupProgressBar() {
+        progressBar.max = questions.size
+        progressBar.progress = 1
+    }
+
+    private fun updateProgressBar() {
+        progressBar.progress = currentQuestionIndex + 1
+    }
+
+
+    private fun displayQuestion(){
+        val question = questions[currentQuestionIndex]
+        questionText.text = question.text
+        optionsGroup.clearCheck()
+
+
+        val option1: RadioButton = findViewById(R.id.option1)
+        val option2: RadioButton = findViewById(R.id.option2)
+        val option3: RadioButton = findViewById(R.id.option3)
+        val option4: RadioButton = findViewById(R.id.option4)
+
+
+        option1.text = question.options[0]
+        option2.text = question.options[1]
+        option3.text = question.options[2]
+        option4.text = question.options[3]
+    }
+
+    private fun finishQuiz(){
+        val percentage = (score.toDouble()/questions.size) * 100   // this is used to save in firebase
+        val formattedPercentage = String.format("%.2f",percentage)
+        val resultText = "Final Score: $score/${questions.size}"
+        scoreText.text = resultText
+        Toast.makeText(this,"Quiz Fineshed!", Toast.LENGTH_SHORT).show()
+
+        countDownTimer.cancel()
+
+        nextButton.isEnabled = false
+        optionsGroup.clearCheck()
+        for (i in 0 until optionsGroup.childCount) {
+            optionsGroup.getChildAt(i).isEnabled = false
+        }
+        // TODO: code for saving the data add the mark in new field in the current user
+    }
+}

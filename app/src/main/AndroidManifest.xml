@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@drawable/e1"
+        android:label="@string/app_name"
+        android:roundIcon="@drawable/e1"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.FutureFit"
+        tools:targetApi="31">
+        <activity
+            android:name=".AssessmentInstructions.PersonalityTestInstruction"
+            android:exported="false" />
+        <activity
+            android:name=".AssessmentSplashScreen.PersonalityStartSplashScreen"
+            android:exported="false" />
+        <activity
+            android:name=".AssessmentSplashScreen.AptitudeStartSplashScreen"
+            android:exported="false" />
+
+        <activity
+            android:name=".AssessmentInstructions.AptitudeTestInstruction"
+            android:exported="false" />
+        <activity
+            android:name=".Authentication.SignIn"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Assessment.InterestSurveyQuiz"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Assessment.PersonalityTraitQuiz"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Assessment.AptitudeVerbelQuiz"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Assessment.AptitudeNumericalQuiz"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Assessment.AptitudeLogicalQuiz"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".ProfileStatus"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".BottomBar"
+            android:exported="false"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".Authentication.SignUp"
+            android:exported="true"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".SplashScreen"
+            android:exported="true"
+            android:screenOrientation="portrait" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
+    </application>
+
+</manifest>

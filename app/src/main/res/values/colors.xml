@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+
+
+    <color name="Royalwhite">#f5f5f5</color>
+    <color name="Sky">#3567E9</color>
+    <color name="sky2">#28a5a9</color>
+    <color name="textcolor">#353333</color>
+</resources>

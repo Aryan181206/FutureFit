@@ -1,0 +1,92 @@
+[
+  {
+    "id": 1,
+    "text": "What is the value of 25 × 4?",
+    "options": ["50", "75", "100", "125"],
+    "correctAnswer": "100"
+  },
+  {
+    "id": 2,
+    "text": "What is the square root of 144?",
+    "options": ["10", "11", "12", "13"],
+    "correctAnswer": "12"
+  },
+  {
+    "id": 3,
+    "text": "What is 15% of 200?",
+    "options": ["25", "30", "35", "40"],
+    "correctAnswer": "30"
+  },
+  {
+    "id": 4,
+    "text": "What is the next number in the series: 2, 4, 8, 16, ___?",
+    "options": ["20", "24", "30", "32"],
+    "correctAnswer": "32"
+  },
+  {
+    "id": 5,
+    "text": "What is the result of 72 ÷ 8?",
+    "options": ["7", "8", "9", "10"],
+    "correctAnswer": "9"
+  },
+  {
+    "id": 6,
+    "text": "Solve: (5 × 6) + (8 × 2)",
+    "options": ["46", "48", "50", "52"],
+    "correctAnswer": "46"
+  },
+  {
+    "id": 7,
+    "text": "What is the LCM of 4 and 6?",
+    "options": ["10", "12", "14", "16"],
+    "correctAnswer": "12"
+  },
+  {
+    "id": 8,
+    "text": "How many sides does a pentagon have?",
+    "options": ["4", "5", "6", "7"],
+    "correctAnswer": "5"
+  },
+  {
+    "id": 9,
+    "text": "What is the result of 0.5 × 0.2?",
+    "options": ["0.01", "0.1", "0.25", "0.5"],
+    "correctAnswer": "0.1"
+  },
+  {
+    "id": 10,
+    "text": "If a train travels 60 km in 1.5 hours, what is its speed?",
+    "options": ["30 km/h", "40 km/h", "45 km/h", "60 km/h"],
+    "correctAnswer": "40 km/h"
+  },
+  {
+    "id": 11,
+    "text": "Which number is a multiple of both 3 and 4?",
+    "options": ["6", "9", "12", "15"],
+    "correctAnswer": "12"
+  },
+  {
+    "id": 12,
+    "text": "Simplify: (2 + 3) × (4 + 1)",
+    "options": ["20", "25", "15", "10"],
+    "correctAnswer": "25"
+  },
+  {
+    "id": 13,
+    "text": "What is the average of 10, 20, and 30?",
+    "options": ["15", "20", "25", "30"],
+    "correctAnswer": "20"
+  },
+  {
+    "id": 14,
+    "text": "Find the missing number: 5, 10, 20, ?, 80",
+    "options": ["30", "35", "40", "50"],
+    "correctAnswer": "40"
+  },
+  {
+    "id": 15,
+    "text": "What is the value of 2³ + 3²?",
+    "options": ["13", "17", "18", "19"],
+    "correctAnswer": "17"
+  }
+]

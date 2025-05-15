@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "597453810019",
+    "project_id": "futurefitai-34f23",
+    "storage_bucket": "futurefitai-34f23.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:597453810019:android:1ed399826bbe9b3d4fcb56",
+        "android_client_info": {
+          "package_name": "com.example.futurefit"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC_kFvrEVJyYs_SvsQ0W6FrTjNUvprI6Xk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

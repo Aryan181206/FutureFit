@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="default_web_client_id" translatable="false">597453810019-0c39imj9r230sseq00vmav8vh01jp61u.apps.googleusercontent.com</string>
+    <string name="gcm_defaultSenderId" translatable="false">597453810019</string>
+    <string name="google_api_key" translatable="false">AIzaSyC_kFvrEVJyYs_SvsQ0W6FrTjNUvprI6Xk</string>
+    <string name="google_app_id" translatable="false">1:597453810019:android:1ed399826bbe9b3d4fcb56</string>
+    <string name="google_crash_reporting_api_key" translatable="false">AIzaSyC_kFvrEVJyYs_SvsQ0W6FrTjNUvprI6Xk</string>
+    <string name="google_storage_bucket" translatable="false">futurefitai-34f23.firebasestorage.app</string>
+    <string name="project_id" translatable="false">futurefitai-34f23</string>
+</resources>

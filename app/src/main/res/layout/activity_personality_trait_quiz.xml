@@ -49,6 +49,26 @@
         android:layout_marginHorizontal="20dp"
         android:textSize="20dp" />
 
+    <RadioGroup
+        android:id="@+id/optionsGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/nextButton"
+        app:layout_constraintTop_toBottomOf="@+id/questionText" />
+
+
+    <Button
+        android:id="@+id/nextButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Next"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundGif"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backgroundGif"
+        app:layout_constraintVertical_bias="0.631" />
+
 
 
 

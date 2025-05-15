@@ -1,0 +1,280 @@
+{
+  "dimensions": [
+    {
+      "name": "Realistic",
+      "key": "R",
+      "questions": [
+        {
+          "question": "Do you enjoy working with tools or machines?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Do you prefer fixing or building things rather than sitting at a desk?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Are you good at working outdoors or in physically active jobs?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Do you like solving practical problems that require manual skills?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Investigative",
+      "key": "I",
+      "questions": [
+        {
+          "question": "Do you prefer solving complex problems or puzzles?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Are you interested in scientific or technical subjects?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Do you enjoy research or studying new theories?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Do you like working independently on intellectual tasks?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Artistic",
+      "key": "A",
+      "questions": [
+        {
+          "question": "Do you enjoy drawing, writing, or performing arts?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Do you prefer tasks that require imagination and originality?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Do you like working on projects with no clear rules or structure?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Are you interested in designing or creating new things?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Social",
+      "key": "S",
+      "questions": [
+        {
+          "question": "Do you enjoy working with people and providing support?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Are you good at teaching or explaining things to others?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Do you prefer teamwork and collaborative environments?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Do you like roles that involve counseling or social services?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Enterprising",
+      "key": "E",
+      "questions": [
+        {
+          "question": "Do you enjoy leading teams or projects?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Are you comfortable making decisions and taking risks?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Do you like persuading or motivating others?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Are you interested in business, sales, or entrepreneurship?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Conventional",
+      "key": "C",
+      "questions": [
+        {
+          "question": "Do you prefer working with data, numbers, or records?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Are you good at following rules and procedures?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Do you like organizing information or managing details?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        },
+        {
+          "question": "Do you prefer clear tasks over ambiguous or open-ended ones?",
+          "options": {
+            "1": "Strongly Disagree",
+            "2": "Disagree",
+            "3": "Neutral",
+            "4": "Agree",
+            "5": "Strongly Agree"
+          }
+        }
+      ]
+    }
+  ]
+}

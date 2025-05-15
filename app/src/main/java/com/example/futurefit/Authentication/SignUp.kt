@@ -130,6 +130,7 @@ class SignUp : AppCompatActivity() {
     }
 
     private fun saveUserToFirestore(name: String, email: String) {
+        val user = auth.currentUser
         val userMap = hashMapOf(
             "Name" to name,
             "Email" to email

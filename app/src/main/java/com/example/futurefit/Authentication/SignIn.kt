@@ -34,7 +34,7 @@ class SignIn : AppCompatActivity() {
 
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
-    private lateinit var loginButton: Button
+    private lateinit var loginButton: CardView
     private lateinit var goToSignUpTextView: TextView
     private lateinit var googleSignInCard: CardView // Your Google sign-in button view
     private val RC_SIGN_IN = 101
@@ -161,8 +161,8 @@ class SignIn : AppCompatActivity() {
     private fun saveUserToSharedPreferences(name: String, email: String) {
         val sharedPref = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
         with(sharedPref.edit()) {
-            putString("userName", name)
-            putString("userEmail", email)
+            putString("name", name)
+            putString("email", email)
             apply()
         }
     }

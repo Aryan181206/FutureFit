@@ -1,6 +1,8 @@
 package com.example.futurefit.Assessment
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.os.CountDownTimer
 import android.widget.*
@@ -8,7 +10,10 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.futurefit.AssessmentResult.AptitudeLogicalResult
 import com.example.futurefit.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 import java.io.InputStreamReader
@@ -28,6 +33,9 @@ class AptitudeLogicalQuiz : AppCompatActivity() {
     private var currentQuestionIndex = 0
     private var score = 0
     private var questions: List<Question> = listOf()
+
+    private val auth = FirebaseAuth.getInstance()
+    private val firestore = FirebaseFirestore.getInstance()
 
     data class Question(
         val id: Int,
@@ -149,6 +157,40 @@ class AptitudeLogicalQuiz : AppCompatActivity() {
             optionsGroup.getChildAt(i).isEnabled = false
         }
 
-        // TODO: Save 'formattedPercentage' to Firebase under current user's data
+        // Save to Firebase
+        saveResultToFirestore(formattedPercentage)
+    }
+
+    private fun saveResultToFirestore(scorePercent: String) {
+        val user = auth.currentUser
+        val sharedPref = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        val savedEmail = sharedPref.getString("email", null)
+
+        if (user != null) {
+            val docRef = firestore.collection("Users").document(savedEmail.toString())
+
+            val data = mapOf(
+                "Aptitude_Logical_Score" to "$scorePercent%"
+            )
+
+            docRef.set(data, com.google.firebase.firestore.SetOptions.merge())
+                .addOnSuccessListener {
+                    goToResultActivity("$scorePercent%")
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Failed to save result: ${it.message}", Toast.LENGTH_SHORT).show()
+                    goToResultActivity("$scorePercent%")
+                }
+        } else {
+            Toast.makeText(this, "User not logged in!", Toast.LENGTH_SHORT).show()
+            goToResultActivity("$scorePercent%")
+        }
+    }
+
+    private fun goToResultActivity(result: String) {
+        val intent = Intent(this, AptitudeLogicalResult::class.java)
+        intent.putExtra("LOGICAL_RESULT", result)
+        startActivity(intent)
+        finish()
     }
 }

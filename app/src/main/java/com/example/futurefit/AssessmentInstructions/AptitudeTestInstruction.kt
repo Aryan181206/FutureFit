@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.futurefit.Assessment.AptitudeLogicalQuiz
 import com.example.futurefit.AssessmentSplashScreen.AptitudeStartSplashScreen
 import com.example.futurefit.R
 
@@ -27,7 +28,7 @@ class AptitudeTestInstruction : AppCompatActivity() {
 
         startTest = findViewById(R.id.startAptitudeTest)
         startTest.setOnClickListener {
-            val intent = Intent(this@AptitudeTestInstruction, AptitudeStartSplashScreen :: class.java)
+            val intent = Intent(this@AptitudeTestInstruction, AptitudeLogicalQuiz :: class.java)
             startActivity(intent)
         }
 

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:tools="http://schemas.android.com/tools" >
 
     <application
         android:allowBackup="true"
@@ -11,7 +11,19 @@
         android:roundIcon="@drawable/e1"
         android:supportsRtl="true"
         android:theme="@style/Theme.FutureFit"
-        tools:targetApi="31">
+        tools:targetApi="31" >
+        <activity
+            android:name=".AssessmentResult.AptitudeVerbalResult"
+            android:exported="false" />
+        <activity
+            android:name=".AssessmentResult.AptitudeNumericalResult"
+            android:exported="false" />
+        <activity
+            android:name=".AssessmentResult.AptitudeLogicalResult"
+            android:exported="false" />
+        <activity
+            android:name=".AssessmentResult.InterestResult"
+            android:exported="false" />
         <activity
             android:name=".AssessmentInstructions.PersonalityTestInstruction"
             android:exported="false" />
@@ -21,7 +33,6 @@
         <activity
             android:name=".AssessmentSplashScreen.AptitudeStartSplashScreen"
             android:exported="false" />
-
         <activity
             android:name=".AssessmentInstructions.AptitudeTestInstruction"
             android:exported="false" />
@@ -31,7 +42,7 @@
             android:screenOrientation="portrait" />
         <activity
             android:name=".Assessment.InterestSurveyQuiz"
-            android:exported="false"
+            android:exported="true"
             android:screenOrientation="portrait" />
         <activity
             android:name=".Assessment.PersonalityTraitQuiz"
@@ -60,17 +71,17 @@
         <activity
             android:name=".Authentication.SignUp"
             android:exported="true"
-            android:screenOrientation="portrait">
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".SplashScreen"
+            android:exported="true"
+            android:screenOrientation="portrait" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".SplashScreen"
-            android:exported="true"
-            android:screenOrientation="portrait" />
 
         <meta-data
             android:name="preloaded_fonts"

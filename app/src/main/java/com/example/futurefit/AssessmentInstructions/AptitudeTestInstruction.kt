@@ -28,8 +28,9 @@ class AptitudeTestInstruction : AppCompatActivity() {
 
         startTest = findViewById(R.id.startAptitudeTest)
         startTest.setOnClickListener {
-            val intent = Intent(this@AptitudeTestInstruction, AptitudeLogicalQuiz :: class.java)
+            val intent = Intent(this@AptitudeTestInstruction, AptitudeStartSplashScreen :: class.java)
             startActivity(intent)
+            finish()
         }
 
 

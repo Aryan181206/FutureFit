@@ -1,0 +1,60 @@
+{
+  "dimensions": [
+    {
+      "name": "Introversion vs Extroversion",
+      "key": "IE",
+      "questions": [
+        {
+          "question": "Do you feel more energized after spending time with others or being alone?",
+          "options": { "E": "With others", "I": "Alone" }
+        },
+        {
+          "question": "Do you prefer group discussions over one-on-one conversations?",
+          "options": { "E": "Yes", "I": "No" }
+        }
+      ]
+    },
+    {
+      "name": "Sensing vs Intuition",
+      "key": "SN",
+      "questions": [
+        {
+          "question": "Do you focus on the facts and details or the big picture?",
+          "options": { "S": "Facts and details", "N": "Big picture" }
+        },
+        {
+          "question": "Do you prefer practical solutions or imaginative ideas?",
+          "options": { "S": "Practical solutions", "N": "Imaginative ideas" }
+        }
+      ]
+    },
+    {
+      "name": "Thinking vs Feeling",
+      "key": "TF",
+      "questions": [
+        {
+          "question": "Do you make decisions based on logic or personal values?",
+          "options": { "T": "Logic", "F": "Personal values" }
+        },
+        {
+          "question": "Do you value justice over compassion?",
+          "options": { "T": "Yes", "F": "No" }
+        }
+      ]
+    },
+    {
+      "name": "Judging vs Perceiving",
+      "key": "JP",
+      "questions": [
+        {
+          "question": "Do you prefer a planned and organized life or a flexible and spontaneous one?",
+          "options": { "J": "Planned and organized", "P": "Flexible and spontaneous" }
+        },
+        {
+          "question": "Do you like to finish projects before the deadline or keep them open?",
+          "options": { "J": "Finish early", "P": "Keep open" }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginTop="6dp"
+    android:layout_marginBottom="6dp"
+    android:elevation="4dp"
+    android:padding="12dp"
+    app:cardCornerRadius="10dp"
+    app:cardBackgroundColor="@color/Royalwhite"
+    android:layout_marginHorizontal="5dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginHorizontal="10dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Position Title"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginBottom="7dp"/>
+
+            <EditText
+                android:id="@+id/etJobTitle"
+                android:layout_width="match_parent"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="10dp"
+                android:background="@drawable/edittext_background"
+                android:layout_height="40dp"
+                android:paddingStart="15dp"
+                android:hint="eg. Software Engineer" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Company Name"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="3dp"/>
+
+
+            <EditText
+                android:id="@+id/etCompanyName"
+                android:background="@drawable/edittext_background"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="10dp"
+                android:paddingStart="15dp"
+                android:hint="eg. Google" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Location"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="3dp"/>
+
+            <EditText
+                android:id="@+id/etLocation"
+                android:background="@drawable/edittext_background"
+                android:layout_width="match_parent"
+                android:layout_height="40dp"
+                android:textColor="@color/black"
+                android:layout_marginHorizontal="10dp"
+                android:paddingStart="15dp"
+                android:hint="eg. Kanpur" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Years of Experience"
+                android:textSize="18dp"
+                android:textColor="@color/black"
+                android:textStyle="bold"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="3dp"/>
+
+
+            <EditText
+                android:id="@+id/etYearsOfExperience"
+                android:layout_width="190dp"
+                android:background="@drawable/edittext_background"
+                android:inputType="number"
+                android:textColor="@color/black"
+                android:paddingStart="15dp"
+                android:layout_marginHorizontal="10dp"
+                android:layout_height="40dp"
+                android:hint="eg. 5 (in Years)" />
+
+            <com.google.android.material.switchmaterial.SwitchMaterial
+                android:id="@+id/switchCurrentlyWorking"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="3dp"
+                android:textStyle="bold"
+                android:textSize="18dp"
+                android:text="Currently Working Here?" />
+
+
+            <Button
+                android:id="@+id/btnRemove"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Remove"
+                android:layout_gravity="end"
+                android:layout_marginTop="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginBottom="10dp"
+
+                android:backgroundTint="@color/black"
+                android:textColor="@color/Royalwhite"
+                android:textSize="18dp"
+                />
+
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>

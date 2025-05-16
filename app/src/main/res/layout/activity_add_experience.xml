@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".AddSEC.AddExperience">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+      >
+        <ImageView
+            android:layout_width="220dp"
+            android:layout_marginLeft="15dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/finallogo2"/>
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:gravity="center"
+        android:layout_marginHorizontal="10dp"
+        android:layout_gravity="center"
+        android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Experience"
+        android:textStyle="bold"
+        android:fontFamily="@font/monda"
+        android:layout_gravity="center_vertical"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
+        android:textSize="26dp"
+        />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/addPositionCard"
+            android:layout_width="154dp"
+            android:layout_height="45dp"
+            android:layout_gravity="right"
+            android:layout_marginLeft="90dp"
+            android:backgroundTint="@color/Sky"
+            app:cardCornerRadius="10dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:drawableLeft="@drawable/baseline_add_24"
+                android:fontFamily="@font/baloo_thambi"
+                android:text="Add Position"
+                android:textColor="@color/white"
+                android:textSize="20dp"/>
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="665dp"
+        android:layout_margin="8dp"
+        android:layout_weight="1"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:id="@+id/positionContainer"
+            android:layout_width="match_parent"
+            android:layout_marginVertical="5dp"
+            android:layout_height="wrap_content"
+            android:background="@color/Royalwhite"
+            android:orientation="vertical" />
+    </ScrollView>
+
+
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/saveChanges"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        app:cardCornerRadius="12dp"
+        android:layout_marginHorizontal="10dp"
+        app:cardBackgroundColor="@color/Sky"
+        android:layout_marginBottom="6dp"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:text="Save Changes"
+            android:layout_gravity="center"
+            android:textColor="@color/white"
+            android:textSize="28dp"
+            android:gravity="center"
+            android:fontFamily="@font/baloo_thambi"/>
+
+    </androidx.cardview.widget.CardView>
+
+
+
+    </LinearLayout>
+
+

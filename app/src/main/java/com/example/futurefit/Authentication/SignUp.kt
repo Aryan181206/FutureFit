@@ -6,6 +6,7 @@ import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
@@ -35,6 +36,7 @@ class SignUp : AppCompatActivity() {
     private lateinit var passwordEditText: TextInputEditText
     private lateinit var signUpButton: CardView
     private lateinit var googleSignUpButton: CardView
+    private lateinit var tosignin: TextView
 
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
@@ -75,6 +77,11 @@ class SignUp : AppCompatActivity() {
         passwordEditText = findViewById(R.id.passwordEditText)
         signUpButton = findViewById(R.id.signUp)
         googleSignUpButton = findViewById(R.id.googleSignUpCard)
+        tosignin = findViewById(R.id.toSignIn)
+
+        tosignin.setOnClickListener {
+            startActivity(Intent(this, SignIn::class.java))
+        }
 
         // Google Sign-In options
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

@@ -20,7 +20,7 @@
             android:id="@+id/imageView1"
             android:layout_width="165dp"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="5dp"
             android:layout_height="68dp"
             android:src="@drawable/finallogo2" />
@@ -295,7 +295,7 @@
                             <ImageView
                                 android:layout_width="45dp"
                                 android:layout_height="45dp"
-                                android:src="@drawable/star"
+                                android:src="@drawable/experience"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="10dp"/>
                             <TextView
@@ -329,7 +329,7 @@
                             <ImageView
                                 android:layout_width="45dp"
                                 android:layout_height="45dp"
-                                android:src="@drawable/star"
+                                android:src="@drawable/certificate"
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="10dp"/>
                             <TextView
@@ -389,13 +389,6 @@
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
-
-
-
-
-
-
-
 
             </LinearLayout>
         </ScrollView>

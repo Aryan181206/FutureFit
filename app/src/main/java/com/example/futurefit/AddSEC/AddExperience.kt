@@ -51,6 +51,7 @@ class AddExperience : AppCompatActivity() {
 
         saveButton.setOnClickListener {
             saveEmploymentHistoryToFirebase()
+
         }
 
 
@@ -75,24 +76,16 @@ class AddExperience : AppCompatActivity() {
         for (i in 0 until employmentContainer.childCount) {
             val cardView = employmentContainer.getChildAt(i)
 
-
-
-
-
-
-
             val position = cardView.findViewById<EditText>(R.id.etJobTitle).text.toString().trim()
             val company = cardView.findViewById<EditText>(R.id.etCompanyName).text.toString().trim()
             val location = cardView.findViewById<EditText>(R.id.etLocation).text.toString().trim()
             val experienceStr = cardView.findViewById<EditText>(R.id.etYearsOfExperience).text.toString().trim()
-
             val experienceYears = experienceStr.toIntOrNull() ?: 0
 
             if (position.isEmpty() || company.isEmpty() || location.isEmpty()) {
-                Toast.makeText(this, "Please fill all fields in card $i", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please fill all fields in card ${i + 1}", Toast.LENGTH_SHORT).show()
                 return
             }
-
 
             val employment = mapOf(
                 "Position" to position,
@@ -104,15 +97,29 @@ class AddExperience : AppCompatActivity() {
             employmentList.add(employment)
         }
 
-        val email = auth.currentUser?.email
+        val email = auth.currentUser?.email ?: return
 
-        firestore.collection("Users").document(email.toString())
-            .update("Experience", employmentList)
-            .addOnSuccessListener {
-                Toast.makeText(this, "Experience Saved!", Toast.LENGTH_SHORT).show()
+        val docRef = firestore.collection("Users").document(email)
+
+        docRef.get()
+            .addOnSuccessListener { document ->
+                val existingList = document.get("Experience") as? MutableList<Map<String, Any>> ?: mutableListOf()
+                existingList.addAll(employmentList)
+
+                docRef.update("Experience", existingList)
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Experience added successfully!", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this, "Failed to update: ${it.message}", Toast.LENGTH_LONG).show()
+                    }
             }
             .addOnFailureListener {
-                Toast.makeText(this, "Failed to save: ${it.message}", Toast.LENGTH_LONG).show()
+                Toast.makeText(this, "Failed to load existing data: ${it.message}", Toast.LENGTH_LONG).show()
             }
+        finish()
     }
+
+
 }

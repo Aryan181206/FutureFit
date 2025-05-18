@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:layout_height="match_parent"
+    tools:context=".AssessmentInstructions.InterestTestInstruction">
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        >
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:src="@drawable/finallogo2"
+            android:layout_marginLeft="15dp"/>
+    </androidx.cardview.widget.CardView>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Interest Survey - RIASEC Format"
+        android:textSize="22dp"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        android:fontFamily="@font/monda"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="15dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Instructions"
+        android:fontFamily="@font/monda"
+        android:layout_marginLeft="10dp"
+        android:textColor="@color/black"
+        android:textSize="22dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="15dp"
+        android:layout_marginTop="10dp"
+        android:textColor="@color/black"
+        android:layout_marginHorizontal="13dp"
+        android:text="Welcome to the Interest Profiler!&#xA;&#xA;This survey will help you identify your professional interests and suggest potential career paths that align with what genuinely interests you.&#xA;&#xA;It explores six broad areas of work-related interests:&#xA;&#xA;Realistic (R): Do you enjoy hands-on activities, working with tools, machines, or the physical world?&#xA;&#xA;Investigative (I): Are you curious, analytical, and enjoy problem-solving and research?&#xA;&#xA;Artistic (A): Do you appreciate creativity, self-expression, and innovation in various forms?&#xA;&#xA;Social (S): Are you drawn to helping, teaching, and working closely with other people?&#xA;&#xA;Enterprising (E): Do you enjoy leading, persuading, and taking initiative in business or projects?&#xA;&#xA;Conventional (C): Are you organized, detail-oriented, and prefer structured and systematic tasks?&#xA;&#xA;For each question, please indicate how much you would enjoy or be interested in the described activity.&#xA;&#xA;Be as honest as possible with your responses – there are no right or wrong answers. Your genuine preferences will lead to the most relevant career suggestions.&#xA;&#xA;This survey is a guide to explore potential career directions based on your interests. It&apos;s a starting point for your career exploration journey.&#xA;&#xA;Once you complete the survey, we will analyze your responses to identify your strongest interest areas and suggest related career fields.&#xA;&#xA;Ready to explore your professional interests? Click &apos;Start&apos; to begin!" />
+
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/startIntersetTest"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:backgroundTint="@color/Sky"
+                android:elevation="5dp"
+                android:layout_marginHorizontal="8dp"
+                android:layout_marginTop="25dp"
+                app:cardMaxElevation="100dp"
+                app:cardElevation="10dp"
+                android:layout_marginBottom="15dp"
+                app:cardCornerRadius="10dp"
+                >
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Start"
+                    android:fontFamily="@font/baloo_thambi"
+                    android:textSize="25dp"
+                    android:layout_gravity="center"
+                    android:gravity="center"
+                    android:textColor="@color/Royalwhite"/>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

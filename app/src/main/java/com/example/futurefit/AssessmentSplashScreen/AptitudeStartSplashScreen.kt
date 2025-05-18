@@ -34,11 +34,7 @@ class AptitudeStartSplashScreen : AppCompatActivity() {
             .into(backgroundGif)
 
 
-        val backgroundGif2: ImageView = findViewById(R.id.backgroundGif2)
-        Glide.with(this)
-            .asGif()
-            .load(R.drawable.quizanimation) // Your GIF in res/drawable
-            .into(backgroundGif)
+
 
         // Delay for 5 seconds (5000ms), then start the quiz activity
         Handler(Looper.getMainLooper()).postDelayed({

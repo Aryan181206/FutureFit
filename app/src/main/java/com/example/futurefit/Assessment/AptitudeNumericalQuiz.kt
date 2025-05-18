@@ -16,8 +16,6 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.futurefit.AssessmentResult.AptitudeLogicalResult
-import com.example.futurefit.AssessmentResult.AptitudeNumericalResult
 import com.example.futurefit.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -35,7 +33,6 @@ class AptitudeNumericalQuiz : AppCompatActivity() {
     private lateinit var questionText: TextView
     private lateinit var optionsGroup: RadioGroup
     private lateinit var nextButton: Button
-    private lateinit var scoreText: TextView
     private lateinit var progressBar: ProgressBar
 
 
@@ -72,7 +69,6 @@ class AptitudeNumericalQuiz : AppCompatActivity() {
         questionText = findViewById(R.id.questionText)
         optionsGroup = findViewById(R.id.optionsGroup)
         nextButton = findViewById(R.id.nextButton)
-        scoreText = findViewById(R.id.scoreText)
         progressBar = findViewById(R.id.progressBar2)
 
         startTimer()
@@ -160,8 +156,7 @@ class AptitudeNumericalQuiz : AppCompatActivity() {
         val percentage = (score.toDouble()/questions.size) * 100   // this is used to save in firebase
         val formattedPercentage = String.format("%.2f",percentage)
         val resultText = "Final Score: $score/${questions.size}"
-        scoreText.text = resultText
-        Toast.makeText(this,"Quiz Fineshed!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this,"Numerical Quiz Fineshed!", Toast.LENGTH_SHORT).show()
 
         countDownTimer.cancel()
 
@@ -170,6 +165,7 @@ class AptitudeNumericalQuiz : AppCompatActivity() {
         for (i in 0 until optionsGroup.childCount) {
             optionsGroup.getChildAt(i).isEnabled = false
         }
+        saveResultToFirestore(formattedPercentage)
 
         //Save to Firestore
     }
@@ -199,8 +195,7 @@ class AptitudeNumericalQuiz : AppCompatActivity() {
         }
     }
     private fun goToResultActivity(result: String) {
-        val intent = Intent(this, AptitudeNumericalResult::class.java)
-        intent.putExtra("NUMERICAL_RESULT", result)
+        val intent = Intent(this, AptitudeVerbelQuiz::class.java)
         startActivity(intent)
         finish()
     }

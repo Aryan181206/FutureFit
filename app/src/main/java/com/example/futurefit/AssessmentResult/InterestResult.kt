@@ -1,21 +1,28 @@
 package com.example.futurefit.AssessmentResult
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import androidx.cardview.widget.CardView
+import com.example.futurefit.BottomBar
 import com.example.futurefit.R
 
 class InterestResult : AppCompatActivity() {
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_interest_result)
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
-            insets
+
+        val resultTextView = findViewById<TextView>(R.id.interestResult)
+
+        val result = intent.getStringExtra("RIASEC_RESULT") ?: "No result available"
+        resultTextView.text = result
+
+        val backButton = findViewById<CardView>(R.id.backhome)
+        backButton.setOnClickListener {
+            startActivity(Intent(this, BottomBar::class.java))
+            finish()
         }
     }
 }

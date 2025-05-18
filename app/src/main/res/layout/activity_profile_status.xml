@@ -13,16 +13,11 @@
         android:layout_width="match_parent"
         android:layout_height="75dp"
         android:elevation="15dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Profile Status"
-            android:textSize="28dp"
-            android:textColor="@color/textcolor"
-            android:textStyle="bold"
-            android:fontFamily="@font/ar_one_sans"
-            android:layout_marginTop="11dp"
-            android:layout_marginStart="16dp"/>
+       <ImageView
+           android:layout_width="200dp"
+           android:layout_height="match_parent"
+           android:src="@drawable/finallogo2"
+           android:layout_marginLeft="10dp"/>
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -43,6 +38,17 @@
         android:layout_height="20dp"
         android:layout_marginTop="5dp"
         android:layout_marginHorizontal="16dp"/>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -134,18 +140,340 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
         app:cardCornerRadius="10dp"
-        android:layout_marginTop="15dp"/>
+        android:layout_marginTop="15dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Education Details"
+                android:textColor="@color/textcolor"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="7dp">
+                <TextView
+                    android:id="@+id/Stream"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Stream"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:paddingStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+                <ImageView
+                    android:id="@+id/streamcheck"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="267dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/baseline_check_box_24"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="7dp">
+                <TextView
+                    android:id="@+id/qualification"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Qualification"
+                    android:textSize="18dp"
+                    android:paddingStart="16dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"/>
+                <ImageView
+                    android:id="@+id/qualificationcheck"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="226dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/baseline_check_box_24"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="7dp">
+                <TextView
+                    android:id="@+id/cgpa"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="CGPA"
+                    android:textSize="18dp"
+                    android:paddingStart="16dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"/>
+                <ImageView
+                    android:id="@+id/cgpacheck"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="280dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/baseline_check_box_24"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginTop="15dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Assessment"
+                android:textColor="@color/textcolor"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="7dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Aptitude Assessment"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:paddingStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+                <ImageView
+                    android:id="@+id/aptitudecheck"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="155dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/baseline_check_box_24"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="7dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Personality Traits"
+                    android:textSize="18dp"
+                    android:paddingStart="16dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"/>
+                <ImageView
+                    android:id="@+id/personalitycheck"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="187dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/baseline_check_box_24"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginTop="15dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Skills & Interests"
+                android:textColor="@color/textcolor"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="7dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Technical Skills"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:paddingStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+                <ImageView
+                    android:id="@+id/technicalcheck"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="202dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/baseline_check_box_24"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="7dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Softskills"
+                    android:textSize="18dp"
+                    android:paddingStart="16dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"/>
+                <ImageView
+                    android:id="@+id/softcheck"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="252dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/baseline_check_box_24"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="12dp"
+                android:layout_marginTop="7dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Interests"
+                    android:textSize="18dp"
+                    android:paddingStart="16dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"/>
+                <ImageView
+                    android:id="@+id/interestcheck"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="255dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/baseline_check_box_24"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="16dp"
+        app:cardCornerRadius="10dp"
+        android:layout_marginTop="15dp">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Experience & Certification"
+                android:textColor="@color/textcolor"
+                android:textSize="20dp"
+                android:textStyle="bold"
+                android:layout_marginTop="10dp"
+                android:layout_marginStart="16dp"/>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginTop="7dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Experience"
+                    android:textSize="18dp"
+                    android:textColor="@color/black"
+                    android:paddingStart="16dp"
+                    android:layout_gravity="center_vertical"/>
+                <ImageView
+                    android:id="@+id/experiencecheck"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="239dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/baseline_check_box_24"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="7dp">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Certification"
+                    android:textSize="18dp"
+                    android:paddingStart="16dp"
+                    android:textColor="@color/black"
+                    android:layout_gravity="center_vertical"/>
+                <ImageView
+                    android:id="@+id/certificationcheck"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_marginLeft="228dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/baseline_check_box_24"/>
+            </LinearLayout>
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:layout_height="match_parent">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/predicit"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="bottom"
+                    android:layout_marginBottom="10dp"
+                    android:layout_marginHorizontal="15dp"
+                    app:cardBackgroundColor="@color/Sky"
+                    android:elevation="15dp"
+                    app:cardCornerRadius="12dp">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Predicit"
+                        android:textColor="@color/white"
+                        android:textStyle="bold"
+                        android:textSize="25dp"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/monda"/>
+                </androidx.cardview.widget.CardView>
+
+            </LinearLayout>
 
 
 
 
-
-
-
-
-
-
+        </LinearLayout>
+    </ScrollView>
 </LinearLayout>

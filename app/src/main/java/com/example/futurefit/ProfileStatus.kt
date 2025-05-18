@@ -17,5 +17,6 @@ class ProfileStatus : AppCompatActivity() {
             insets
         }
         //for tick and wrong directly search to firebase firestore
+
     }
 }

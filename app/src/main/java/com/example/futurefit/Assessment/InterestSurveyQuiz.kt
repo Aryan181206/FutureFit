@@ -11,6 +11,7 @@ import com.example.futurefit.AssessmentResult.InterestResult
 import com.example.futurefit.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+import com.google.firebase.firestore.SetOptions
 import org.json.JSONObject
 import java.io.InputStream
 
@@ -72,7 +73,6 @@ class InterestSurveyQuiz : AppCompatActivity() {
                 saveResultToFirestore(result)
             }
         }
-
     }
 
     private fun loadQuestionsFromJSON() {
@@ -108,11 +108,15 @@ class InterestSurveyQuiz : AppCompatActivity() {
         questionText.text = question.question
         optionsGroup.removeAllViews()
 
+        // Clear previous selection explicitly
+        optionsGroup.clearCheck()
+
         for ((score, text) in question.options) {
-            val radio = RadioButton(this)
-            radio.text = text
-            radio.tag = score
-            radio.id = RadioButton.generateViewId()
+            val radio = RadioButton(this).apply {
+                this.text = text
+                this.tag = score
+                this.id = RadioButton.generateViewId()
+            }
             optionsGroup.addView(radio)
         }
 
@@ -139,11 +143,11 @@ class InterestSurveyQuiz : AppCompatActivity() {
         val sharedPref = getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
         val savedEmail = sharedPref.getString("email", null)
 
-        if (user != null) {
-            val userDocRef = firestore.collection("Users").document(savedEmail.toString())
-            val data = mapOf("Interest" to result) // lowercase field
+        if (user != null && savedEmail != null) {
+            val userDocRef = firestore.collection("Users").document(savedEmail)
+            val data = mapOf("Interest" to result)
 
-            userDocRef.set(data, com.google.firebase.firestore.SetOptions.merge())
+            userDocRef.set(data, SetOptions.merge())
                 .addOnSuccessListener {
                     goToResultActivity(result)
                 }
@@ -156,7 +160,6 @@ class InterestSurveyQuiz : AppCompatActivity() {
             goToResultActivity(result)
         }
     }
-
 
     private fun goToResultActivity(result: String) {
         val intent = Intent(this, InterestResult::class.java)

@@ -1,24 +1,21 @@
 package com.example.futurefit.Assessment
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ProgressBar
-import android.widget.RadioButton
-import android.widget.RadioGroup
-import android.widget.TextView
-import android.widget.Toast
-import androidx.activity.enableEdgeToEdge
+import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.futurefit.AssessmentResult.PersonalityResult
 import com.example.futurefit.R
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import org.json.JSONObject
 import java.io.InputStream
-import kotlin.collections.iterator
 
 class PersonalityTraitQuiz : AppCompatActivity() {
+
     private lateinit var progressBar: ProgressBar
     private lateinit var dimensionTitle: TextView
     private lateinit var questionText: TextView
@@ -27,7 +24,10 @@ class PersonalityTraitQuiz : AppCompatActivity() {
 
     private val questionsList = mutableListOf<QuestionItem>()
     private var currentIndex = 0
-    private val answersMap = mutableMapOf<String, MutableList<String>>() // dimensionKey -> [E, I, ...]
+    private val answersMap = mutableMapOf<String, MutableList<String>>()
+
+    private lateinit var firestore: FirebaseFirestore
+    private lateinit var auth: FirebaseAuth
 
     data class QuestionItem(
         val dimensionName: String,
@@ -36,17 +36,23 @@ class PersonalityTraitQuiz : AppCompatActivity() {
         val options: Map<String, String>
     )
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
         setContentView(R.layout.activity_personality_trait_quiz)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        // Initialize views
-       // dimensionTitle = findViewById(R.id.dimensionTitle)
+
+        // Firebase init
+        firestore = FirebaseFirestore.getInstance()
+        auth = FirebaseAuth.getInstance()
+
+        // View bindings
+        dimensionTitle = findViewById(R.id.dimensionTitle)
         questionText = findViewById(R.id.questionText)
         optionsGroup = findViewById(R.id.optionsGroup)
         nextButton = findViewById(R.id.nextButton)
@@ -57,26 +63,10 @@ class PersonalityTraitQuiz : AppCompatActivity() {
         showQuestion()
 
         nextButton.setOnClickListener {
-            val selectedId = optionsGroup.checkedRadioButtonId
-            if (selectedId == -1) {
-                Toast.makeText(this, "You can't skip this question!", Toast.LENGTH_SHORT).show()
-                return@setOnClickListener
-            }
-
-            val selectedOption = findViewById<RadioButton>(selectedId).tag.toString()
-            val currentQuestion = questionsList[currentIndex]
-            answersMap.getOrPut(currentQuestion.dimensionKey) { mutableListOf() }.add(selectedOption)
-
-            currentIndex++
-            if (currentIndex < questionsList.size) {
-                showQuestion()
-            } else {
-                val finalType = calculatePersonalityType()
-                Toast.makeText(this, "Test finished!", Toast.LENGTH_SHORT).show()
-                goToResultActivity(finalType)
-            }
+            handleNextButton()
         }
     }
+
     private fun loadQuestionsFromJSON() {
         val inputStream: InputStream = assets.open("personalityTestQuestion.json")
         val jsonStr = inputStream.bufferedReader().use { it.readText() }
@@ -101,6 +91,7 @@ class PersonalityTraitQuiz : AppCompatActivity() {
             }
         }
     }
+
     private fun showQuestion() {
         val current = questionsList[currentIndex]
         dimensionTitle.text = current.dimensionName
@@ -111,11 +102,35 @@ class PersonalityTraitQuiz : AppCompatActivity() {
             val radioButton = RadioButton(this)
             radioButton.text = text
             radioButton.tag = code
+            radioButton.id = RadioButton.generateViewId()
             optionsGroup.addView(radioButton)
         }
 
-        progressBar.progress = currentIndex
+        progressBar.progress = currentIndex + 1
     }
+
+    private fun handleNextButton() {
+        val selectedId = optionsGroup.checkedRadioButtonId
+
+        if (selectedId == -1) {
+            Toast.makeText(this, "Please select an option before proceeding!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val selectedOption = findViewById<RadioButton>(selectedId).tag.toString()
+        val currentQuestion = questionsList[currentIndex]
+        answersMap.getOrPut(currentQuestion.dimensionKey) { mutableListOf() }.add(selectedOption)
+
+        currentIndex++
+
+        if (currentIndex < questionsList.size) {
+            showQuestion()
+        } else {
+            val finalType = calculatePersonalityType()
+            saveResultToFirestore(finalType)
+        }
+    }
+
     private fun calculatePersonalityType(): String {
         val typeLetters = mutableListOf<String>()
         val explanation = mutableListOf<String>()
@@ -127,13 +142,34 @@ class PersonalityTraitQuiz : AppCompatActivity() {
             "J" to "Judging", "P" to "Perceiving"
         )
 
-        for ((dimension, responses) in answersMap) {
+        for ((_, responses) in answersMap) {
             val counts = responses.groupingBy { it }.eachCount()
             val selected = counts.maxByOrNull { it.value }?.key ?: ""
             typeLetters.add(selected)
             explanation.add(dimensionMap[selected] ?: selected)
         }
+
         return "${typeLetters.joinToString("")} - ${explanation.joinToString(", ")}"
+    }
+
+    private fun saveResultToFirestore(result: String) {
+        val currentUser = auth.currentUser
+        if (currentUser != null) {
+            val userEmail = currentUser.email ?: return
+            val userDocRef = firestore.collection("Users").document(userEmail)
+
+            userDocRef.update("Personality", result)
+                .addOnSuccessListener {
+                    goToResultActivity(result)
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Failed to save result: ${it.message}", Toast.LENGTH_LONG).show()
+                    goToResultActivity(result)
+                }
+        } else {
+            Toast.makeText(this, "User not logged in!", Toast.LENGTH_SHORT).show()
+            goToResultActivity(result)
+        }
     }
 
     private fun goToResultActivity(result: String) {

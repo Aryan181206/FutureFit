@@ -16,12 +16,4 @@
         android:layout_marginTop="320dp"
         android:src="@drawable/quizanimation" />
 
-    <ImageView
-        android:id="@+id/backgroundGif2"
-        android:layout_width="300dp"
-        android:layout_height="208dp"
-        android:layout_gravity="center"
-        android:src="@drawable/quizanimation" />
-
-
 </LinearLayout>

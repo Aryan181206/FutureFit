@@ -15,8 +15,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.example.futurefit.AssessmentResult.AptitudeLogicalResult
-import com.example.futurefit.AssessmentResult.AptitudeVerbalResult
+import com.example.futurefit.AssessmentResult.AptitudeResult
 import com.example.futurefit.R
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -123,7 +122,7 @@ class AptitudeVerbelQuiz : AppCompatActivity() {
     }
 
     private fun loadQuestions(){
-        val json = assets.open("Aptitude_NumericalSkillsQuestions.json")
+        val json = assets.open("Aptitude_VerbalQuestions.json")
         val reader = InputStreamReader(json)
         val gson = Gson()
         val questionListType = object : TypeToken<List<Question>>(){}.type
@@ -161,7 +160,7 @@ class AptitudeVerbelQuiz : AppCompatActivity() {
         val percentage = (score.toDouble()/questions.size) * 100   // this is used to save in firebase
         val formattedPercentage = String.format("%.2f",percentage)
         val resultText = "Final Score: $score/${questions.size} ($formattedPercentage%)"
-        scoreText.text = resultText
+
         Toast.makeText(this,"Quiz Fineshed!", Toast.LENGTH_SHORT).show()
 
 
@@ -200,7 +199,7 @@ class AptitudeVerbelQuiz : AppCompatActivity() {
         }
     }
     private fun goToResultActivity(result: String) {
-        val intent = Intent(this, AptitudeVerbalResult::class.java)
+        val intent = Intent(this, AptitudeResult::class.java)
         intent.putExtra("VERBAL_RESULT", result)
         startActivity(intent)
         finish()

@@ -58,26 +58,28 @@ class AddSkillss : AppCompatActivity() {
         builder.setTitle("Select Skill Type")
         builder.setItems(options) { _, which ->
             when (which) {
-                0 -> addSkillSpinner("technical")
-                1 -> addSkillSpinner("soft")
+                0 -> addSkillInput("technical")
+                1 -> addSkillInput("soft")
             }
         }
         builder.show()
     }
 
-    private fun addSkillSpinner(type: String) {
+    private fun addSkillInput(type: String) {
         val context = this
-        val containerLayout = LinearLayout(context)
-        containerLayout.orientation = LinearLayout.VERTICAL
-        containerLayout.setPadding(30, 10, 30, 10)
+        val horizontalLayout = LinearLayout(context)
+        horizontalLayout.orientation = LinearLayout.HORIZONTAL
+        horizontalLayout.setPadding(30, 10, 30, 10)
+        horizontalLayout.layoutParams = LinearLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
 
         val spinner = Spinner(context)
         val options = if (type == "technical") technicalSkills else softSkills
 
         val adapter = object : ArrayAdapter<String>(context, android.R.layout.simple_spinner_item, options) {
-            override fun isEnabled(position: Int): Boolean {
-                return position != 0
-            }
+            override fun isEnabled(position: Int): Boolean = position != 0
 
             override fun getDropDownView(position: Int, convertView: View?, parent: ViewGroup): View {
                 val view = super.getDropDownView(position, convertView, parent)
@@ -89,18 +91,44 @@ class AddSkillss : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item)
         spinner.adapter = adapter
 
-        containerLayout.addView(spinner)
-        positionContainer.addView(containerLayout)
+        val removeButton = Button(context).apply {
+            text = "Remove"
+            setOnClickListener {
+                positionContainer.removeView(horizontalLayout)
+            }
+        }
+
+        horizontalLayout.addView(spinner)
+        horizontalLayout.addView(removeButton)
+        positionContainer.addView(horizontalLayout)
 
         spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, pos: Int, id: Long) {
                 val selected = parent?.getItemAtPosition(pos).toString()
 
                 if (selected == "Other") {
-                    val editText = EditText(context)
-                    editText.hint = "Enter your custom skill"
-                    containerLayout.removeView(spinner)
-                    containerLayout.addView(editText)
+                    val inputLayout = LinearLayout(context).apply {
+                        orientation = LinearLayout.HORIZONTAL
+                        setPadding(30, 10, 30, 10)
+                    }
+
+                    val editText = EditText(context).apply {
+                        hint = "Enter your custom skill"
+                        layoutParams = LinearLayout.LayoutParams(0, ViewGroup.LayoutParams.WRAP_CONTENT, 1f)
+                    }
+
+                    val removeBtn = Button(context).apply {
+                        text = "Remove"
+                        setOnClickListener {
+                            positionContainer.removeView(inputLayout)
+                        }
+                    }
+
+                    inputLayout.addView(editText)
+                    inputLayout.addView(removeBtn)
+
+                    positionContainer.removeView(horizontalLayout)
+                    positionContainer.addView(inputLayout)
 
                     editText.setOnFocusChangeListener { _, hasFocus ->
                         if (!hasFocus) {
@@ -131,12 +159,11 @@ class AddSkillss : AppCompatActivity() {
         val currentUser = auth.currentUser
         if (currentUser != null) {
             val email = currentUser.email ?: return
-
             val userDocRef = firestore.collection("Users").document(email)
 
             userDocRef.get().addOnSuccessListener { document ->
-                val oldTechSkills = (document.get("technicalSkills") as? List<String>) ?: emptyList()
-                val oldSoftSkills = (document.get("softSkills") as? List<String>) ?: emptyList()
+                val oldTechSkills = (document.get("TechnicalSkills") as? List<String>) ?: emptyList()
+                val oldSoftSkills = (document.get("SoftSkills") as? List<String>) ?: emptyList()
 
                 val updatedTechSkills = (oldTechSkills + selectedTechnicalSkills).distinct()
                 val updatedSoftSkills = (oldSoftSkills + selectedSoftSkills).distinct()

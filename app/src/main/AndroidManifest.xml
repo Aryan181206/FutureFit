@@ -15,6 +15,9 @@
         android:theme="@style/Theme.FutureFit"
         tools:targetApi="31">
         <activity
+            android:name=".Prediction.PredicitionSplashScreen"
+            android:exported="false" />
+        <activity
             android:name=".AssessmentResult.AptitudeResult"
             android:exported="false" />
         <activity

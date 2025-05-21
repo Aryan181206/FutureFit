@@ -11,10 +11,10 @@ import androidx.cardview.widget.CardView
 import com.example.futurefit.AddSEC.AddCertification
 import com.example.futurefit.AddSEC.AddExperience
 import com.example.futurefit.AddSEC.AddSkillss
-import com.example.futurefit.Assessment.InterestSurveyQuiz
 import com.example.futurefit.AssessmentInstructions.AptitudeTestInstruction
 import com.example.futurefit.AssessmentInstructions.InterestTestInstruction
 import com.example.futurefit.AssessmentInstructions.PersonalityTestInstruction
+import com.example.futurefit.ProfileStatus
 import com.example.futurefit.R
 
 
@@ -36,6 +36,12 @@ class HomeFrag : Fragment() {
         val ProvideSkills = view.findViewById<CardView>(R.id.ProvideSkills)
         val ProvideExperience = view.findViewById<CardView>(R.id.ProvideExperience)
         val ProvideCertification =view.findViewById<CardView>(R.id.ProvideCertificates)
+        val profileStatus = view.findViewById<CardView>(R.id.profilestatus)
+
+
+        profileStatus.setOnClickListener {
+            startActivity(Intent(requireContext(), ProfileStatus::class.java))
+        }
 
         startassessment.setOnClickListener {
             startActivity(Intent(requireContext(),AptitudeTestInstruction::class.java))

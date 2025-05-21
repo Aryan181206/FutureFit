@@ -63,6 +63,11 @@ dependencies {
     implementation("com.google.code.gson:gson:2.8.8")
 
 
+    //gemini ai
+    implementation("com.google.ai.client.generativeai:generativeai:0.9.0")
+
+
+
     dependencies {
         // Import the BoM for the Firebase platform
         implementation(platform("com.google.firebase:firebase-bom:33.13.0"))

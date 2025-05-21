@@ -88,7 +88,7 @@
                     android:layout_height="24dp"
                     android:layout_marginLeft="245dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/baseline_check_box_24"/>
+                    android:src="@drawable/cross"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -109,7 +109,7 @@
                     android:layout_height="24dp"
                     android:layout_marginLeft="295dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/baseline_check_box_24"/>
+                    android:src="@drawable/cross"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -131,7 +131,7 @@
                     android:layout_height="24dp"
                     android:layout_marginLeft="257dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/baseline_check_box_24"/>
+                    android:src="@drawable/cross"/>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -177,7 +177,7 @@
                     android:layout_height="24dp"
                     android:layout_marginLeft="267dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/baseline_check_box_24"/>
+                    android:src="@drawable/cross"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -199,7 +199,7 @@
                     android:layout_height="24dp"
                     android:layout_marginLeft="226dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/baseline_check_box_24"/>
+                    android:src="@drawable/cross"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -222,7 +222,7 @@
                     android:layout_height="24dp"
                     android:layout_marginLeft="280dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/baseline_check_box_24"/>
+                    android:src="@drawable/cross"/>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -265,7 +265,7 @@
                     android:layout_height="24dp"
                     android:layout_marginLeft="155dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/baseline_check_box_24"/>
+                    android:src="@drawable/cross"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -287,7 +287,7 @@
                     android:layout_height="24dp"
                     android:layout_marginLeft="187dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/baseline_check_box_24"/>
+                    android:src="@drawable/cross"/>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -306,7 +306,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Skills & Interests"
+                android:text="Skills &amp; Interests"
                 android:textColor="@color/textcolor"
                 android:textSize="20dp"
                 android:textStyle="bold"
@@ -331,7 +331,7 @@
                     android:layout_height="24dp"
                     android:layout_marginLeft="202dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/baseline_check_box_24"/>
+                    android:src="@drawable/cross"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -352,7 +352,7 @@
                     android:layout_height="24dp"
                     android:layout_marginLeft="252dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/baseline_check_box_24"/>
+                    android:src="@drawable/cross"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -374,7 +374,7 @@
                     android:layout_height="24dp"
                     android:layout_marginLeft="255dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/baseline_check_box_24"/>
+                    android:src="@drawable/cross"/>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>
@@ -392,7 +392,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Experience & Certification"
+                android:text="Experience &amp; Certification"
                 android:textColor="@color/textcolor"
                 android:textSize="20dp"
                 android:textStyle="bold"
@@ -417,7 +417,7 @@
                     android:layout_height="24dp"
                     android:layout_marginLeft="239dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/baseline_check_box_24"/>
+                    android:src="@drawable/cross"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
@@ -439,7 +439,7 @@
                     android:layout_height="24dp"
                     android:layout_marginLeft="228dp"
                     android:layout_gravity="center_vertical"
-                    android:src="@drawable/baseline_check_box_24"/>
+                    android:src="@drawable/cross"/>
             </LinearLayout>
         </LinearLayout>
     </androidx.cardview.widget.CardView>

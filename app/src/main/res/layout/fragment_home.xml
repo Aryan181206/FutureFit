@@ -370,6 +370,7 @@
                                 android:layout_gravity="center_vertical"
                                 android:layout_marginLeft="18dp"/>
                             <androidx.cardview.widget.CardView
+                                android:id="@+id/profilestatus"
                                 android:layout_width="match_parent"
                                 android:layout_height="60dp"
                                 app:cardCornerRadius="7dp"

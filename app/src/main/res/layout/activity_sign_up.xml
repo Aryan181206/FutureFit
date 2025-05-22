@@ -118,6 +118,7 @@
                 android:id="@+id/signUp"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:clickable="true"
                 android:layout_marginTop="20dp"
                 android:backgroundTint="@color/black"
                 app:cardCornerRadius="10dp"
@@ -143,6 +144,7 @@
                 android:id="@+id/googleSignUpCard"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
+                android:clickable="true"
                 android:backgroundTint="@color/black"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp">

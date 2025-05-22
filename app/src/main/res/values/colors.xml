@@ -8,4 +8,14 @@
     <color name="Sky">#3567E9</color>
     <color name="sky2">#28a5a9</color>
     <color name="textcolor">#353333</color>
+
+
+    <color name="primary">#3F51B5</color>
+    <color name="secondary">#009688</color>
+    <color name="background">#F4F6F8</color>
+
+
+    <color name="dark_gray">#666666</color>
+    <color name="light_gray">#DDDDDD</color>
+
 </resources>

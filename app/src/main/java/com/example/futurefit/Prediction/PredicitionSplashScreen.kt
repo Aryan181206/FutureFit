@@ -1,5 +1,6 @@
 package com.example.futurefit.Prediction
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
@@ -20,34 +21,29 @@ import java.io.FileOutputStream
 
 class PredicitionSplashScreen : AppCompatActivity() {
 
-
     private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
     private var userProfile: UserProfile? = null
     private lateinit var careerPredictionPrompt: String
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContentView(R.layout.activity_predicition_splash_screen)
+
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
 
-
         // Firestore & Auth
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
-
-        //work  of data done here
-
-        val currentuser = auth.currentUser
-        if (currentuser != null && currentuser.email != null) {
-            val email = currentuser.email!!
+        val currentUser = auth.currentUser
+        if (currentUser != null && currentUser.email != null) {
+            val email = currentUser.email!!
             fetchUserData(email)
         }
     }
@@ -72,29 +68,17 @@ class PredicitionSplashScreen : AppCompatActivity() {
                         aptitudeNumerical = document.getString("Aptitude_Numerical_Score") ?: "",
                         aptitudeVerbal = document.getString("Aptitude_Verbal_Score") ?: "",
                         softSkills = document.get("SoftSkills") as? List<String> ?: emptyList(),
-                        technicalSkills = document.get("TechnicalSkills") as? List<String>
-                            ?: emptyList(),
-                        experience = document.get("Experience") as? List<Map<String, Any>>
-                            ?: emptyList(),
+                        technicalSkills = document.get("TechnicalSkills") as? List<String> ?: emptyList(),
+                        experience = document.get("Experience") as? List<Map<String, Any>> ?: emptyList(),
                         aiPredictionResult = ""
                     )
 
-                    Toast.makeText(
-                        this,
-                        "Data fetched for ${userProfile?.name}",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    Toast.makeText(this, "Data fetched for ${userProfile?.name}", Toast.LENGTH_SHORT).show()
 
-                    // Generate Prompt
                     userProfile?.let {
                         careerPredictionPrompt = generatePromptForGemini(it)
-                        Toast.makeText(this, "Prompt generated", Toast.LENGTH_SHORT)
-                            .show()    // for checking
                         Log.d("CareerPrompt", careerPredictionPrompt)
-
-                        // Send Prompt to Gemini AI code for AI prediction
-                        startPrediction(careerPredictionPrompt.toString())
-
+                        startPrediction(careerPredictionPrompt)
                     }
 
                 } else {
@@ -106,58 +90,70 @@ class PredicitionSplashScreen : AppCompatActivity() {
             }
     }
 
-
     private fun startPrediction(prompt: String) {
         if (prompt.isEmpty()) {
             Toast.makeText(this, "Prompt is empty", Toast.LENGTH_SHORT).show()
             return
         }
+
         val generativeModel = GenerativeModel(
             modelName = "gemini-2.0-flash",
             apiKey = "AIzaSyBCBWfKVi6hBieF3TDKTz7v6r7cnr7ipxU"
         )
+
         lifecycleScope.launch {
             try {
                 val response = generativeModel.generateContent(prompt)
-                val outputText = response.text ?: "No response from model"
+                var outputText = response.text ?: "No response from model"
+                Log.d("RawOutput", outputText)
 
-                userProfile = userProfile?.copy(aiPredictionResult = outputText)
+                // Clean the output text before saving
+                val cleanedJson = extractValidJson(outputText)
+                Log.d("CleanedJson", cleanedJson)
 
-                Toast.makeText(
-                    this@PredicitionSplashScreen,
-                    "Out put generated",
-                    Toast.LENGTH_SHORT
-                ).show()
-
-                saveJsonToFile(outputText)
+                userProfile = userProfile?.copy(aiPredictionResult = cleanedJson)
+                saveJsonToFile(cleanedJson)
 
             } catch (e: Exception) {
-                Toast.makeText(
-                    this@PredicitionSplashScreen,
-                    "Error: ${e.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
-            } catch (e: Exception) {
-                Toast.makeText(
-                    this@PredicitionSplashScreen,
-                    "Error: ${e.message}",
-                    Toast.LENGTH_SHORT
-                ).show()
+                Toast.makeText(this@PredicitionSplashScreen, "Error: ${e.message}", Toast.LENGTH_SHORT).show()
+                Log.e("PredictionError", e.toString())
             }
+        }
+    }
+
+    /**
+     * Extract valid JSON content from a string, assuming it starts and ends somewhere in the middle.
+     * Removes any text before the first '{' and after the last '}'.
+     */
+    private fun extractValidJson(text: String): String {
+        val startIndex = text.indexOfFirst { it == '{' }
+        val endIndex = text.indexOfLast { it == '}' }
+
+        return if (startIndex != -1 && endIndex != -1 && endIndex > startIndex) {
+            text.substring(startIndex, endIndex + 1).trim()
+        } else {
+            "{}" // fallback to empty JSON if boundaries are invalid
         }
     }
 
     private fun saveJsonToFile(jsonContent: String) {
         try {
-            val fileName = "carrer_prediction_result.json"
+            val fileName = "career_prediction_result.json"
             val file = File(filesDir, fileName)
             FileOutputStream(file).use { output ->
                 output.write(jsonContent.toByteArray())
                 output.flush()
             }
             Toast.makeText(this, "JSON saved to $fileName", Toast.LENGTH_SHORT).show()
-        }catch (e:Exception){
+            goNextActivity()
+        } catch (e: Exception) {
             Toast.makeText(this, "Failed to save Error: ${e.message}", Toast.LENGTH_SHORT).show()
         }
+    }
+
+    private fun goNextActivity() {
+        Toast.makeText(this, "Going to next activity", Toast.LENGTH_SHORT).show()
+        startActivity(Intent(this, PredicitionResult::class.java))
+        finish()
     }
 }

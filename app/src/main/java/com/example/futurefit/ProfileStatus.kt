@@ -55,6 +55,7 @@ class ProfileStatus : AppCompatActivity() {
 
         predicit.setOnClickListener {
             startActivity(Intent(this, PredicitionSplashScreen::class.java))
+            finish()
         }
 
         val currentUser = auth.currentUser

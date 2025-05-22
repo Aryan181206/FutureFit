@@ -46,12 +46,15 @@ fun generatePromptForGemini(user: UserProfile): String {
         2. Why User Fits in this (Short Explaination).
         3. Skills to Learn (Only Name).
         4. Recommended courses.
+        5. Match percentage (only number)
         
-        Provide the Response in Json Format -> with follwing Arrary Object and key value pair.
+        Provide the Response in Json Format (make only json format not add any thing else) -> with follwing Arrary Object and key value pair.
         Array Object -> Carrer_Name
         keys -> 1. Career_Name
                 2. Reason_Fit
                 3. Skills_to_learn
                 4. Recommended_courses
+                5. Match_Percentage
+                
     """.trimIndent()
 }

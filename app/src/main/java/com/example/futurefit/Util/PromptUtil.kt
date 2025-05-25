@@ -39,6 +39,7 @@ fun generatePromptForGemini(user: UserProfile): String {
             • Verbal Ability: ${user.aptitudeVerbal}
         - Soft Skills: ${user.softSkills.joinToString(", ")}
         - Technical Skills: ${user.technicalSkills.joinToString(", ")}
+        - Physical Fitness: ${user.physicalfitness}
         - Work Experience: ${user.experience.joinToString { it["position"].toString() + " at " + it["company"] }}
 
         Analyze the Profile and Suggest :
@@ -49,7 +50,7 @@ fun generatePromptForGemini(user: UserProfile): String {
         5. Match percentage (only number)
         
         Provide the Response in Json Format (make only json format not add any thing else) -> with follwing Arrary Object and key value pair.
-        Array Object -> Carrer_Name
+        Array Object -> Career_Name
         keys -> 1. Career_Name
                 2. Reason_Fit
                 3. Skills_to_learn

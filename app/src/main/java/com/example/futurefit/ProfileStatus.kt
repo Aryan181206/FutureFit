@@ -1,8 +1,10 @@
 package com.example.futurefit
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.Toast
@@ -20,7 +22,27 @@ class ProfileStatus : AppCompatActivity() {
     private lateinit var db: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
     private lateinit var progressBar: ProgressBar
+    private lateinit var predicit: CardView
 
+    private val requiredFields = mapOf(
+        "Name" to R.id.namecheck,
+        "Aptitude_Logical_Score" to R.id.aptitudecheck,
+        "Personality" to R.id.personalitycheck,
+        "TechnicalSkills" to R.id.technicalcheck,
+        "SoftSkills" to R.id.softcheck,
+        "Interest" to R.id.interestcheck,
+        "Experience" to R.id.experiencecheck,
+        "CGPA" to R.id.cgpacheck,
+        "Stream" to R.id.streamcheck,
+        "Location" to R.id.locationcheck,
+        "Qualification" to R.id.qualificationcheck,
+        "DateOfBirth" to R.id.agecheck,
+        "Physical_Fitness" to R.id.fitnesscheck // optional or same as "Personality"
+    )
+
+    private var isProfileComplete = false
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -32,62 +54,60 @@ class ProfileStatus : AppCompatActivity() {
             insets
         }
 
-        // Firestore & Auth
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
-
-        // Views
         progressBar = findViewById(R.id.progressBar)
-        val checkage = findViewById<ImageView>(R.id.agecheck)
-        val checkqualification = findViewById<ImageView>(R.id.qualificationcheck)
-        val checklocation = findViewById<ImageView>(R.id.locationcheck)
-        val checkstream = findViewById<ImageView>(R.id.streamcheck)
-        val checkcgpa = findViewById<ImageView>(R.id.cgpacheck)
-        val checkname = findViewById<ImageView>(R.id.namecheck)
-        val checkaptitude = findViewById<ImageView>(R.id.aptitudecheck)
-        val checkpersonality = findViewById<ImageView>(R.id.personalitycheck)
-        val checktechnical = findViewById<ImageView>(R.id.technicalcheck)
-        val checksoft = findViewById<ImageView>(R.id.softcheck)
-        val checkinterest = findViewById<ImageView>(R.id.interestcheck)
-        val checkexperience = findViewById<ImageView>(R.id.experiencecheck)
-        val checkcertification = findViewById<ImageView>(R.id.certificationcheck)
-        val predicit = findViewById<CardView>(R.id.predicit)
+        predicit = findViewById(R.id.predicit)
+
+        predicit.isEnabled = false
+        predicit.setCardBackgroundColor(getColor(R.color.dark_gray))
 
         predicit.setOnClickListener {
-            startActivity(Intent(this, PredicitionSplashScreen::class.java))
-            finish()
+            if (isProfileComplete) {
+                startActivity(Intent(this, PredicitionSplashScreen::class.java))
+                finish()
+            } else {
+                // Shake animation and toast
+                val shake = AnimationUtils.loadAnimation(this, R.anim.shake)
+                predicit.startAnimation(shake)
+                Toast.makeText(this, "Please complete your profile before proceeding.", Toast.LENGTH_SHORT).show()
+            }
         }
 
         val currentUser = auth.currentUser
         if (currentUser != null && currentUser.email != null) {
             val email = currentUser.email!!
 
-            progressBar.visibility = View.VISIBLE // Show progress bar
+            progressBar.visibility = View.VISIBLE
 
             db.collection("Users").document(email).get()
                 .addOnSuccessListener { document ->
-                    progressBar.visibility = View.GONE // Hide on success
+                    progressBar.visibility = View.GONE
 
                     if (document != null && document.exists()) {
-                        setStatusIcon(checkname, document.getString("Name"))
-                        setStatusIcon(checkaptitude, document.getString("Aptitude_Logical_Score"))
-                        setStatusIcon(checkpersonality, document.getString("Personality"))
-                        setStatusIcon(checktechnical, document.get("TechnicalSkills"))
-                        setStatusIcon(checksoft, document.get("SoftSkills"))
-                        setStatusIcon(checkinterest, document.get("Interest"))
-                        setStatusIcon(checkexperience, document.get("Experience"))
-                        setStatusIcon(checkcgpa, document.get("CGPA"))
-                        setStatusIcon(checkstream, document.get("Stream"))
-                        setStatusIcon(checklocation, document.get("Location"))
-                        setStatusIcon(checkqualification, document.get("Qualification"))
-                        setStatusIcon(checklocation, document.get("Location"))
-                        setStatusIcon(checkage, document.get("DateOfBirth"))
+                        var allValid = true
+
+                        for ((field, iconId) in requiredFields) {
+                            val value = document.get(field)
+                            val isValid = isFieldValid(value)
+
+                            val iconView = findViewById<ImageView>(iconId)
+                            iconView.setImageResource(
+                                if (isValid) R.drawable.baseline_check_box_24 else R.drawable.cross
+                            )
+
+                            if (!isValid) allValid = false
+                        }
+
+                        isProfileComplete = allValid
+                        updatePredictionButton(allValid)
+
                     } else {
                         Toast.makeText(this, "User data not found", Toast.LENGTH_SHORT).show()
                     }
                 }
                 .addOnFailureListener {
-                    progressBar.visibility = View.GONE // Hide on failure
+                    progressBar.visibility = View.GONE
                     Toast.makeText(this, "Error: ${it.message}", Toast.LENGTH_SHORT).show()
                 }
         } else {
@@ -95,13 +115,19 @@ class ProfileStatus : AppCompatActivity() {
         }
     }
 
-    private fun setStatusIcon(view: ImageView, fieldValue: Any?) {
-        val isValid = when (fieldValue) {
+    private fun isFieldValid(fieldValue: Any?): Boolean {
+        return when (fieldValue) {
             is String -> fieldValue.isNotBlank()
             is List<*> -> fieldValue.isNotEmpty()
             is Map<*, *> -> fieldValue.isNotEmpty()
             else -> fieldValue != null
         }
-        view.setImageResource(if (isValid) R.drawable.baseline_check_box_24 else R.drawable.cross)
+    }
+
+    private fun updatePredictionButton(enable: Boolean) {
+        predicit.isEnabled = enable
+        predicit.setCardBackgroundColor(
+            getColor(if (enable) R.color.Sky else R.color.dark_gray)
+        )
     }
 }

@@ -34,110 +34,432 @@
             android:padding="16dp"
             android:gravity="center_horizontal">
 
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Prediction"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_marginBottom="-8dp"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Completed Successfully"
+                android:textStyle="bold"
+                android:textSize="28sp"
+                android:textColor="@color/black"
+                android:gravity="center"
+                android:layout_marginBottom="5dp"/>
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="180dp"
+                android:layout_gravity="center_horizontal"
+                android:contentDescription="Career Icon"
+                android:src="@drawable/career2"
+                android:layout_marginTop="-20dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="These are some Best Matched Career Options according to your Profile"
+                android:textColor="@color/black"
+                android:textSize="18dp"
+                android:layout_marginTop="5dp"
+                android:gravity="center"/>
+
             <!-- Card 1 -->
-            <androidx.cardview.widget.CardView
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="12dp"
-                android:padding="12dp">
+                android:backgroundTint="@color/white"
+                android:layout_marginTop="8dp"
+                app:cardCornerRadius="16dp"
+                app:cardElevation="8dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
+
+                    <ImageView
+                        android:id="@+id/careerIcon"
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_marginTop="-15dp"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="Career Icon"
+                        android:src="@drawable/career3"
+
+                        />
 
                     <TextView
                         android:id="@+id/careerName1"
-                        android:layout_height="35dp"
-                        android:layout_width="match_parent"/>
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:fontFamily="@font/monda"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="0dp"
+                        android:text="Recommended Career: Data Scientist"
+                        android:textColor="@color/black"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
 
+                    <TextView
+                        android:id="@+id/reason1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="5dp"
+                        android:text="You have a strong analytical mindset and love working with data. A career as a Data Scientist suits your profile."
+                        android:textColor="@color/textcolor"
+                        android:textSize="19sp" />
 
+                    <TextView
+                        android:id="@+id/tvMatchPercentLabel"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="16dp"
+                        android:textSize="16dp"
+                        android:text="Match Percentage:"
+                        android:textColor="@color/black"
+                        />
 
-                    <TextView android:id="@+id/reason1"
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_width="match_parent"/>
-                    <TextView android:id="@+id/skills1"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ProgressBar
+                            android:id="@+id/progressMatch"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:max="100"
+                            android:progress="85"
+                            android:progressTint="@color/primary" />
+
+                        <TextView
+                            android:id="@+id/match1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="85%"
+                            android:textSize="16dp"
+                            android:textColor="@color/primary"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Action Buttons -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_width="match_parent"/>
-                    <TextView android:id="@+id/courses1"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"/>
-                    <TextView android:id="@+id/match1"
-                        android:layout_height="wrap_content"
-                        android:layout_width="match_parent"/>
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                       >
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/courses1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/primary"
+                            android:text="Courses"
+                            android:textSize="16dp"
+                            android:textColor="@color/white" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/skills1"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:textSize="16dp"
+                            android:backgroundTint="@color/secondary"
+                            android:text="Skills to learn"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
-            <!-- Card 2 (copy layout as above, change ids) -->
-            <androidx.cardview.widget.CardView
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+
+            <!-- Card 2 -->
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="12dp"
-                android:padding="12dp">
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="16dp"
+                android:layout_marginTop="8dp"
+                app:cardElevation="8dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
 
-                    <TextView android:id="@+id/careerName2"
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="Career Icon"
+                        android:src="@drawable/career4"
+                        android:layout_marginTop="-10dp"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/careerName2"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_width="match_parent" />
-                    <TextView android:id="@+id/reason2"
+                        android:gravity="center"
+                        android:fontFamily="@font/monda"
+                        android:layout_gravity="center_horizontal"
+
+                        android:text="Recommended Career: Data Scientist"
+                        android:textColor="@color/black"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/reason2"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_width="match_parent" />
-                    <TextView android:id="@+id/skills2"
+                        android:layout_marginTop="8dp"
+                        android:text="You have a strong analytical mindset and love working with data. A career as a Data Scientist suits your profile."
+                        android:textColor="@color/textcolor"
+                        android:textSize="19sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_width="match_parent"/>
-                    <TextView android:id="@+id/courses2"
+                        android:layout_marginTop="16dp"
+                        android:textSize="16dp"
+                        android:text="Match Percentage:"
+                        android:textColor="@color/black"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_width="match_parent" />
-                    <TextView android:id="@+id/match2"
+                        android:layout_marginTop="4dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ProgressBar
+                            android:id="@+id/progressMatch2"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:max="100"
+                            android:progress="85"
+                            android:progressTint="@color/primary" />
+
+                        <TextView
+                            android:id="@+id/match2"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="85%"
+                            android:textSize="16dp"
+                            android:textColor="@color/primary"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Action Buttons -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_width="match_parent" />
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        >
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/courses2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/primary"
+                            android:text="Courses"
+                            android:textSize="16dp"
+                            android:textColor="@color/white" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/skills2"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:textSize="16dp"
+                            android:backgroundTint="@color/secondary"
+                            android:text="Skills to learn"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
-            <!-- Card 3 -->
-            <androidx.cardview.widget.CardView
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+
+
+            <!-- Card 2 -->
+            <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="16dp"
-                app:cardElevation="6dp"
-                app:cardCornerRadius="12dp"
-                android:padding="12dp">
+                android:backgroundTint="@color/white"
+                app:cardCornerRadius="16dp"
+                android:layout_marginTop="8dp"
+                app:cardElevation="8dp">
 
                 <LinearLayout
-                    android:orientation="vertical"
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="24dp">
 
-                    <TextView android:id="@+id/careerName3"
+                    <ImageView
+                        android:layout_width="120dp"
+                        android:layout_height="120dp"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="Career Icon"
+                        android:src="@drawable/career5"
+                        android:layout_marginTop="-10dp"
+
+                        />
+
+                    <TextView
+                        android:id="@+id/careerName3"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_width="match_parent"/>
-                    <TextView android:id="@+id/reason3"
+                        android:gravity="center"
+                        android:fontFamily="@font/monda"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:text="Recommended Career: Data Scientist"
+                        android:textColor="@color/black"
+                        android:textSize="22sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/reason3"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_width="match_parent"/>
-                    <TextView android:id="@+id/skills3"
+                        android:layout_marginTop="10dp"
+                        android:text="You have a strong analytical mindset and love working with data. A career as a Data Scientist suits your profile."
+                        android:textColor="@color/textcolor"
+                        android:textSize="19sp" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_width="match_parent"/>
-                    <TextView android:id="@+id/courses3"
+                        android:layout_marginTop="16dp"
+                        android:textSize="16dp"
+                        android:text="Match Percentage:"
+                        android:textColor="@color/black"
+                        />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_width="match_parent"/>
-                    <TextView android:id="@+id/match3"  android:layout_height="wrap_content"
-                        android:layout_width="match_parent" />
+                        android:layout_marginTop="4dp"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ProgressBar
+                            android:id="@+id/progressMatch3"
+                            style="?android:attr/progressBarStyleHorizontal"
+                            android:layout_width="0dp"
+                            android:layout_height="10dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/light_gray"
+                            android:max="100"
+                            android:progress="85"
+                            android:progressTint="@color/primary" />
+
+                        <TextView
+                            android:id="@+id/match3"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="85%"
+                            android:textSize="16dp"
+                            android:textColor="@color/primary"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Action Buttons -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:gravity="center"
+                        android:orientation="horizontal"
+                        >
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/courses3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:backgroundTint="@color/primary"
+                            android:text="Courses"
+                            android:textSize="16dp"
+                            android:textColor="@color/white" />
+
+                        <com.google.android.material.button.MaterialButton
+                            android:id="@+id/skills3"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:textSize="16dp"
+                            android:backgroundTint="@color/secondary"
+                            android:text="Skills to learn"
+                            android:textColor="@color/white" />
+                    </LinearLayout>
                 </LinearLayout>
-            </androidx.cardview.widget.CardView>
 
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/backhome"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="5dp"
+                android:backgroundTint="#E7AF23"
+                android:text="Back To Home"
+                android:textSize="22dp"/>
         </LinearLayout>
+
+
     </ScrollView>
+
 
     </LinearLayout>
 

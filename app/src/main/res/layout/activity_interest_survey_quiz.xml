@@ -3,97 +3,100 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white"
     tools:context=".Assessment.InterestSurveyQuiz">
 
+    <!-- Logo Card -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_marginTop="20dp"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="12dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginTop="10dp"
+        app:cardBackgroundColor="@color/white"
+        >
+
         <ImageView
-            android:layout_width="170dp"
-            android:layout_height="70dp"
-            android:layout_marginStart="12dp"
-            android:src="@drawable/finallogo2" />
-        </androidx.cardview.widget.CardView>
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_gravity="left"
+            android:src="@drawable/finallogo2"
+            android:contentDescription="Logo" />
+    </androidx.cardview.widget.CardView>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Interest Survey\nRIASEC Format"
-            android:textStyle="bold"
-            android:layout_marginStart="18dp"
-            android:layout_marginTop="15dp"
-            android:textColor="@color/textcolor"
-            android:textSize="22dp" />
+    <!-- Survey Title -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Interest Survey\nRIASEC Format"
+        android:textStyle="bold"
+        android:textColor="@color/textcolor"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:layout_marginBottom="16dp"
+        android:fontFamily="@font/ar_one_sans" />
 
+    <!-- Dimension Title -->
     <TextView
         android:id="@+id/dimensionTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Dimension"
-        android:layout_marginVertical="15dp"
-        android:layout_gravity="center_horizontal"
-        android:textSize="28sp"
+        android:layout_gravity="center"
+        android:textSize="24sp"
         android:textStyle="bold"
-        android:layout_marginBottom="8dp"/>
+        android:textColor="@color/black"
+        android:layout_marginBottom="12dp" />
 
+    <!-- Progress Bar -->
+    <com.google.android.material.progressindicator.LinearProgressIndicator
+        android:id="@+id/progressBar2"
+        android:layout_width="match_parent"
+        android:layout_height="8dp"
+        android:layout_marginBottom="24dp"
+        app:trackThickness="8dp"
+        app:indicatorColor="@color/Sky"
+        app:trackColor="@color/lightgray" />
 
+    <!-- Question -->
+    <TextView
+        android:id="@+id/questionText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Question"
+        android:textColor="@color/textcolor"
+        android:fontFamily="@font/ar_one_sans"
+        android:textStyle="bold"
+        android:textSize="20sp"
+        android:layout_marginBottom="12dp" />
 
-        <ProgressBar
-            android:id="@+id/progressBar2"
-            style="?android:attr/progressBarStyleHorizontal"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="10dp" />
+    <!-- Option List -->
+    <RadioGroup
+        android:id="@+id/optionsGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/questionText"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
-            android:text="Question"
-            android:textColor="@color/textcolor"
-            android:fontFamily="@font/ar_one_sans"
-            android:textStyle="bold"
-            android:layout_marginHorizontal="20dp"
-            android:textSize="20dp" />
+        <!-- Radio buttons will be added dynamically in Kotlin -->
+    </RadioGroup>
 
-        <!-- RadioGroup with all options styled uniformly -->
-        <RadioGroup
-            android:id="@+id/optionsGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginHorizontal="18dp"
-            android:layout_marginTop="20dp">
-
-
-        </RadioGroup>
-
-        <Button
-            android:id="@+id/nextButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginHorizontal="12dp"
-            android:backgroundTint="@color/Sky"
-            android:text="Next" />
-
-        <TextView
-            android:id="@+id/scoreText"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:text=""
-            android:textSize="16sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/nextButton" />
-
-
-
+    <!-- Next Button -->
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/nextButton"
+        style="@style/Widget.Material3.Button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Next"
+        android:textAllCaps="false"
+        app:cornerRadius="12dp"
+        app:backgroundTint="@color/Sky"
+        android:textColor="@color/white"
+        android:fontFamily="@font/ar_one_sans" />
 
 
 </LinearLayout>

@@ -18,4 +18,10 @@
     <color name="dark_gray">#666666</color>
     <color name="light_gray">#DDDDDD</color>
 
+    <color name="primaryColor">#6200EE</color>
+
+    <color name="lightgray">#E0E0E0</color>
+
+
+
 </resources>

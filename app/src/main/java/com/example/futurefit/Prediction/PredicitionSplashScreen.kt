@@ -69,6 +69,7 @@ class PredicitionSplashScreen : AppCompatActivity() {
                         aptitudeVerbal = document.getString("Aptitude_Verbal_Score") ?: "",
                         softSkills = document.get("SoftSkills") as? List<String> ?: emptyList(),
                         technicalSkills = document.get("TechnicalSkills") as? List<String> ?: emptyList(),
+                        physicalfitness = document.getString("Physical_Fitness") ?: "",
                         experience = document.get("Experience") as? List<Map<String, Any>> ?: emptyList(),
                         aiPredictionResult = ""
                     )

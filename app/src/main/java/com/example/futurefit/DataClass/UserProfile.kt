@@ -17,6 +17,7 @@ package com.example.futurefit.DataClass
         val aptitudeVerbal: String = "",
         val softSkills: List<String> = emptyList(),
         val technicalSkills: List<String> = emptyList(),
+        val physicalfitness: String = "",
         val experience: List<Map<String, Any>> = emptyList(),
         val aiPredictionResult: String =""
     )

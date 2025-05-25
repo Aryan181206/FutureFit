@@ -9,11 +9,15 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.ImageView
+import android.widget.LinearLayout
+import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import com.example.futurefit.R
+import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Calendar
 
@@ -23,23 +27,110 @@ class ProfileFrag : Fragment() {
     private lateinit var firestore: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
 
-    // UI elements for displaying user info (optional if used elsewhere)
+
     private lateinit var dobTextView: TextView
     private lateinit var genderTextView: TextView
     private lateinit var phoneTextView: TextView
     private lateinit var locationTextView: TextView
 
-    private lateinit var streamView : TextView
-    private lateinit var qualificationView : TextView
-    private lateinit var cgpaView : TextView
+    private lateinit var streamView: TextView
+    private lateinit var qualificationView: TextView
+    private lateinit var cgpaView: TextView
+
+    private lateinit var fitnessView: TextView
+
+    private lateinit var logicalScoreText: TextView
+    private lateinit var numericalScoreText: TextView
+    private lateinit var verbalScoreText: TextView
 
 
+    private lateinit var mbtiPersonalityText: TextView
+    private lateinit var personalityDescText: TextView
 
+    private lateinit var interestTextView: TextView
+
+    private lateinit var tabLayout: TabLayout
+
+    private lateinit var personalinfocontentTab1: LinearLayout
+    private lateinit var educationdetailcontentTab2: LinearLayout
+    private lateinit var progressdetilscontentTab3: LinearLayout
+    private lateinit var aboutyoudetilscontentTab4: LinearLayout
+    private lateinit var careerdetilscontentTab5: LinearLayout
+
+
+    @SuppressLint("MissingInflatedId")
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
+
+        tabLayout = view.findViewById<TabLayout>(R.id.tabLayout)
+        personalinfocontentTab1 = view.findViewById(R.id.personalinfocontentTab1)
+        educationdetailcontentTab2 = view.findViewById(R.id.educationdetailcontentTab2)
+        progressdetilscontentTab3 = view.findViewById(R.id.progressdetilscontentTab3)
+        aboutyoudetilscontentTab4 = view.findViewById(R.id.aboutyoudetilscontentTab4)
+        careerdetilscontentTab5 = view.findViewById(R.id.careerdetilscontentTab5)
+
+
+        // Add tabs manually
+        tabLayout.addTab(tabLayout.newTab().setText("Personal"))
+        tabLayout.addTab(tabLayout.newTab().setText("Education Details"))
+        tabLayout.addTab(tabLayout.newTab().setText("Progress"))
+        tabLayout.addTab(tabLayout.newTab().setText("About You"))
+        tabLayout.addTab(tabLayout.newTab().setText("Career"))
+
+        // Handle tab selection
+        tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+            override fun onTabSelected(tab: TabLayout.Tab) {
+                when (tab.position) {
+                    0 -> {
+                        personalinfocontentTab1.visibility = View.VISIBLE
+                        educationdetailcontentTab2.visibility = View.GONE
+                        progressdetilscontentTab3.visibility = View.GONE
+                        aboutyoudetilscontentTab4.visibility = View.GONE
+                        careerdetilscontentTab5.visibility = View.GONE
+                    }
+
+                    1 -> {
+                        personalinfocontentTab1.visibility = View.GONE
+                        educationdetailcontentTab2.visibility = View.VISIBLE
+                        progressdetilscontentTab3.visibility = View.GONE
+                        aboutyoudetilscontentTab4.visibility = View.GONE
+                        careerdetilscontentTab5.visibility = View.GONE
+                    }
+
+                    2 -> {
+                        personalinfocontentTab1.visibility = View.GONE
+                        educationdetailcontentTab2.visibility = View.GONE
+                        progressdetilscontentTab3.visibility = View.VISIBLE
+                        aboutyoudetilscontentTab4.visibility = View.GONE
+                        careerdetilscontentTab5.visibility = View.GONE
+                    }
+
+                    3 -> {
+                        personalinfocontentTab1.visibility = View.GONE
+                        educationdetailcontentTab2.visibility = View.GONE
+                        progressdetilscontentTab3.visibility = View.GONE
+                        aboutyoudetilscontentTab4.visibility = View.VISIBLE
+                        careerdetilscontentTab5.visibility = View.GONE
+                    }
+
+                    4 -> {
+                        personalinfocontentTab1.visibility = View.GONE
+                        educationdetailcontentTab2.visibility = View.GONE
+                        progressdetilscontentTab3.visibility = View.GONE
+                        aboutyoudetilscontentTab4.visibility = View.GONE
+                        careerdetilscontentTab5.visibility = View.VISIBLE
+                    }
+                }
+            }
+
+            override fun onTabUnselected(tab: TabLayout.Tab) {}
+            override fun onTabReselected(tab: TabLayout.Tab) {}
+        })
+
+
 
         // Initialize Firebase
         firestore = FirebaseFirestore.getInstance()
@@ -57,8 +148,22 @@ class ProfileFrag : Fragment() {
         phoneTextView.text = "Loading..."
         locationTextView.text = "Loading..."
 
-
         //Initialize TextView
+
+        logicalScoreText = view.findViewById(R.id.AptitdeLogicalScore)
+        numericalScoreText = view.findViewById(R.id.AptitdeNumericalScore)
+        verbalScoreText = view.findViewById(R.id.AptitdeVerbalScore)
+
+
+        mbtiPersonalityText = view.findViewById(R.id.mbtipersinality)
+        personalityDescText = view.findViewById(R.id.personalitydesc)
+
+        mbtiPersonalityText.text = "Loading..."
+        personalityDescText.text = "Loading..."
+
+        interestTextView = view.findViewById(R.id.interest)
+        interestTextView.text = "Loading..."
+
 
         streamView = view.findViewById<TextView>(R.id.stream)
         streamView.text = "Loading.."
@@ -66,15 +171,20 @@ class ProfileFrag : Fragment() {
         qualificationView.text = "Loading.."
         cgpaView = view.findViewById<TextView>(R.id.cgpa)
         cgpaView.text = "Laoding..."
+        fitnessView = view.findViewById(R.id.fitnessTextView)
+        fitnessView.text = "Loading..."
 
         // Get current user's email
         val email = auth.currentUser?.email ?: ""
 
         // Fetch user data from Firestore
-        fetchAndDisplayUserData(email)
-
-        // Fetch eduaction details from Firestore
+        fetchAndDisplayUserData(email)  // Fetch eduaction details from Firestore
         fetchandDisplayEducationData(email)
+        fetchAndDisplayFitnessData(email) // 👈 FETCH FITNESS DATA
+        fetchAndDisplayAptitudeScores(email)
+        fetchPersonalityData(email)
+        fetchAndDisplayInterest(email)
+
 
         // Set up edit icon listeners
         val personalEditIcon: ImageView = view.findViewById(R.id.PersonalInfoeditIcon)
@@ -88,6 +198,92 @@ class ProfileFrag : Fragment() {
         }
 
         return view
+    }
+
+    private fun fetchAndDisplayInterest(email: String) {
+        firestore.collection("Users").document(email).get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val interest = document.getString("Interest") ?: "Not set"
+                    interestTextView.text = interest
+                } else {
+                    interestTextView.text = "Not set"
+                }
+            }
+            .addOnFailureListener {
+                interestTextView.text = "Error loading"
+            }
+    }
+
+
+    private fun fetchPersonalityData(email: String) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("Users")
+            .document(email)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    val personalityFull = document.getString("Personality")
+
+                    if (!personalityFull.isNullOrEmpty() && personalityFull.contains(" - ")) {
+                        val parts = personalityFull.split(" - ")
+                        val type = parts[0].trim() // e.g., "INFJ"
+                        val description =
+                            parts[1].trim() // e.g., "Introversion, Intuition, Feeling, Judging"
+
+                        mbtiPersonalityText.text = type
+                        personalityDescText.text = "\"$description\""
+                    } else {
+                       // Toast.makeText(this, "Invalid personality format", Toast.LENGTH_SHORT)
+                           // .show()
+                    }
+                } else {
+                   // Toast.makeText(this, "No user data found", Toast.LENGTH_SHORT).show()
+                }
+            }
+            .addOnFailureListener { e ->
+               // Toast.makeText(this, "Error fetching data: ${e.message}", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+    private fun fetchAndDisplayAptitudeScores(email: String) {
+        firestore.collection("Users").document(email).get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val logicalScore = document.getString("Aptitude_Logical_Score") ?: "0.0 %"
+                    val numericalScore = document.getString("Aptitude_Numerical_Score") ?: "0.0 %"
+                    val verbalScore = document.getString("Aptitude_Verbal_Score") ?: "0.0 %"
+
+                    logicalScoreText.text = "$logicalScore"
+                    numericalScoreText.text = "$numericalScore"
+                    verbalScoreText.text = "$verbalScore"
+
+
+                }
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Failed to load scores", Toast.LENGTH_SHORT).show()
+            }
+    }
+
+
+
+
+    // 🔥 Fetch Fitness Data
+    private fun fetchAndDisplayFitnessData(email: String) {
+        firestore.collection("Users").document(email).get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    val status = document.getString("Physical_Fitness") ?: "Not set"
+                    fitnessView.text = "Status : $status"
+                } else {
+                    fitnessView.text = "Status : Not set"
+                }
+            }
+            .addOnFailureListener {
+                fitnessView.text = "Status : Error"
+            }
     }
 
 

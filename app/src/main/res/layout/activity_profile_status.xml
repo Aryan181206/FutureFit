@@ -26,7 +26,7 @@
         android:text="Profile Completion"
         android:textStyle="bold"
         android:layout_marginTop="15dp"
-        android:textSize="31dp"
+        android:textSize="25dp"
         android:textColor="@color/black"
         android:fontFamily="@font/ar_one_sans"
         android:layout_marginStart="16dp"/>
@@ -50,7 +50,7 @@
 
 
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -73,12 +73,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginRight="12dp"
                 android:layout_marginTop="7dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Full Name"
                     android:textSize="18dp"
+                    android:layout_weight="1"
                     android:textColor="@color/black"
                     android:paddingStart="16dp"
                     android:layout_gravity="center_vertical"/>
@@ -86,7 +88,6 @@
                     android:id="@+id/namecheck"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="245dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/cross"/>
             </LinearLayout>
@@ -94,12 +95,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginRight="12dp"
                 android:layout_marginTop="7dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Age"
                     android:textSize="18dp"
+                    android:layout_weight="1"
                     android:paddingStart="16dp"
                     android:textColor="@color/black"
                     android:layout_gravity="center_vertical"/>
@@ -107,7 +110,6 @@
                     android:id="@+id/agecheck"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="295dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/cross"/>
             </LinearLayout>
@@ -115,13 +117,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginRight="12dp"
                 android:layout_marginBottom="12dp"
                 android:layout_marginTop="7dp">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Location"
                     android:textSize="18dp"
+                    android:layout_weight="1"
                     android:paddingStart="16dp"
                     android:textColor="@color/black"
                     android:layout_gravity="center_vertical"/>
@@ -129,16 +133,15 @@
                     android:id="@+id/locationcheck"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="257dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/cross"/>
             </LinearLayout>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -161,6 +164,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginRight="12dp"
                 android:layout_marginTop="7dp">
                 <TextView
                     android:id="@+id/Stream"
@@ -168,6 +172,7 @@
                     android:layout_height="wrap_content"
                     android:text="Stream"
                     android:textSize="18dp"
+                    android:layout_weight="1"
                     android:textColor="@color/black"
                     android:paddingStart="16dp"
                     android:layout_gravity="center_vertical"/>
@@ -175,7 +180,6 @@
                     android:id="@+id/streamcheck"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="267dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/cross"/>
             </LinearLayout>
@@ -183,6 +187,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginRight="12dp"
                 android:layout_marginTop="7dp">
                 <TextView
                     android:id="@+id/qualification"
@@ -190,6 +195,7 @@
                     android:layout_height="wrap_content"
                     android:text="Qualification"
                     android:textSize="18dp"
+                    android:layout_weight="1"
                     android:paddingStart="16dp"
                     android:textColor="@color/black"
                     android:layout_gravity="center_vertical"/>
@@ -197,7 +203,6 @@
                     android:id="@+id/qualificationcheck"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="226dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/cross"/>
             </LinearLayout>
@@ -206,12 +211,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="12dp"
+                android:layout_marginRight="12dp"
                 android:layout_marginTop="7dp">
                 <TextView
                     android:id="@+id/cgpa"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="CGPA"
+                    android:layout_weight="1"
                     android:textSize="18dp"
                     android:paddingStart="16dp"
                     android:textColor="@color/black"
@@ -220,14 +227,13 @@
                     android:id="@+id/cgpacheck"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="280dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/cross"/>
             </LinearLayout>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -290,10 +296,10 @@
                     android:src="@drawable/cross"/>
             </LinearLayout>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -377,9 +383,9 @@
                     android:src="@drawable/cross"/>
             </LinearLayout>
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
-    <androidx.cardview.widget.CardView
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -392,7 +398,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Experience &amp; Certification"
+                android:text="Experience &amp; Physical Fitness"
                 android:textColor="@color/textcolor"
                 android:textSize="20dp"
                 android:textStyle="bold"
@@ -423,35 +429,36 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_marginBottom="10dp"
-                android:layout_marginTop="7dp">
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Certification"
+                    android:text="Physical Fitness"
                     android:textSize="18dp"
-                    android:paddingStart="16dp"
                     android:textColor="@color/black"
+                    android:paddingStart="16dp"
                     android:layout_gravity="center_vertical"/>
                 <ImageView
-                    android:id="@+id/certificationcheck"
+                    android:id="@+id/fitnesscheck"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="228dp"
+                    android:layout_marginLeft="198dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/cross"/>
             </LinearLayout>
+
         </LinearLayout>
-    </androidx.cardview.widget.CardView>
+    </com.google.android.material.card.MaterialCardView>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_height="match_parent">
-                <androidx.cardview.widget.CardView
+                <com.google.android.material.card.MaterialCardView
                     android:id="@+id/predicit"
                     android:layout_width="match_parent"
-                    android:layout_height="40dp"
+                    android:layout_height="50dp"
                     android:layout_gravity="bottom"
                     android:layout_marginBottom="10dp"
                     android:layout_marginHorizontal="15dp"
@@ -467,7 +474,7 @@
                         android:textSize="25dp"
                         android:layout_gravity="center"
                         android:fontFamily="@font/monda"/>
-                </androidx.cardview.widget.CardView>
+                </com.google.android.material.card.MaterialCardView>
 
             </LinearLayout>
 

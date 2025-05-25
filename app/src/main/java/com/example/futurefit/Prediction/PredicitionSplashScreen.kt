@@ -1,14 +1,17 @@
 package com.example.futurefit.Prediction
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.lifecycle.lifecycleScope
+import com.bumptech.glide.Glide
 import com.example.futurefit.DataClass.UserProfile
 import com.example.futurefit.R
 import com.example.futurefit.Util.generatePromptForGemini
@@ -26,6 +29,7 @@ class PredicitionSplashScreen : AppCompatActivity() {
     private var userProfile: UserProfile? = null
     private lateinit var careerPredictionPrompt: String
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -36,6 +40,12 @@ class PredicitionSplashScreen : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+
+        val backgroundGif: ImageView = findViewById(R.id.gif)
+        Glide.with(this)
+            .asGif()
+            .load(R.drawable.ailoading) // Your GIF in res/drawable
+            .into(backgroundGif)
 
         // Firestore & Auth
         db = FirebaseFirestore.getInstance()

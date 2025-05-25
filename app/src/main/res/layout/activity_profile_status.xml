@@ -256,12 +256,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginRight="12dp"
                 android:layout_marginTop="7dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Aptitude Assessment"
                     android:textSize="18dp"
+                    android:layout_weight="1"
                     android:textColor="@color/black"
                     android:paddingStart="16dp"
                     android:layout_gravity="center_vertical"/>
@@ -269,7 +271,6 @@
                     android:id="@+id/aptitudecheck"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="155dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/cross"/>
             </LinearLayout>
@@ -277,6 +278,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginRight="12dp"
                 android:layout_marginBottom="10dp"
                 android:layout_marginTop="7dp">
                 <TextView
@@ -285,6 +287,7 @@
                     android:text="Personality Traits"
                     android:textSize="18dp"
                     android:paddingStart="16dp"
+                    android:layout_weight="1"
                     android:textColor="@color/black"
                     android:layout_gravity="center_vertical"/>
                 <ImageView
@@ -322,12 +325,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginRight="12dp"
                 android:layout_marginTop="7dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Technical Skills"
                     android:textSize="18dp"
+                    android:layout_weight="1"
                     android:textColor="@color/black"
                     android:paddingStart="16dp"
                     android:layout_gravity="center_vertical"/>
@@ -335,7 +340,6 @@
                     android:id="@+id/technicalcheck"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="202dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/cross"/>
             </LinearLayout>
@@ -343,11 +347,13 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginRight="12dp"
                 android:layout_marginTop="7dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Softskills"
+                    android:layout_weight="1"
                     android:textSize="18dp"
                     android:paddingStart="16dp"
                     android:textColor="@color/black"
@@ -356,7 +362,6 @@
                     android:id="@+id/softcheck"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="252dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/cross"/>
             </LinearLayout>
@@ -365,6 +370,7 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginBottom="12dp"
+                android:layout_marginRight="12dp"
                 android:layout_marginTop="7dp">
                 <TextView
                     android:layout_width="wrap_content"
@@ -372,13 +378,13 @@
                     android:text="Interests"
                     android:textSize="18dp"
                     android:paddingStart="16dp"
+                    android:layout_weight="1"
                     android:textColor="@color/black"
                     android:layout_gravity="center_vertical"/>
                 <ImageView
                     android:id="@+id/interestcheck"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="255dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/cross"/>
             </LinearLayout>
@@ -408,12 +414,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
+                android:layout_marginRight="12dp"
                 android:layout_marginTop="7dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Experience"
                     android:textSize="18dp"
+                    android:layout_weight="1"
                     android:textColor="@color/black"
                     android:paddingStart="16dp"
                     android:layout_gravity="center_vertical"/>
@@ -421,7 +429,6 @@
                     android:id="@+id/experiencecheck"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="239dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/cross"/>
             </LinearLayout>
@@ -430,12 +437,14 @@
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
                 android:layout_marginTop="7dp"
+                android:layout_marginRight="12dp"
                 android:layout_marginBottom="10dp">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Physical Fitness"
                     android:textSize="18dp"
+                    android:layout_weight="1"
                     android:textColor="@color/black"
                     android:paddingStart="16dp"
                     android:layout_gravity="center_vertical"/>
@@ -443,7 +452,6 @@
                     android:id="@+id/fitnesscheck"
                     android:layout_width="24dp"
                     android:layout_height="24dp"
-                    android:layout_marginLeft="198dp"
                     android:layout_gravity="center_vertical"
                     android:src="@drawable/cross"/>
             </LinearLayout>

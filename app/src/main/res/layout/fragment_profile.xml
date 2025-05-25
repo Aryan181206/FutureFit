@@ -678,14 +678,14 @@
                 android:layout_height="wrap_content"
                 android:text="About Us"
                 android:fontFamily="sans-serif"
-                android:textSize="16sp"
+                android:textSize="18sp"
                 android:layout_gravity="center_vertical"
                 android:layout_marginLeft="65dp"
                 android:textColor="@color/textcolor"/>
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="match_parent"
-                android:padding="4dp"
+                android:padding="2dp"
                 android:layout_marginLeft="15dp"
                 android:src="@drawable/abouticon"/>
         </androidx.cardview.widget.CardView>
@@ -705,13 +705,13 @@
                 android:fontFamily="sans-serif"
                 android:text="Setting"
                 android:textColor="@color/textcolor"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
-                android:padding="4dp"
+                android:padding="2dp"
                 android:src="@drawable/setting" />
         </androidx.cardview.widget.CardView>
 
@@ -731,13 +731,13 @@
                 android:fontFamily="sans-serif"
                 android:text="Logout"
                 android:textColor="@color/textcolor"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <ImageView
                 android:layout_width="45dp"
                 android:layout_height="match_parent"
                 android:layout_marginLeft="15dp"
-                android:padding="4dp"
+                android:padding="2dp"
                 android:src="@drawable/logout2" />
         </androidx.cardview.widget.CardView>
 

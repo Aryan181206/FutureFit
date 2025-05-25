@@ -2,6 +2,8 @@ package com.example.futurefit.Fragments
 
 import android.annotation.SuppressLint
 import android.app.DatePickerDialog
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -14,7 +16,10 @@ import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
+import androidx.cardview.widget.CardView
+import com.example.futurefit.Authentication.SignUp
 import com.example.futurefit.R
+import com.example.futurefit.SplashScreen
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.DocumentSnapshot
@@ -56,6 +61,8 @@ class ProfileFrag : Fragment() {
     private lateinit var progressdetilscontentTab3: LinearLayout
     private lateinit var aboutyoudetilscontentTab4: LinearLayout
     private lateinit var careerdetilscontentTab5: LinearLayout
+
+    private lateinit var logoutbtn : CardView
 
 
     @SuppressLint("MissingInflatedId")
@@ -129,6 +136,32 @@ class ProfileFrag : Fragment() {
             override fun onTabUnselected(tab: TabLayout.Tab) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
+
+
+        logoutbtn = view.findViewById(R.id.logout)
+        logoutbtn.setOnClickListener {
+            // Show confirmation dialog before logging out
+            AlertDialog.Builder(requireContext())
+                .setTitle("Log Out")
+                .setMessage("Are you sure you want to log out?")
+                .setPositiveButton("Yes") { _, _ ->
+                    // Clear Firebase authentication
+                    FirebaseAuth.getInstance().signOut()
+
+                    // Clear SharedPreferences
+                    val sharedPreferences = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+                    sharedPreferences.edit().clear().apply()
+
+                    // Redirect to SignUp activity and clear activity stack
+                    val intent = Intent(requireContext(), SplashScreen ::class.java)
+                    intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
+                    startActivity(intent)
+                    Toast.makeText(requireContext(), "Logged out successfully", Toast.LENGTH_SHORT).show()
+                }
+                .setNegativeButton("Cancel", null)
+                .show()
+        }
+
 
 
 
@@ -266,7 +299,6 @@ class ProfileFrag : Fragment() {
                 Toast.makeText(requireContext(), "Failed to load scores", Toast.LENGTH_SHORT).show()
             }
     }
-
 
 
 
@@ -453,3 +485,6 @@ class ProfileFrag : Fragment() {
 
 
 }
+
+
+

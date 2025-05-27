@@ -88,16 +88,32 @@
                     android:orientation="vertical"
                     android:padding="24dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
                     <ImageView
                         android:id="@+id/careerIcon"
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_marginTop="-15dp"
+                        android:layout_marginLeft="45dp"
+                        android:layout_weight="1"
                         android:layout_gravity="center_horizontal"
                         android:contentDescription="Career Icon"
                         android:src="@drawable/career3"
-
                         />
+                    <ImageView
+                        android:id="@+id/save1"
+                        android:layout_width="29dp"
+                        android:layout_height="29dp"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="Career Icon"
+                        android:src="@drawable/save"
+                        android:layout_marginTop="-10dp"
+                        />
+
+                </LinearLayout>
 
                     <TextView
                         android:id="@+id/careerName1"
@@ -190,6 +206,7 @@
                             android:backgroundTint="@color/secondary"
                             android:text="Skills to learn"
                             android:textColor="@color/white" />
+
                     </LinearLayout>
                 </LinearLayout>
 
@@ -215,15 +232,32 @@
                     android:orientation="vertical"
                     android:padding="24dp">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
                     <ImageView
                         android:layout_width="120dp"
                         android:layout_height="120dp"
+                        android:layout_marginLeft="100dp"
                         android:layout_gravity="center_horizontal"
                         android:contentDescription="Career Icon"
                         android:src="@drawable/career4"
                         android:layout_marginTop="-10dp"
-
                         />
+                        <ImageView
+                            android:id="@+id/save2"
+                            android:layout_width="29dp"
+                            android:layout_height="29dp"
+                            android:layout_marginLeft="80dp"
+                            android:layout_gravity="center_horizontal"
+                            android:contentDescription="Career Icon"
+                            android:src="@drawable/save"
+                            android:layout_marginTop="-10dp"
+                            />
+
+                    </LinearLayout>
+
 
                     <TextView
                         android:id="@+id/careerName2"
@@ -340,15 +374,32 @@
                     android:orientation="vertical"
                     android:padding="24dp">
 
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
                     <ImageView
                         android:layout_width="120dp"
                         android:layout_height="120dp"
                         android:layout_gravity="center_horizontal"
                         android:contentDescription="Career Icon"
                         android:src="@drawable/career5"
+                        android:layout_marginLeft="100dp"
                         android:layout_marginTop="-10dp"
-
                         />
+                    <ImageView
+                        android:id="@+id/save3"
+                        android:layout_width="29dp"
+                        android:layout_height="29dp"
+                        android:layout_marginLeft="80dp"
+                        android:layout_gravity="center_horizontal"
+                        android:contentDescription="Career Icon"
+                        android:src="@drawable/save"
+                        android:layout_marginTop="-10dp"
+                        />
+
+                </LinearLayout>
 
                     <TextView
                         android:id="@+id/careerName3"

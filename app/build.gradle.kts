@@ -90,6 +90,14 @@ dependencies {
     }
 
     implementation ("de.hdodenhof:circleimageview:3.1.0")
+    implementation ("com.google.android.flexbox:flexbox:3.0.0")
+
+    // Example for Google Sign-In
+    implementation("com.google.android.gms:play-services-auth:21.1.0")
+    // Example for Location
+    implementation("com.google.android.gms:play-services-location:21.2.0")
+
+
 
 
 

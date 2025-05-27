@@ -18,6 +18,8 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import com.example.futurefit.Authentication.SignUp
+import com.example.futurefit.ProfileActivity.AllPredictedCareer
+import com.example.futurefit.ProfileActivity.SavedCareers
 import com.example.futurefit.R
 import com.example.futurefit.SplashScreen
 import com.google.android.material.tabs.TabLayout
@@ -32,6 +34,9 @@ class ProfileFrag : Fragment() {
     private lateinit var firestore: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
 
+
+    private lateinit var name : TextView
+    private lateinit var email : TextView
 
     private lateinit var dobTextView: TextView
     private lateinit var genderTextView: TextView
@@ -64,6 +69,8 @@ class ProfileFrag : Fragment() {
 
     private lateinit var logoutbtn : CardView
 
+    private lateinit var seeMoreBtn : CardView
+    private lateinit var allsaved : CardView
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -71,6 +78,14 @@ class ProfileFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
+
+
+        name = view.findViewById(R.id.username)
+        email = view.findViewById(R.id.usermail)
+
+        val sharedPreferences = requireActivity().getSharedPreferences("UserPrefs", Context.MODE_PRIVATE)
+        name.text = sharedPreferences.getString("name","")
+        email.text = sharedPreferences.getString("email","")
 
         tabLayout = view.findViewById<TabLayout>(R.id.tabLayout)
         personalinfocontentTab1 = view.findViewById(R.id.personalinfocontentTab1)
@@ -137,6 +152,14 @@ class ProfileFrag : Fragment() {
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
 
+        seeMoreBtn = view.findViewById(R.id.allpredictedcareer)
+        seeMoreBtn.setOnClickListener {
+            startActivity(Intent(requireContext(),AllPredictedCareer::class.java))
+        }
+        allsaved = view.findViewById(R.id.allsavedcareer)
+        allsaved.setOnClickListener {
+            startActivity(Intent(requireContext(),SavedCareers::class.java))
+        }
 
         logoutbtn = view.findViewById(R.id.logout)
         logoutbtn.setOnClickListener {
@@ -219,6 +242,9 @@ class ProfileFrag : Fragment() {
         fetchAndDisplayInterest(email)
 
 
+
+
+
         // Set up edit icon listeners
         val personalEditIcon: ImageView = view.findViewById(R.id.PersonalInfoeditIcon)
         personalEditIcon.setOnClickListener {
@@ -232,6 +258,10 @@ class ProfileFrag : Fragment() {
 
         return view
     }
+
+
+
+
 
     private fun fetchAndDisplayInterest(email: String) {
         firestore.collection("Users").document(email).get()

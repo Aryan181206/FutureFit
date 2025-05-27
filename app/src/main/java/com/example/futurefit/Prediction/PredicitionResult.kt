@@ -91,6 +91,8 @@ class PredicitionResult : AppCompatActivity() {
         // Save to Firestore
         savePredictionToFirestore(email, careerList)
 
+        // Set up save button click listeners
+        setSaveClickListeners(email)
 
         // Populate up to 3 cards
         if (careerList.size >= 3) {
@@ -139,6 +141,23 @@ class PredicitionResult : AppCompatActivity() {
         }
 
     }
+
+    private fun setSaveClickListeners(email: String) {
+        val saveIcon1 = findViewById<ImageView>(R.id.save1)
+        val saveIcon2 = findViewById<ImageView>(R.id.save2)
+        val saveIcon3 = findViewById<ImageView>(R.id.save3)
+
+        saveIcon1.setOnClickListener {
+            if (careerList.size > 0) saveCareerToFirestore(email, careerList[0])
+        }
+        saveIcon2.setOnClickListener {
+            if (careerList.size > 1) saveCareerToFirestore(email, careerList[1])
+        }
+        saveIcon3.setOnClickListener {
+            if (careerList.size > 2) saveCareerToFirestore(email, careerList[2])
+        }
+    }
+
 
     private fun savePredictionToFirestore(email: String, careerList: List<Career>) {
         val rootRef = firestore.collection("Users").document(email)
@@ -248,4 +267,51 @@ class PredicitionResult : AppCompatActivity() {
 
         dialog.show()
     }
+
+    private fun saveCareerToFirestore(email: String, career: Career) {
+        val saveRef = firestore.collection("Users").document(email)
+            .collection("SavedCareers").document(email)
+
+        saveRef.get().addOnSuccessListener { document ->
+            val existingData = document.data?.toMutableMap() ?: mutableMapOf()
+
+            // Check if the career is already present by comparing Career_Name values
+            val alreadyExists = existingData.values.any {
+                it is Map<*, *> && it["Career_Name"] == career.Career_Name
+            }
+
+            if (alreadyExists) {
+                Toast.makeText(this, "${career.Career_Name} already saved!", Toast.LENGTH_SHORT).show()
+                return@addOnSuccessListener
+            }
+
+            // Create a key like career1, career2, etc.
+            val nextKey = "career${existingData.size + 1}"
+
+            val careerMap = mapOf(
+                "Career_Name" to career.Career_Name,
+                "Reason_Fit" to career.Reason_Fit,
+                "Skills_to_learn" to career.Skills_to_learn,
+                "Recommended_courses" to career.Recommended_courses,
+                "Match_Percentage" to career.Match_Percentage
+            )
+
+            existingData[nextKey] = careerMap
+
+            // Save updated data
+            saveRef.set(existingData)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "${career.Career_Name} saved successfully!", Toast.LENGTH_SHORT).show()
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "Failed to save ${career.Career_Name}", Toast.LENGTH_LONG).show()
+                }
+
+        }.addOnFailureListener {
+            Toast.makeText(this, "Failed to retrieve saved careers", Toast.LENGTH_LONG).show()
+        }
+    }
+
+
+
 }

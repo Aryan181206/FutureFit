@@ -94,11 +94,12 @@
             android:text="Option 4" />
     </RadioGroup>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/nextButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="15dp"
         android:backgroundTint="@color/Sky"
         android:text="Next" />
 

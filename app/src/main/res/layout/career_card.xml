@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="12dp"
+    app:cardCornerRadius="3dp"
+    android:layout_marginHorizontal="5dp"
+    app:cardElevation="10dp"
+    app:strokeWidth="1dp"
+    app:strokeColor="@color/primary"
+    android:backgroundTint="@color/white">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+
+        <!-- Career Name -->
+        <TextView
+            android:id="@+id/careerName"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Recommended Career: Data Scientist"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:gravity="left"
+            android:fontFamily="@font/monda" />
+
+        <!-- Reason Fit -->
+        <TextView
+            android:id="@+id/reasonFit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="You have a strong analytical mindset and love working with data."
+            android:textSize="16sp"
+            android:textColor="@color/textcolor"
+            android:fontFamily="@font/monda" />
+
+        <!-- Match Label -->
+        <TextView
+            android:id="@+id/tvMatchPercentLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Match Percentage:"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_marginTop="16dp"
+            android:fontFamily="@font/monda" />
+
+        <!-- Progress Bar -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center_vertical"
+            android:layout_marginTop="4dp">
+
+            <ProgressBar
+                android:id="@+id/progressMatch"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="0dp"
+                android:layout_height="12dp"
+                android:layout_weight="1"
+                android:max="100"
+                android:progress="85"
+                android:progressTint="@color/primary"
+                 />
+
+            <TextView
+                android:id="@+id/matchPercentage"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="85%"
+                android:textSize="16sp"
+                android:textColor="@color/primary"
+                android:textStyle="bold"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/monda" />
+        </LinearLayout>
+
+        <!-- Action Buttons -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:layout_marginTop="16dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Courses"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/monda" />
+            <TextView
+                android:id="@+id/courses"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Courses are "
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/monda"/>
+
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Skills to Learn"
+                android:textSize="20sp"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/monda" />
+
+            <TextView
+                android:id="@+id/skillstolearn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Skills are "
+                android:textSize="16sp"
+                android:textColor="@color/black"
+                android:fontFamily="@font/monda"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</com.google.android.material.card.MaterialCardView>

@@ -11,6 +11,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.futurefit.R
+import com.google.android.material.button.MaterialButton
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
@@ -25,7 +26,7 @@ class AptitudeLogicalQuiz : AppCompatActivity() {
 
     private lateinit var questionText: TextView
     private lateinit var optionsGroup: RadioGroup
-    private lateinit var nextButton: Button
+    private lateinit var nextButton: MaterialButton
 
     private lateinit var progressBar: ProgressBar
 

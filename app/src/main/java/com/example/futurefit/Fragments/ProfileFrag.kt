@@ -5,6 +5,7 @@ import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -18,6 +19,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import com.example.futurefit.Authentication.SignUp
+import com.example.futurefit.ProfileActivity.AllExperience
 import com.example.futurefit.ProfileActivity.AllPredictedCareer
 
 
@@ -43,6 +45,7 @@ class ProfileFrag : Fragment() {
     private lateinit var genderTextView: TextView
     private lateinit var phoneTextView: TextView
     private lateinit var locationTextView: TextView
+    private lateinit var experience1: TextView
 
     private lateinit var streamView: TextView
     private lateinit var qualificationView: TextView
@@ -60,6 +63,7 @@ class ProfileFrag : Fragment() {
 
     private lateinit var interestTextView: TextView
 
+
     private lateinit var tabLayout: TabLayout
 
     private lateinit var personalinfocontentTab1: LinearLayout
@@ -67,11 +71,14 @@ class ProfileFrag : Fragment() {
     private lateinit var progressdetilscontentTab3: LinearLayout
     private lateinit var aboutyoudetilscontentTab4: LinearLayout
     private lateinit var careerdetilscontentTab5: LinearLayout
+    private lateinit var experiencedetilscontentTab6: LinearLayout
 
     private lateinit var logoutbtn : CardView
 
     private lateinit var seeMoreBtn : CardView
     private lateinit var allsaved : CardView
+    private lateinit var seeallexperience : TextView
+
 
     @SuppressLint("MissingInflatedId")
     override fun onCreateView(
@@ -94,6 +101,7 @@ class ProfileFrag : Fragment() {
         progressdetilscontentTab3 = view.findViewById(R.id.progressdetilscontentTab3)
         aboutyoudetilscontentTab4 = view.findViewById(R.id.aboutyoudetilscontentTab4)
         careerdetilscontentTab5 = view.findViewById(R.id.careerdetilscontentTab5)
+        experiencedetilscontentTab6 = view.findViewById(R.id.experiencedetilscontentTab6)
 
 
         // Add tabs manually
@@ -102,6 +110,7 @@ class ProfileFrag : Fragment() {
         tabLayout.addTab(tabLayout.newTab().setText("Progress"))
         tabLayout.addTab(tabLayout.newTab().setText("About You"))
         tabLayout.addTab(tabLayout.newTab().setText("Career"))
+        tabLayout.addTab(tabLayout.newTab().setText("Experience"))
 
         // Handle tab selection
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -113,6 +122,7 @@ class ProfileFrag : Fragment() {
                         progressdetilscontentTab3.visibility = View.GONE
                         aboutyoudetilscontentTab4.visibility = View.GONE
                         careerdetilscontentTab5.visibility = View.GONE
+                        experiencedetilscontentTab6.visibility = View.GONE
                     }
 
                     1 -> {
@@ -121,6 +131,7 @@ class ProfileFrag : Fragment() {
                         progressdetilscontentTab3.visibility = View.GONE
                         aboutyoudetilscontentTab4.visibility = View.GONE
                         careerdetilscontentTab5.visibility = View.GONE
+                        experiencedetilscontentTab6.visibility = View.GONE
                     }
 
                     2 -> {
@@ -129,6 +140,7 @@ class ProfileFrag : Fragment() {
                         progressdetilscontentTab3.visibility = View.VISIBLE
                         aboutyoudetilscontentTab4.visibility = View.GONE
                         careerdetilscontentTab5.visibility = View.GONE
+                        experiencedetilscontentTab6.visibility = View.GONE
                     }
 
                     3 -> {
@@ -137,6 +149,7 @@ class ProfileFrag : Fragment() {
                         progressdetilscontentTab3.visibility = View.GONE
                         aboutyoudetilscontentTab4.visibility = View.VISIBLE
                         careerdetilscontentTab5.visibility = View.GONE
+                        experiencedetilscontentTab6.visibility = View.GONE
                     }
 
                     4 -> {
@@ -145,6 +158,15 @@ class ProfileFrag : Fragment() {
                         progressdetilscontentTab3.visibility = View.GONE
                         aboutyoudetilscontentTab4.visibility = View.GONE
                         careerdetilscontentTab5.visibility = View.VISIBLE
+                        experiencedetilscontentTab6.visibility = View.GONE
+                    }
+                    5 -> {
+                        personalinfocontentTab1.visibility = View.GONE
+                        educationdetailcontentTab2.visibility = View.GONE
+                        progressdetilscontentTab3.visibility = View.GONE
+                        aboutyoudetilscontentTab4.visibility = View.GONE
+                        careerdetilscontentTab5.visibility = View.GONE
+                        experiencedetilscontentTab6.visibility = View.VISIBLE
                     }
                 }
             }
@@ -161,6 +183,12 @@ class ProfileFrag : Fragment() {
         allsaved.setOnClickListener {
             startActivity(Intent(requireContext(),SavedCareers::class.java))
         }
+
+        seeallexperience = view.findViewById(R.id.seeallexp)
+        seeallexperience.setOnClickListener {
+            startActivity(Intent(requireContext(),AllExperience::class.java))
+        }
+
 
         logoutbtn = view.findViewById(R.id.logout)
         logoutbtn.setOnClickListener {
@@ -198,12 +226,14 @@ class ProfileFrag : Fragment() {
         genderTextView = view.findViewById(R.id.Gender)
         phoneTextView = view.findViewById(R.id.PhoneNumber)
         locationTextView = view.findViewById(R.id.Address)
+        experience1 = view.findViewById(R.id.exp1)
 
         // Show loading initially
         dobTextView.text = "Loading..."
         genderTextView.text = "Loading..."
         phoneTextView.text = "Loading..."
         locationTextView.text = "Loading..."
+        experience1.text = "Loading..."
 
         //Initialize TextView
 
@@ -241,6 +271,7 @@ class ProfileFrag : Fragment() {
         fetchAndDisplayAptitudeScores(email)
         fetchPersonalityData(email)
         fetchAndDisplayInterest(email)
+        fetchAndDisplayfirstExperience(email)
 
 
 
@@ -259,6 +290,48 @@ class ProfileFrag : Fragment() {
 
         return view
     }
+
+    private fun fetchAndDisplayfirstExperience(email: String) {
+        val db = FirebaseFirestore.getInstance()
+
+        db.collection("Users").document(email)
+            .get()
+            .addOnSuccessListener { document ->
+                if (document.exists()) {
+                    Log.d("FirestoreDebug", "Document found: ${document.data}")
+
+                    val experienceList = document.get("Experience") as? List<HashMap<String, Any>>
+                    Log.d("FirestoreDebug", "Experience List: $experienceList")
+
+                    if (!experienceList.isNullOrEmpty()) {
+                        val firstExp = experienceList[0]
+                        val company = firstExp["Company"]?.toString() ?: "N/A"
+                        val position = firstExp["Position"]?.toString() ?: "N/A"
+                        val location = firstExp["Location"]?.toString() ?: "N/A"
+                        val years = firstExp["ExperienceYears"]?.toString() ?: "N/A"
+
+                        val result = "$position at $company\n$location · $years year(s)"
+                        experience1?.text = result
+
+                        Log.d("FirestoreDebug", "Displayed: $result")
+                    } else {
+                        Log.d("FirestoreDebug", "Experience list is empty")
+                        experience1?.text = "No experience data found"
+                    }
+                } else {
+                    Log.d("FirestoreDebug", "Document does not exist")
+                    experience1?.text = "User data not found"
+                }
+            }
+            .addOnFailureListener { e ->
+                Log.e("FirestoreDebug", "Failed to fetch document", e)
+                experience1?.text = "Failed to load experience"
+            }
+    }
+
+
+
+
 
 
 
@@ -281,9 +354,7 @@ class ProfileFrag : Fragment() {
 
 
     private fun fetchPersonalityData(email: String) {
-        val db = FirebaseFirestore.getInstance()
-
-        db.collection("Users")
+        firestore.collection("Users")
             .document(email)
             .get()
             .addOnSuccessListener { document ->
@@ -293,23 +364,25 @@ class ProfileFrag : Fragment() {
                     if (!personalityFull.isNullOrEmpty() && personalityFull.contains(" - ")) {
                         val parts = personalityFull.split(" - ")
                         val type = parts[0].trim() // e.g., "INFJ"
-                        val description =
-                            parts[1].trim() // e.g., "Introversion, Intuition, Feeling, Judging"
+                        val description = parts[1].trim() // e.g., "Introversion, Intuition, Feeling, Judging"
 
                         mbtiPersonalityText.text = type
-                        personalityDescText.text = "\"$description\""
+                        personalityDescText.text = description
                     } else {
-                       // Toast.makeText(this, "Invalid personality format", Toast.LENGTH_SHORT)
-                           // .show()
+                        mbtiPersonalityText.text = "Not set"
+                        personalityDescText.text = "Not set"
                     }
                 } else {
-                   // Toast.makeText(this, "No user data found", Toast.LENGTH_SHORT).show()
+                    mbtiPersonalityText.text = "Not available"
+                    personalityDescText.text = "Not available"
                 }
             }
-            .addOnFailureListener { e ->
-               // Toast.makeText(this, "Error fetching data: ${e.message}", Toast.LENGTH_SHORT).show()
+            .addOnFailureListener {
+                mbtiPersonalityText.text = "Error"
+                personalityDescText.text = "Error loading"
             }
     }
+
 
     private fun fetchAndDisplayAptitudeScores(email: String) {
         firestore.collection("Users").document(email).get()

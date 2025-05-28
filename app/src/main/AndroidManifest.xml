@@ -15,6 +15,9 @@
         android:theme="@style/Theme.FutureFit"
         tools:targetApi="31">
         <activity
+            android:name=".ProfileActivity.AllExperience"
+            android:exported="false" />
+        <activity
             android:name=".Miscellaneous.AboutUs"
             android:exported="false" />
         <activity
@@ -26,7 +29,6 @@
         <activity
             android:name=".ProfileActivity.AllPredictedCareer"
             android:exported="false" />
-
         <activity
             android:name=".Prediction.PredicitionResult"
             android:exported="false" />

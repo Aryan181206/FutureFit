@@ -7,18 +7,16 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.futurefit.ProfileActivity.AllPredictedCareer.PredictedCareer
 import com.example.futurefit.R
-import com.google.android.material.button.MaterialButton
-import org.w3c.dom.Text
 
-
-class CareerAdapter(private val careerList: List<PredictedCareer>) :
-    RecyclerView.Adapter<CareerAdapter.CareerViewHolder>() {
+class CareerAdapter(
+    private val careerList: List<PredictedCareer>,
+) : RecyclerView.Adapter<CareerAdapter.CareerViewHolder>() {
 
     class CareerViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val careerName: TextView = itemView.findViewById(R.id.careerName)
         val matchPercentage: TextView = itemView.findViewById(R.id.matchPercentage)
-        val reasonFit: TextView = itemView.findViewById<TextView>(R.id.reasonFit)
-        val courses: TextView = itemView.findViewById<TextView>(R.id.courses)
+        val reasonFit: TextView = itemView.findViewById(R.id.reasonFit)
+        val courses: TextView = itemView.findViewById(R.id.courses)
         val skills: TextView = itemView.findViewById(R.id.skillstolearn)
     }
 
@@ -33,9 +31,12 @@ class CareerAdapter(private val careerList: List<PredictedCareer>) :
         holder.careerName.text = item.careerName
         holder.matchPercentage.text = "Match: ${item.matchPercentage}%"
         holder.reasonFit.text = item.reasonFit
-        holder.courses.text = "Recommended Courses:\n${item.recommendedCourses.joinToString("\n")}"
-        holder.skills.text = "Skills to Learn:\n${item.skillsToLearn.joinToString("\n")}"
+        holder.courses.text = "${item.recommendedCourses.joinToString("\n")}"
+        holder.skills.text = "${item.skillsToLearn.joinToString("\n")}"
+
+
     }
+
 
     override fun getItemCount(): Int = careerList.size
 }

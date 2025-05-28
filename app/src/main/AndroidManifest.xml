@@ -26,12 +26,7 @@
         <activity
             android:name=".ProfileActivity.AllPredictedCareer"
             android:exported="false" />
-        <activity
-            android:name=".ProfileActivity"
-            android:exported="false" />
-        <activity
-            android:name=".fragment_profile2"
-            android:exported="false" />
+
         <activity
             android:name=".Prediction.PredicitionResult"
             android:exported="false" />

@@ -3,6 +3,7 @@ package com.example.futurefit.Assessment
 import android.annotation.SuppressLint
 import android.content.Intent
 import android.os.Bundle
+import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -47,11 +48,9 @@ class PersonalityTraitQuiz : AppCompatActivity() {
             insets
         }
 
-        // Firebase init
         firestore = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
-        // View bindings
         dimensionTitle = findViewById(R.id.dimensionTitle)
         questionText = findViewById(R.id.questionText)
         optionsGroup = findViewById(R.id.optionsGroup)
@@ -102,7 +101,7 @@ class PersonalityTraitQuiz : AppCompatActivity() {
             val radioButton = RadioButton(this)
             radioButton.text = text
             radioButton.tag = code
-            radioButton.id = RadioButton.generateViewId()
+            radioButton.id = View.generateViewId()
             optionsGroup.addView(radioButton)
         }
 
@@ -110,14 +109,21 @@ class PersonalityTraitQuiz : AppCompatActivity() {
     }
 
     private fun handleNextButton() {
-        val selectedId = optionsGroup.checkedRadioButtonId
+        val selectedId   = optionsGroup.checkedRadioButtonId
 
         if (selectedId == -1) {
             Toast.makeText(this, "Please select an option before proceeding!", Toast.LENGTH_SHORT).show()
             return
         }
 
-        val selectedOption = findViewById<RadioButton>(selectedId).tag.toString()
+        val selectedRadioButton : RadioButton ? = findViewById<RadioButton>(selectedId)
+        val selectedOption = selectedRadioButton?.tag?.toString()
+
+        if (selectedOption.isNullOrEmpty()) {
+            Toast.makeText(this, "No option selected!", Toast.LENGTH_SHORT).show()
+            return
+        }
+
         val currentQuestion = questionsList[currentIndex]
         answersMap.getOrPut(currentQuestion.dimensionKey) { mutableListOf() }.add(selectedOption)
 

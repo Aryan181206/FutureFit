@@ -19,12 +19,13 @@ import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
 import com.example.futurefit.Authentication.SignUp
 import com.example.futurefit.ProfileActivity.AllPredictedCareer
+
+
 import com.example.futurefit.ProfileActivity.SavedCareers
 import com.example.futurefit.R
 import com.example.futurefit.SplashScreen
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import java.util.Calendar
 

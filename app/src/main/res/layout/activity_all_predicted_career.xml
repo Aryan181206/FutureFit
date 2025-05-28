@@ -28,6 +28,17 @@
         android:layout_marginLeft="15dp"
         android:fontFamily="@font/monda"
         android:layout_marginTop="15dp"/>
+    <TextView
+        android:id="@+id/deleteallprediction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Delete Prediction History"
+        android:textStyle="bold"
+        android:textSize="16dp"
+        android:layout_marginRight="15dp"
+        android:gravity="right"
+        android:layout_gravity="right"
+        android:fontFamily="@font/monda" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/allcareerRV"

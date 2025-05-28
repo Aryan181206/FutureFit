@@ -4,21 +4,28 @@ import android.annotation.SuppressLint
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
 import androidx.cardview.widget.CardView
+import com.bumptech.glide.Glide
+import com.cloudinary.android.MediaManager
+import com.cloudinary.android.callback.UploadCallback
 import com.example.futurefit.Authentication.SignUp
+import com.example.futurefit.Miscellaneous.AboutUs
 import com.example.futurefit.ProfileActivity.AllExperience
 import com.example.futurefit.ProfileActivity.AllPredictedCareer
 
@@ -33,6 +40,18 @@ import java.util.Calendar
 
 
 class ProfileFrag : Fragment() {
+
+    private lateinit var profileImageView: ImageView
+    private lateinit var uploadButton: ImageView
+    private lateinit var imageUri: Uri
+
+    private val pickImageLauncher = registerForActivityResult(ActivityResultContracts.GetContent()) { uri ->
+        uri?.let {
+            imageUri = it
+            uploadImageToCloudinary(it)
+        }
+    }
+
 
     private lateinit var firestore: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
@@ -78,6 +97,7 @@ class ProfileFrag : Fragment() {
     private lateinit var seeMoreBtn : CardView
     private lateinit var allsaved : CardView
     private lateinit var seeallexperience : TextView
+    private lateinit var gotoaboutus : CardView
 
 
     @SuppressLint("MissingInflatedId")
@@ -86,6 +106,11 @@ class ProfileFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
+
+        gotoaboutus = view?.findViewById(R.id.aboutus)!!
+        gotoaboutus.setOnClickListener {
+            startActivity(Intent(requireContext(), AboutUs::class.java))
+        }
 
 
         name = view.findViewById(R.id.username)
@@ -189,6 +214,14 @@ class ProfileFrag : Fragment() {
             startActivity(Intent(requireContext(),AllExperience::class.java))
         }
 
+        profileImageView = view.findViewById(R.id.profileImage)
+        uploadButton = view.findViewById(R.id.PersonalPhotoeditIcon)
+
+        uploadButton.setOnClickListener {
+            pickImageLauncher.launch("image/*")
+        }
+        loadProfileImageFromFirestore()
+
 
         logoutbtn = view.findViewById(R.id.logout)
         logoutbtn.setOnClickListener {
@@ -290,6 +323,68 @@ class ProfileFrag : Fragment() {
 
         return view
     }
+
+    private fun loadProfileImageFromFirestore() {
+        val userEmail = FirebaseAuth.getInstance().currentUser?.email ?: return
+        val userRef = FirebaseFirestore.getInstance().collection("Users").document(userEmail)
+
+        userRef.get().addOnSuccessListener { document ->
+            val url = document.getString("profileImageUrl")
+            if (!url.isNullOrEmpty()) {
+                Glide.with(this)
+                    .load(url)
+                    .placeholder(R.drawable.demoimg)
+                    .into(profileImageView)
+            }
+        }
+    }
+
+    private fun uploadImageToCloudinary(uri: Uri) {
+        val requestId = MediaManager.get().upload(uri)
+            .option("folder", "profile_pics/")
+            .option("public_id", FirebaseAuth.getInstance().currentUser?.uid)
+            .callback(object : UploadCallback {
+                override fun onStart(requestId: String?) {
+                    Toast.makeText(requireContext(), "Uploading...", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onProgress(requestId: String?, bytes: Long, totalBytes: Long) {}
+                override fun onSuccess(requestId: String?, resultData: Map<*, *>) {
+                    val imageUrl = resultData["secure_url"].toString()
+                    saveImageUrlToFirestore(imageUrl)
+                }
+
+                override fun onError(
+                    requestId: String?,
+                    error: com.cloudinary.android.callback.ErrorInfo?,
+                ) {
+                    Toast.makeText(requireContext(), "Upload failed: ${error?.description}", Toast.LENGTH_SHORT).show()
+                }
+
+                override fun onReschedule(
+                    requestId: String?,
+                    error: com.cloudinary.android.callback.ErrorInfo?,
+                ) {}
+            }).dispatch()
+    }
+
+    private fun saveImageUrlToFirestore(url: String) {
+        val userEmail = FirebaseAuth.getInstance().currentUser?.email ?: return
+        val userRef = FirebaseFirestore.getInstance().collection("Users").document(userEmail)
+
+        userRef.update("profileImageUrl", url)
+            .addOnSuccessListener {
+                Glide.with(this)
+                    .load(url)
+                    .placeholder(R.drawable.demoimg)
+                    .into(profileImageView)
+                Toast.makeText(requireContext(), "Profile updated", Toast.LENGTH_SHORT).show()
+            }
+            .addOnFailureListener {
+                Toast.makeText(requireContext(), "Failed to update Firestore", Toast.LENGTH_SHORT).show()
+            }
+    }
+
 
     private fun fetchAndDisplayfirstExperience(email: String) {
         val db = FirebaseFirestore.getInstance()

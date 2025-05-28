@@ -40,7 +40,7 @@
                 android:id="@+id/profileImage"
                 android:layout_width="180dp"
                 android:layout_height="180dp"
-                android:src="@drawable/myprofile"
+                android:src="@drawable/demoimg"
                 app:civ_border_width="2dp"
                 app:civ_border_color="@color/Royalwhite"
                 android:layout_gravity="center"/>
@@ -105,7 +105,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:orientation="vertical"
-                android:visibility="gone"
+                android:visibility="visible"
                 >
 
                 <!-- Personal Information Card -->
@@ -744,7 +744,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical"
                 android:layout_marginTop="15dp"
-                android:visibility="visible"
+                android:visibility="gone"
                 >
 
                 <com.google.android.material.card.MaterialCardView
@@ -824,6 +824,7 @@
             android:gravity="bottom"
             android:orientation="vertical">
         <androidx.cardview.widget.CardView
+            android:id="@+id/aboutus"
             android:layout_width="match_parent"
             android:layout_height="60dp"
             app:cardCornerRadius="0dp"

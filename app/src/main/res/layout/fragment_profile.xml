@@ -753,7 +753,7 @@
                                     android:layout_height="40dp"
                                     android:src="@drawable/save"
                                     android:contentDescription="Saved Careers Icon"
-                                    android:tint="@color/textcolor" />
+                                    app:tint="@color/textcolor" />
 
                                 <TextView
                                     android:layout_width="wrap_content"

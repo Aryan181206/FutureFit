@@ -38,6 +38,8 @@ class SignUp : AppCompatActivity() {
     private lateinit var googleSignUpButton: CardView
     private lateinit var tosignin: TextView
 
+
+
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
     private lateinit var googleSignInClient: GoogleSignInClient
@@ -110,6 +112,8 @@ class SignUp : AppCompatActivity() {
             val signInIntent = googleSignInClient.signInIntent
             startActivityForResult(signInIntent, RC_SIGN_IN)
         }
+
+
     }
 
     private fun createAccount(name: String, email: String, password: String) {

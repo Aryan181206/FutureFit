@@ -11,11 +11,9 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
 import android.widget.EditText
 import android.widget.ImageView
 import android.widget.LinearLayout
-import android.widget.ProgressBar
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
@@ -24,10 +22,11 @@ import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
 import com.cloudinary.android.MediaManager
 import com.cloudinary.android.callback.UploadCallback
-import com.example.futurefit.Authentication.SignUp
 import com.example.futurefit.Miscellaneous.AboutUs
+import com.example.futurefit.Miscellaneous.Setting
 import com.example.futurefit.ProfileActivity.AllExperience
 import com.example.futurefit.ProfileActivity.AllPredictedCareer
+import com.example.futurefit.ProfileActivity.AllSkills
 
 
 import com.example.futurefit.ProfileActivity.SavedCareers
@@ -36,6 +35,8 @@ import com.example.futurefit.SplashScreen
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
+
+
 import java.util.Calendar
 
 
@@ -91,6 +92,7 @@ class ProfileFrag : Fragment() {
     private lateinit var aboutyoudetilscontentTab4: LinearLayout
     private lateinit var careerdetilscontentTab5: LinearLayout
     private lateinit var experiencedetilscontentTab6: LinearLayout
+    private lateinit var skilldetilscontentTab7: LinearLayout
 
     private lateinit var logoutbtn : CardView
 
@@ -98,6 +100,14 @@ class ProfileFrag : Fragment() {
     private lateinit var allsaved : CardView
     private lateinit var seeallexperience : TextView
     private lateinit var gotoaboutus : CardView
+    private lateinit var gotosetting : CardView
+
+
+    private lateinit var gotoallskills : TextView
+    private lateinit var skillTV1 : TextView
+    private lateinit var skillTV2 : TextView
+
+
 
 
     @SuppressLint("MissingInflatedId")
@@ -106,6 +116,12 @@ class ProfileFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
+
+
+        gotosetting = view?.findViewById(R.id.gotosetting)!!
+        gotosetting.setOnClickListener {
+            startActivity(Intent(requireContext(), Setting::class.java))
+        }
 
         gotoaboutus = view?.findViewById(R.id.aboutus)!!
         gotoaboutus.setOnClickListener {
@@ -120,6 +136,8 @@ class ProfileFrag : Fragment() {
         name.text = sharedPreferences.getString("name","")
         email.text = sharedPreferences.getString("email","")
 
+        showname(email, name)
+
         tabLayout = view.findViewById<TabLayout>(R.id.tabLayout)
         personalinfocontentTab1 = view.findViewById(R.id.personalinfocontentTab1)
         educationdetailcontentTab2 = view.findViewById(R.id.educationdetailcontentTab2)
@@ -127,6 +145,7 @@ class ProfileFrag : Fragment() {
         aboutyoudetilscontentTab4 = view.findViewById(R.id.aboutyoudetilscontentTab4)
         careerdetilscontentTab5 = view.findViewById(R.id.careerdetilscontentTab5)
         experiencedetilscontentTab6 = view.findViewById(R.id.experiencedetilscontentTab6)
+        skilldetilscontentTab7 = view.findViewById(R.id.skillsdetilscontentTab7)
 
 
         // Add tabs manually
@@ -136,6 +155,7 @@ class ProfileFrag : Fragment() {
         tabLayout.addTab(tabLayout.newTab().setText("About You"))
         tabLayout.addTab(tabLayout.newTab().setText("Career"))
         tabLayout.addTab(tabLayout.newTab().setText("Experience"))
+        tabLayout.addTab(tabLayout.newTab().setText("Skills"))
 
         // Handle tab selection
         tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
@@ -148,6 +168,7 @@ class ProfileFrag : Fragment() {
                         aboutyoudetilscontentTab4.visibility = View.GONE
                         careerdetilscontentTab5.visibility = View.GONE
                         experiencedetilscontentTab6.visibility = View.GONE
+                        skilldetilscontentTab7.visibility = View.GONE
                     }
 
                     1 -> {
@@ -157,6 +178,7 @@ class ProfileFrag : Fragment() {
                         aboutyoudetilscontentTab4.visibility = View.GONE
                         careerdetilscontentTab5.visibility = View.GONE
                         experiencedetilscontentTab6.visibility = View.GONE
+                        skilldetilscontentTab7.visibility = View.GONE
                     }
 
                     2 -> {
@@ -166,6 +188,7 @@ class ProfileFrag : Fragment() {
                         aboutyoudetilscontentTab4.visibility = View.GONE
                         careerdetilscontentTab5.visibility = View.GONE
                         experiencedetilscontentTab6.visibility = View.GONE
+                        skilldetilscontentTab7.visibility = View.GONE
                     }
 
                     3 -> {
@@ -175,6 +198,7 @@ class ProfileFrag : Fragment() {
                         aboutyoudetilscontentTab4.visibility = View.VISIBLE
                         careerdetilscontentTab5.visibility = View.GONE
                         experiencedetilscontentTab6.visibility = View.GONE
+                        skilldetilscontentTab7.visibility = View.GONE
                     }
 
                     4 -> {
@@ -184,7 +208,9 @@ class ProfileFrag : Fragment() {
                         aboutyoudetilscontentTab4.visibility = View.GONE
                         careerdetilscontentTab5.visibility = View.VISIBLE
                         experiencedetilscontentTab6.visibility = View.GONE
+                        skilldetilscontentTab7.visibility = View.GONE
                     }
+
                     5 -> {
                         personalinfocontentTab1.visibility = View.GONE
                         educationdetailcontentTab2.visibility = View.GONE
@@ -192,6 +218,17 @@ class ProfileFrag : Fragment() {
                         aboutyoudetilscontentTab4.visibility = View.GONE
                         careerdetilscontentTab5.visibility = View.GONE
                         experiencedetilscontentTab6.visibility = View.VISIBLE
+                        skilldetilscontentTab7.visibility = View.GONE
+                    }
+
+                    6 -> {
+                        personalinfocontentTab1.visibility = View.GONE
+                        educationdetailcontentTab2.visibility = View.GONE
+                        progressdetilscontentTab3.visibility = View.GONE
+                        aboutyoudetilscontentTab4.visibility = View.GONE
+                        careerdetilscontentTab5.visibility = View.GONE
+                        experiencedetilscontentTab6.visibility = View.GONE
+                        skilldetilscontentTab7.visibility = View.VISIBLE
                     }
                 }
             }
@@ -199,6 +236,14 @@ class ProfileFrag : Fragment() {
             override fun onTabUnselected(tab: TabLayout.Tab) {}
             override fun onTabReselected(tab: TabLayout.Tab) {}
         })
+
+        gotoallskills = view.findViewById(R.id.seeallskill)
+        gotoallskills.setOnClickListener {
+            startActivity(Intent(requireContext(),AllSkills::class.java))
+        }
+
+
+
 
         seeMoreBtn = view.findViewById(R.id.allpredictedcareer)
         seeMoreBtn.setOnClickListener {
@@ -305,6 +350,7 @@ class ProfileFrag : Fragment() {
         fetchPersonalityData(email)
         fetchAndDisplayInterest(email)
         fetchAndDisplayfirstExperience(email)
+        fetchandDisplaytwoSkills(email)
 
 
 
@@ -323,6 +369,50 @@ class ProfileFrag : Fragment() {
 
         return view
     }
+
+    private fun showname(email: android.widget.TextView , nameTV : android.widget.TextView) {
+        val db = FirebaseFirestore.getInstance()
+        val docRef = db.collection("Users").document(email.text.toString())
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    val name = document.getString("Name")
+                    nameTV.text = name
+                } else {
+                    Log.d("Skills", "No such document")
+                }
+            }
+    }
+
+    private fun fetchandDisplaytwoSkills(email: String) {
+        val db = FirebaseFirestore.getInstance()
+        val docRef = db.collection("Users").document(email)
+
+        docRef.get()
+            .addOnSuccessListener { document ->
+                if (document != null && document.exists()) {
+                    val softSkills = document.get("SoftSkills") as? List<String> ?: emptyList()
+                    val techSkills = document.get("TechnicalSkills") as? List<String> ?: emptyList()
+
+                    val oneSoftSkill = softSkills.firstOrNull() ?: "No Soft Skill"
+                    val oneTechSkill = techSkills.firstOrNull() ?: "No Technical Skill"
+
+                    // Example: display in TextViews
+                    skillTV1= view?.findViewById(R.id.skill1)!!
+                    skillTV2= view?.findViewById(R.id.skill2)!!
+
+
+                    skillTV1.text = oneSoftSkill
+                    skillTV2.text = oneTechSkill
+                } else {
+                    Log.d("Skills", "No such document")
+                }
+            }
+            .addOnFailureListener { exception ->
+                Log.d("Skills", "get failed with ", exception)
+            }
+    }
+
 
     private fun loadProfileImageFromFirestore() {
         val userEmail = FirebaseAuth.getInstance().currentUser?.email ?: return

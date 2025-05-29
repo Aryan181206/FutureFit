@@ -1,5 +1,6 @@
 package com.example.futurefit.Authentication
 
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
@@ -9,6 +10,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.cardview.widget.CardView
+import com.afollestad.materialdialogs.MaterialDialog
+import com.afollestad.materialdialogs.input.input
 import com.example.futurefit.BottomBar
 import com.example.futurefit.R
 import com.google.android.gms.auth.api.signin.*
@@ -22,6 +25,8 @@ class SignIn : AppCompatActivity() {
     private lateinit var firestore: FirebaseFirestore
     private lateinit var googleSignInClient: GoogleSignInClient
 
+    private lateinit var forgotpasswd: TextView
+
     private lateinit var emailEditText: EditText
     private lateinit var passwordEditText: EditText
     private lateinit var loginButton: CardView
@@ -30,6 +35,7 @@ class SignIn : AppCompatActivity() {
 
     private val RC_SIGN_IN = 101
 
+    @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_sign_in)
@@ -59,7 +65,8 @@ class SignIn : AppCompatActivity() {
             val password = passwordEditText.text.toString().trim()
 
             if (email.isEmpty() || password.isEmpty()) {
-                Toast.makeText(this, "Please enter both email and password", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Please enter both email and password", Toast.LENGTH_SHORT)
+                    .show()
                 return@setOnClickListener
             }
             loginUser(email, password)
@@ -75,6 +82,12 @@ class SignIn : AppCompatActivity() {
         googleSignInCard.setOnClickListener {
             val signInIntent = googleSignInClient.signInIntent
             startActivityForResult(signInIntent, RC_SIGN_IN)
+        }
+
+        val email = auth.currentUser?.email ?: ""
+        forgotpasswd = findViewById(R.id.forgotpassword)
+        forgotpasswd.setOnClickListener {
+            showAnimatedForgotPasswordDialog()
         }
     }
 
@@ -153,10 +166,12 @@ class SignIn : AppCompatActivity() {
                 if (account != null) {
                     firebaseAuthWithGoogle(account)
                 } else {
-                    Toast.makeText(this, "Google Sign-In returned null account", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Google Sign-In returned null account", Toast.LENGTH_SHORT)
+                        .show()
                 }
             } catch (e: ApiException) {
-                Toast.makeText(this, "Google Sign-In failed: ${e.message}", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, "Google Sign-In failed: ${e.message}", Toast.LENGTH_SHORT)
+                    .show()
             }
         }
     }
@@ -169,4 +184,35 @@ class SignIn : AppCompatActivity() {
             apply()
         }
     }
+
+    @SuppressLint("CheckResult")
+    private fun showAnimatedForgotPasswordDialog() {
+        MaterialDialog(this).show {
+            title(text = "Forgot Password?")
+            message(text = "Enter your registered email to receive a reset link.")
+            input(
+                hint = "Email",
+                inputType = android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS,
+                waitForPositiveButton = true
+            ) { dialog, emailInput ->
+                val email = emailInput.toString().trim()
+                if (email.isEmpty()) {
+                    //Toast.makeText(this@show, "Email cannot be empty", Toast.LENGTH_SHORT).show()
+                    return@input
+                }
+
+                FirebaseAuth.getInstance().sendPasswordResetEmail(email)
+                    .addOnSuccessListener {
+                      //  Toast.makeText(this, "Reset link sent to $email", Toast.LENGTH_LONG).show()
+                        dialog.dismiss()
+                    }
+                    .addOnFailureListener {
+                       // Toast.makeText(this, "Failed: ${it.message}", Toast.LENGTH_LONG).show()
+                    }
+            }
+            positiveButton(text = "Reset")
+            negativeButton(text = "Cancel")
+        }
+    }
 }
+

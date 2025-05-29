@@ -5,16 +5,11 @@
     android:id="@+id/main"
     android:orientation="vertical"
     android:layout_width="match_parent"
-    android:background="@color/white"
     android:layout_height="match_parent"
-    tools:context=".AssessmentSplashScreen.AptitudeStartSplashScreen">
-
-    <ImageView
-        android:id="@+id/backgroundGif"
-        android:layout_width="400dp"
-        android:layout_height="308dp"
-        android:layout_gravity="center"
-        android:layout_marginTop="270dp"
-        android:src="@drawable/universalgif" />
+    tools:context=".Explore.BlogWebview">
+    <WebView
+        android:id="@+id/blogweb"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 
 </LinearLayout>

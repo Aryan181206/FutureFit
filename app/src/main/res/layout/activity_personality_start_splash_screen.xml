@@ -4,7 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
     android:layout_width="match_parent"
+    android:background="@color/white"
     android:layout_height="match_parent"
     tools:context=".AssessmentSplashScreen.PersonalityStartSplashScreen">
+
+    <ImageView
+        android:id="@+id/bggif"
+        android:layout_width="400dp"
+        android:layout_height="308dp"
+        android:layout_gravity="center"
+        android:src="@drawable/universalgif"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.44" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

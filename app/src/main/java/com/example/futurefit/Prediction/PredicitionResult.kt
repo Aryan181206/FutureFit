@@ -2,25 +2,32 @@ package com.example.futurefit.Prediction
 
 import android.annotation.SuppressLint
 import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
+import android.util.Log
 import android.view.LayoutInflater
 import android.widget.Button
+import android.widget.EditText
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.afollestad.materialdialogs.MaterialDialog
 import com.example.futurefit.BottomBar
 import com.example.futurefit.DataClass.Career
 import com.example.futurefit.DataClass.CareerData
 import com.example.futurefit.R
 import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import com.google.gson.JsonSyntaxException
@@ -34,6 +41,8 @@ class PredicitionResult : AppCompatActivity() {
     private var careerList: List<Career> = emptyList()
     private lateinit var firestore: FirebaseFirestore
     private lateinit var auth: FirebaseAuth
+
+    private lateinit var feedback : MaterialButton
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -138,6 +147,11 @@ class PredicitionResult : AppCompatActivity() {
         val back = findViewById<MaterialButton>(R.id.backhome)
         back.setOnClickListener {
             startActivity(Intent(this, BottomBar ::class.java))
+        }
+
+        feedback = findViewById(R.id.feedback)
+        feedback.setOnClickListener {
+            FeedBackDialogBox(this,email)
         }
 
     }
@@ -311,7 +325,64 @@ class PredicitionResult : AppCompatActivity() {
             Toast.makeText(this, "Failed to retrieve saved careers", Toast.LENGTH_LONG).show()
         }
     }
-
-
-
 }
+
+private fun FeedBackDialogBox(context: Context, email: String) {
+    val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_feedback, null)
+    val feedbackEditText = dialogView.findViewById<EditText>(R.id.editTextFeedback)
+
+    val dialog = MaterialAlertDialogBuilder(context)
+        .setTitle("Submit Feedback")
+        .setView(dialogView)
+        .setPositiveButton("Submit") { _, _ ->
+            val feedbackText = feedbackEditText.text.toString().trim()
+
+            if (feedbackText.isNotEmpty()) {
+                val db = FirebaseFirestore.getInstance()
+                val userDocRef = db.collection("Users").document(email)
+
+                // Fetch profile URL
+                userDocRef.get()
+                    .addOnSuccessListener { document ->
+                        if (document != null && document.exists()) {
+                            val profileUrl = document.getString("profileImageUrl") ?: ""
+
+                            val feedbackMap = mapOf(
+                                "feedcontent" to feedbackText,
+                                "profileImageUrl" to profileUrl
+                            )
+
+                            // Save to FeedBacks/allfeeds
+                            db.collection("FeedBacks")
+                                .document("allfeeds")
+                                .update("feedbackList", FieldValue.arrayUnion(feedbackMap))
+                                .addOnSuccessListener {
+                                    Log.d("Feedback", "Added to FeedBacks/allfeeds")
+                                }
+                                .addOnFailureListener {
+                                    // Create doc if doesn't exist
+                                    db.collection("FeedBacks")
+                                        .document("allfeeds")
+                                        .set(mapOf("feedbackList" to arrayListOf(feedbackMap)))
+                                }
+
+                            // Save to Users/{email}/FeedBackContent
+                            userDocRef.update("FeedBackContent", feedbackText)
+                                .addOnSuccessListener {
+                                    Toast.makeText(context, "Feedback submitted!", Toast.LENGTH_SHORT).show()
+                                }
+                        }
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(context, "Failed to fetch profile URL.", Toast.LENGTH_SHORT).show()
+                    }
+            } else {
+                Toast.makeText(context, "Feedback cannot be empty.", Toast.LENGTH_SHORT).show()
+            }
+        }
+        .setNegativeButton("Cancel", null)
+        .create()
+
+    dialog.show()
+}
+

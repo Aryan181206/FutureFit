@@ -16,6 +16,9 @@ import com.example.futurefit.BottomBar
 import com.example.futurefit.R
 import com.google.android.gms.auth.api.signin.*
 import com.google.android.gms.common.api.ApiException
+import com.google.android.material.button.MaterialButton
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import com.google.android.material.textfield.TextInputEditText
 import com.google.firebase.auth.*
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -70,6 +73,7 @@ class SignIn : AppCompatActivity() {
                 return@setOnClickListener
             }
             loginUser(email, password)
+            finish()
         }
 
         // Go to SignUp screen
@@ -187,32 +191,37 @@ class SignIn : AppCompatActivity() {
 
     @SuppressLint("CheckResult")
     private fun showAnimatedForgotPasswordDialog() {
-        MaterialDialog(this).show {
-            title(text = "Forgot Password?")
-            message(text = "Enter your registered email to receive a reset link.")
-            input(
-                hint = "Email",
-                inputType = android.text.InputType.TYPE_TEXT_VARIATION_EMAIL_ADDRESS,
-                waitForPositiveButton = true
-            ) { dialog, emailInput ->
-                val email = emailInput.toString().trim()
-                if (email.isEmpty()) {
-                    //Toast.makeText(this@show, "Email cannot be empty", Toast.LENGTH_SHORT).show()
-                    return@input
-                }
+        val dialogView = layoutInflater.inflate(R.layout.dialog_forgot_password, null)
+        val emailEditText = dialogView.findViewById<TextInputEditText>(R.id.forgotEmail)
+        val resetButton = dialogView.findViewById<MaterialButton>(R.id.resetPasswordBtn)
 
+        val dialog = MaterialAlertDialogBuilder(this)
+            .setTitle("Forgot Password?")
+            .setMessage("Enter your registered email to receive a reset link.")
+            .setView(dialogView)
+            .setNegativeButton("Cancel") { dialogInterface, _ ->
+                dialogInterface.dismiss()
+            }
+            .create()
+
+        resetButton.setOnClickListener {
+            val email = emailEditText.text.toString().trim()
+            if (email.isEmpty()) {
+                Toast.makeText(this, "Email cannot be empty", Toast.LENGTH_SHORT).show()
+            } else {
                 FirebaseAuth.getInstance().sendPasswordResetEmail(email)
                     .addOnSuccessListener {
-                      //  Toast.makeText(this, "Reset link sent to $email", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Reset link sent to $email", Toast.LENGTH_LONG).show()
                         dialog.dismiss()
                     }
                     .addOnFailureListener {
-                       // Toast.makeText(this, "Failed: ${it.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Failed: ${it.message}", Toast.LENGTH_SHORT).show()
                     }
             }
-            positiveButton(text = "Reset")
-            negativeButton(text = "Cancel")
         }
+
+        dialog.show()
     }
+
 }
 

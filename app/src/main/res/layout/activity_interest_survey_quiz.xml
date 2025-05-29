@@ -6,34 +6,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:padding="16dp"
     android:background="@color/white"
     tools:context=".Assessment.InterestSurveyQuiz">
 
     <!-- Logo Card -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:cardCornerRadius="12dp"
-        android:layout_marginBottom="16dp"
-        android:layout_marginTop="10dp"
-        app:cardBackgroundColor="@color/white"
-        >
-
+        android:layout_height="wrap_content">
         <ImageView
             android:layout_width="200dp"
             android:layout_height="60dp"
-            android:layout_gravity="left"
-            android:src="@drawable/finallogo2"
-            android:contentDescription="Logo" />
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            android:src="@drawable/finallogo2" />
     </androidx.cardview.widget.CardView>
-
     <!-- Survey Title -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Interest Survey\nRIASEC Format"
         android:textStyle="bold"
+        android:layout_marginTop="10dp"
         android:textColor="@color/textcolor"
         android:gravity="center"
         android:textSize="22sp"
@@ -56,6 +50,8 @@
     <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progressBar2"
         android:layout_width="match_parent"
+        android:padding="8dp"
+        android:layout_marginHorizontal="10dp"
         android:layout_height="8dp"
         android:layout_marginBottom="24dp"
         app:trackThickness="8dp"
@@ -72,6 +68,7 @@
         android:fontFamily="@font/ar_one_sans"
         android:textStyle="bold"
         android:textSize="20sp"
+        android:layout_marginHorizontal="12dp"
         android:layout_marginBottom="12dp" />
 
     <!-- Option List -->
@@ -94,6 +91,7 @@
         android:text="Next"
         android:textAllCaps="false"
         app:cornerRadius="12dp"
+        android:layout_marginHorizontal="12dp"
         app:backgroundTint="@color/Sky"
         android:textColor="@color/white"
         android:fontFamily="@font/ar_one_sans" />

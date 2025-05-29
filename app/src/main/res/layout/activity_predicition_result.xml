@@ -40,8 +40,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Prediction"
-                android:textStyle="bold"
-                android:textSize="28sp"
+                android:textSize="25sp"
                 android:textColor="@color/black"
                 android:gravity="center"
                 android:layout_marginBottom="-8dp"/>
@@ -49,8 +48,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Completed Successfully"
-                android:textStyle="bold"
-                android:textSize="28sp"
+                android:textSize="25sp"
                 android:textColor="@color/black"
                 android:gravity="center"
                 android:layout_marginBottom="5dp"/>
@@ -61,6 +59,7 @@
                 android:layout_gravity="center_horizontal"
                 android:contentDescription="Career Icon"
                 android:src="@drawable/career2"
+                android:padding="16dp"
                 android:layout_marginTop="-20dp"
                 />
             <TextView
@@ -68,7 +67,7 @@
                 android:layout_height="wrap_content"
                 android:text="These are some Best Matched Career Options according to your Profile"
                 android:textColor="@color/black"
-                android:textSize="18dp"
+                android:textSize="16dp"
                 android:layout_marginTop="5dp"
                 android:gravity="center"/>
 
@@ -499,12 +498,23 @@
 
 
             <com.google.android.material.button.MaterialButton
+                android:id="@+id/feedback"
+                android:layout_width="match_parent"
+                android:layout_height="50dp"
+                android:layout_marginTop="14dp"
+                android:backgroundTint="#123A58"
+                android:text="Give Feedback"
+                app:cornerRadius="10dp"
+                android:textSize="22dp"/>
+
+            <com.google.android.material.button.MaterialButton
                 android:id="@+id/backhome"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:layout_marginTop="5dp"
+
                 android:backgroundTint="#E7AF23"
                 android:text="Back To Home"
+                app:cornerRadius="10dp"
                 android:textSize="22dp"/>
         </LinearLayout>
 

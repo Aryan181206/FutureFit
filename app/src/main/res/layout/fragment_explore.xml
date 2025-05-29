@@ -1,47 +1,237 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/exploreFrag"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/exploreFrag"
+    android:background="@color/white"
     tools:context=".Fragments.ExploreFrag">
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <ImageView
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="5dp"
+            android:src="@drawable/finallogo2"
+            android:layout_marginLeft="16dp"/>
+    </androidx.cardview.widget.CardView>
+
 
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        >
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        >
-        <ImageView
-            android:layout_width="200dp"
-            android:layout_height="60dp"
-            android:src="@drawable/finallogo2"
-            android:layout_marginLeft="20dp"/>
-    </androidx.cardview.widget.CardView>
+        android:layout_marginTop="60dp"
+        android:padding="8dp">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Explore"
-        android:textSize="28dp"
-        android:textColor="@color/black"
-        android:textStyle="bold"
-        android:layout_marginLeft="15dp"
-        android:layout_marginTop="10dp"
-        />
 
-        <WebView
-            android:id="@+id/webview"
+
+
+        <!-- Title -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Explore Stories"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:fontFamily="@font/monda"
+            android:layout_marginTop="8dp" />
+
+        <!-- Scrollable Content -->
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginTop="15dp">
+            android:layout_marginTop="0dp">
 
-        </WebView>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingBottom="16dp">
 
+                <!-- RecyclerView -->
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/successStoriesRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginHorizontal="5dp" />
 
+                <!-- Search Jobs Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/black"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:elevation="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Search Jobs"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/monda" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Explore your favourite jobs in naukari.com"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/monda"
+                            android:layout_marginTop="2dp" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/tojob"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="6dp"
+                            app:strokeWidth="1dp"
+                            app:strokeColor="@color/black"
+                            app:cardBackgroundColor="@color/white" >
+                            <ImageView
+                                android:layout_width="180dp"
+                                android:layout_height="55dp"
+                                android:padding="4dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/job"/>
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Courses Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/black"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:elevation="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Courses"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/monda" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Explore Courses to learn new Skills with Alison.com"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/monda"
+                            android:layout_marginTop="2dp" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/tocourses"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="6dp"
+                            app:strokeColor="@color/black"
+                            app:strokeWidth="1dp"
+                            app:cardBackgroundColor="@color/white" >
+                            <ImageView
+                                android:layout_width="180dp"
+                                android:layout_height="55dp"
+                                android:padding="4dp"
+                                android:layout_gravity="center"
+                                android:src="@drawable/courses"/>
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- Career Blogs Card -->
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:cardCornerRadius="12dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/black"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginHorizontal="6dp"
+                    android:elevation="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Career Blogs"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/monda" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Learn from experiences of great personalities at Medium.com"
+                            android:textSize="14sp"
+                            android:textColor="@color/black"
+                            android:fontFamily="@font/monda"
+                            android:layout_marginTop="2dp" />
+
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/toblog"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="10dp"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="6dp"
+                            app:strokeWidth="1dp"
+                            app:strokeColor="@color/black"
+                            app:cardBackgroundColor="@color/white" >
+
+                            <ImageView
+                                android:layout_width="180dp"
+                                android:layout_height="50dp"
+                                android:padding="4dp"
+                                android:src="@drawable/blog"
+                                android:layout_gravity="center"/>
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+            </LinearLayout>
+        </ScrollView>
     </LinearLayout>
+
 </FrameLayout>

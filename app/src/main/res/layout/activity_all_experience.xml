@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:text="Your Experiences"
         android:textStyle="bold"
-        android:textSize="23dp"
+        android:textSize="22dp"
         android:layout_marginLeft="15dp"
         android:fontFamily="@font/monda"
         android:layout_marginTop="15dp"/>

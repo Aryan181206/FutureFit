@@ -44,10 +44,9 @@ class PredicitionSplashScreen : AppCompatActivity() {
         val backgroundGif: ImageView = findViewById(R.id.gif)
         Glide.with(this)
             .asGif()
-            .load(R.drawable.ailoading) // Your GIF in res/drawable
+            .load(R.drawable.ailoading)
             .into(backgroundGif)
 
-        // Firestore & Auth
         db = FirebaseFirestore.getInstance()
         auth = FirebaseAuth.getInstance()
 
@@ -84,7 +83,7 @@ class PredicitionSplashScreen : AppCompatActivity() {
                         aiPredictionResult = ""
                     )
 
-                    Toast.makeText(this, "Data fetched for ${userProfile?.name}", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "Prediction Started", Toast.LENGTH_SHORT).show()
 
                     userProfile?.let {
                         careerPredictionPrompt = generatePromptForGemini(it)
@@ -155,7 +154,7 @@ class PredicitionSplashScreen : AppCompatActivity() {
                 output.write(jsonContent.toByteArray())
                 output.flush()
             }
-            Toast.makeText(this, "JSON saved to $fileName", Toast.LENGTH_SHORT).show()
+            Toast.makeText(this, "Wait For Sometime", Toast.LENGTH_SHORT).show()
             goNextActivity()
         } catch (e: Exception) {
             Toast.makeText(this, "Failed to save Error: ${e.message}", Toast.LENGTH_SHORT).show()
@@ -163,7 +162,7 @@ class PredicitionSplashScreen : AppCompatActivity() {
     }
 
     private fun goNextActivity() {
-        Toast.makeText(this, "Going to next activity", Toast.LENGTH_SHORT).show()
+        Toast.makeText(this, "Prediction Completed", Toast.LENGTH_SHORT).show()
         startActivity(Intent(this, PredicitionResult::class.java))
         finish()
     }

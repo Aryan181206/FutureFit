@@ -26,10 +26,10 @@ class InterestSplashScreen : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
-        val backgroundGif: ImageView = findViewById(R.id.bggif)
+        val backgroundGif: ImageView = findViewById(R.id.backgroundGif)
         Glide.with(this)
             .asGif()
-            .load(R.drawable.pqgif)
+            .load(R.drawable.universalgif)
             .into(backgroundGif)
 
 

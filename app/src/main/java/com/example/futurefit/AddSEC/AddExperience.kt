@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.widget.ArrayAdapter
 import android.widget.AutoCompleteTextView
 import android.widget.Button
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.LinearLayout
 import android.widget.Spinner
@@ -26,6 +27,8 @@ class AddExperience : AppCompatActivity() {
 
     private lateinit var auth: FirebaseAuth
     private lateinit var firestore: FirebaseFirestore
+
+    private lateinit var pastexperience: CheckBox
 
     @SuppressLint("MissingInflatedId")
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -53,14 +56,28 @@ class AddExperience : AppCompatActivity() {
             saveEmploymentHistoryToFirebase()
 
         }
+        pastexperience = findViewById<CheckBox>(R.id.pastexpno)
+        val firestore = FirebaseFirestore.getInstance()
+        val email = FirebaseAuth.getInstance().currentUser?.email ?: ""
 
-
+        pastexperience.setOnCheckedChangeListener { _, isChecked ->
+            if (isChecked) {
+                val experienceData = mapOf("Experience" to "No previous Experience")
+                firestore.collection("Users").document(email)
+                    .update(experienceData)
+                    .addOnSuccessListener {
+                        Toast.makeText(this, "Experience marked as 'No previous Experience'", Toast.LENGTH_SHORT).show()
+                        finish()
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(this, "Error updating experience: ${it.message}", Toast.LENGTH_SHORT).show()
+                    }
+            }
+        }
 
     }
     private fun addNewEmploymentCard() {
         val cardView = layoutInflater.inflate(R.layout.item_addposition, null)
-
-
 
         val removeButton = cardView.findViewById<Button>(R.id.btnRemove)
         removeButton.setOnClickListener {

@@ -12,10 +12,12 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <ImageView
-            android:layout_width="160dp"
-            android:layout_height="50dp"
-            android:layout_marginStart="12dp"
-            android:src="@drawable/futurefit2" />
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginBottom="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_gravity="center"
+            android:src="@drawable/finallogo2" />
     </androidx.cardview.widget.CardView>
 
     <TextView
@@ -39,12 +41,17 @@
         android:textColor="@android:color/holo_red_dark"
         android:layout_gravity="center_horizontal" />
 
-    <ProgressBar
+    <com.google.android.material.progressindicator.LinearProgressIndicator
         android:id="@+id/progressBar2"
-        style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="10dp" />
+        android:layout_height="8dp"
+        android:layout_marginVertical="16dp"
+        android:progress="20"
+        app:trackThickness="8dp"
+        android:padding="16dp"
+        app:indicatorColor="@color/primaryColor"
+        app:trackColor="@color/lightgray" />
+
 
     <TextView
         android:id="@+id/questionText"
@@ -94,15 +101,15 @@
             android:layout_height="wrap_content"
             android:text="Option 4" />
     </RadioGroup>
-
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/nextButton"
+        app:cornerRadius="12dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginHorizontal="12dp"
         android:backgroundTint="@color/Sky"
         android:text="Next" />
-
     <TextView
         android:id="@+id/scoreText"
         android:layout_width="wrap_content"

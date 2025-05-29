@@ -8,27 +8,25 @@
     android:layout_height="match_parent"
     tools:context=".AssessmentResult.PersonalityResult">
 
-    
+
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="60dp"
         >
         <ImageView
-            android:layout_width="210dp"
+            android:layout_width="160dp"
             android:layout_height="60dp"
             android:src="@drawable/finallogo2"
-            android:layout_marginLeft="15dp"
-            android:layout_marginTop="5dp"/>
+            android:layout_marginLeft="20dp"/>
     </androidx.cardview.widget.CardView>
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Completed"
-        android:textSize="32dp"
+        android:textSize="30dp"
         android:layout_marginTop="15dp"
         android:textColor="@color/black"
-        android:textStyle="bold"
         android:fontFamily="@font/monda"
         android:layout_gravity="center_horizontal"/>
 
@@ -43,7 +41,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:textStyle="bold"
         android:layout_marginHorizontal="20dp"
         android:textColor="@color/black"
         android:textSize="20dp"
@@ -78,7 +75,7 @@
             android:text="ENJP"
             android:textColor="@color/black"
             android:textStyle="bold"
-            android:textSize="30dp"
+            android:textSize="28dp"
             android:fontFamily="@font/monda"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="45dp"/>
@@ -105,7 +102,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/backhome"
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="50dp"
             android:layout_gravity="bottom"
             android:layout_marginBottom="10dp"
             android:layout_marginHorizontal="15dp"

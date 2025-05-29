@@ -30,7 +30,7 @@ class AptitudeStartSplashScreen : AppCompatActivity() {
         val backgroundGif: ImageView = findViewById(R.id.backgroundGif)
         Glide.with(this)
             .asGif()
-            .load(R.drawable.quizanimation) // Your GIF in res/drawable
+            .load(R.drawable.universalgif) // Your GIF in res/drawable
             .into(backgroundGif)
 
 

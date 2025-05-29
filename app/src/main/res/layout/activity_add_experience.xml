@@ -32,12 +32,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Experience"
-        android:textStyle="bold"
         android:fontFamily="@font/monda"
         android:layout_gravity="center_vertical"
         android:layout_marginLeft="10dp"
         android:textColor="@color/black"
-        android:textSize="26dp"
+        android:textSize="24dp"
         />
 
         <androidx.cardview.widget.CardView
@@ -54,13 +53,21 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:drawableLeft="@drawable/baseline_add_24"
-                android:fontFamily="@font/baloo_thambi"
+                android:fontFamily="@font/monda"
                 android:text="Add Position"
                 android:textColor="@color/white"
                 android:textSize="20dp"/>
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
+
+    <CheckBox
+        android:id="@+id/pastexpno"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="No Past Experience"
+        android:textSize="18dp"
+        android:layout_marginLeft="15dp"/>
 
 
     <ScrollView
@@ -75,7 +82,6 @@
             android:layout_width="match_parent"
             android:layout_marginVertical="5dp"
             android:layout_height="wrap_content"
-            android:background="@color/Royalwhite"
             android:orientation="vertical" />
     </ScrollView>
 
@@ -84,11 +90,11 @@
     <androidx.cardview.widget.CardView
         android:id="@+id/saveChanges"
         android:layout_width="match_parent"
-        android:layout_height="50dp"
+        android:layout_height="45dp"
         android:layout_marginTop="10dp"
         app:cardCornerRadius="12dp"
         android:layout_marginHorizontal="10dp"
-        app:cardBackgroundColor="@color/Sky"
+        app:cardBackgroundColor="#3566E7"
         android:layout_marginBottom="6dp"
 
         >
@@ -101,7 +107,7 @@
             android:textColor="@color/white"
             android:textSize="28dp"
             android:gravity="center"
-            android:fontFamily="@font/baloo_thambi"/>
+            android:fontFamily="@font/monda"/>
 
     </androidx.cardview.widget.CardView>
 

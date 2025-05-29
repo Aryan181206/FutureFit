@@ -3,59 +3,92 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp"
+    android:background="@color/white"
     tools:context=".ProfileActivity.AllSkills">
+
+    <!-- Logo Card -->
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        >
+        android:layout_height="70dp"
+        android:layout_marginBottom="16dp"
+        app:cardBackgroundColor="@color/white">
+
         <ImageView
-            android:layout_width="200dp"
-            android:layout_height="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="60dp"
+            android:layout_gravity="center_vertical"
+            android:layout_marginStart="16dp"
             android:src="@drawable/finallogo2"
-            android:layout_marginLeft="15dp"/>
+            android:contentDescription="Logo"
+            android:adjustViewBounds="true"/>
     </androidx.cardview.widget.CardView>
 
+    <!-- Header Text -->
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Your Skills"
-        android:textStyle="bold"
-        android:textSize="22sp"
-        android:layout_marginBottom="10dp" />
-
-    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:gravity="center">
+        android:text="Your Skills"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:fontFamily="@font/monda"
+        android:textColor="@color/black"
+        android:gravity="left"
+        android:layout_marginBottom="12dp"/>
 
-        <Button
+    <!-- Filter Buttons -->
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/skillToggleGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="12dp"
+        app:singleSelection="true"
+        app:selectionRequired="true">
+
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_all"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="All" />
+            android:text="All"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:backgroundTint="@color/white"
+            app:strokeColor="@color/Sky"
+            app:strokeWidth="2dp"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_technical"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Technical Skills" />
+            android:text="Technical"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:backgroundTint="@color/white"
+            app:strokeColor="@color/Sky"
+            app:strokeWidth="2dp"/>
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/btn_soft"
             android:layout_width="0dp"
             android:layout_weight="1"
             android:layout_height="wrap_content"
-            android:text="Soft Skills" />
-    </LinearLayout>
+            android:text="Soft"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:backgroundTint="@color/white"
+            app:strokeColor="@color/Sky"
+            app:strokeWidth="2dp"/>
+    </com.google.android.material.button.MaterialButtonToggleGroup>
 
+    <!-- Skills List -->
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/allskillsRV"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="10dp"/></LinearLayout>
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp"
+        android:scrollbars="vertical"/>
+</LinearLayout>

@@ -32,8 +32,10 @@ import com.example.futurefit.ProfileActivity.AllSkills
 import com.example.futurefit.ProfileActivity.SavedCareers
 import com.example.futurefit.R
 import com.example.futurefit.SplashScreen
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.android.material.tabs.TabLayout
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 
 
@@ -101,6 +103,7 @@ class ProfileFrag : Fragment() {
     private lateinit var seeallexperience : TextView
     private lateinit var gotoaboutus : CardView
     private lateinit var gotosetting : CardView
+    private lateinit var addfeedback : CardView
 
 
     private lateinit var gotoallskills : TextView
@@ -244,6 +247,12 @@ class ProfileFrag : Fragment() {
 
 
 
+        addfeedback = view.findViewById(R.id.addfeedback)
+        addfeedback.setOnClickListener {
+            FeedBackDialogBox(requireContext(), email.toString())
+
+        }
+
 
         seeMoreBtn = view.findViewById(R.id.allpredictedcareer)
         seeMoreBtn.setOnClickListener {
@@ -320,7 +329,7 @@ class ProfileFrag : Fragment() {
         verbalScoreText = view.findViewById(R.id.AptitdeVerbalScore)
 
 
-        mbtiPersonalityText = view.findViewById(R.id.mbtipersinality)
+        mbtiPersonalityText = view.findViewById(R.id.mbtipersonality)
         personalityDescText = view.findViewById(R.id.personalitydesc)
 
         mbtiPersonalityText.text = "Loading..."
@@ -514,14 +523,6 @@ class ProfileFrag : Fragment() {
             }
     }
 
-
-
-
-
-
-
-
-
     private fun fetchAndDisplayInterest(email: String) {
         firestore.collection("Users").document(email).get()
             .addOnSuccessListener { document ->
@@ -637,7 +638,7 @@ class ProfileFrag : Fragment() {
             val datePicker = DatePickerDialog(
                 requireContext(),
                 { _, year, month, day ->
-                    val formattedDate = "$day/${month + 1}/$year"
+                    val formattedDate = String.format("%02d/%02d/%04d", day, month + 1, year)
                     dob.setText(formattedDate)
                 },
                 calendar.get(Calendar.YEAR),
@@ -647,11 +648,18 @@ class ProfileFrag : Fragment() {
             datePicker.show()
         }
 
-        // Show AlertDialog
-        AlertDialog.Builder(requireContext())
+        // Enhanced Material Design Dialog
+        val dialog = com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
             .setTitle("Edit Personal Info")
             .setView(dialogView)
-            .setPositiveButton("Save") { _, _ ->
+            .setCancelable(false)
+            .setPositiveButton("Save", null)
+            .setNegativeButton("Cancel", null)
+            .create()
+
+        dialog.setOnShowListener {
+            val positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            positiveButton.setOnClickListener {
                 val updatedData = mapOf(
                     "DateOfBirth" to dob.text.toString(),
                     "Gender" to gender.text.toString(),
@@ -668,16 +676,17 @@ class ProfileFrag : Fragment() {
                             Toast.LENGTH_SHORT
                         ).show()
                         fetchAndDisplayUserData(email)
+                        dialog.dismiss()
                     }
                     .addOnFailureListener {
-                        Toast.makeText(requireContext(), "Error: ${it.message}", Toast.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(requireContext(), "Error: ${it.message}", Toast.LENGTH_SHORT).show()
                     }
             }
-            .setNegativeButton("Cancel", null)
-            .show()
+        }
 
+        dialog.show()
     }
+
 
     /**
      * Shows the Edit Dialog for Education Information
@@ -700,11 +709,18 @@ class ProfileFrag : Fragment() {
                 }
             }
 
-        // Show AlertDialog
-        AlertDialog.Builder(requireContext())
+        // Enhanced Material Design Dialog
+        val dialog = com.google.android.material.dialog.MaterialAlertDialogBuilder(requireContext())
             .setTitle("Edit Education Info")
             .setView(dialogView)
-            .setPositiveButton("Save") { _, _ ->
+            .setCancelable(false)
+            .setPositiveButton("Save", null)
+            .setNegativeButton("Cancel", null)
+            .create()
+
+        dialog.setOnShowListener {
+            val positiveButton = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+            positiveButton.setOnClickListener {
                 val updatedData = mapOf(
                     "Stream" to stream.text.toString(),
                     "Qualification" to qualification.text.toString(),
@@ -720,15 +736,17 @@ class ProfileFrag : Fragment() {
                             Toast.LENGTH_SHORT
                         ).show()
                         fetchandDisplayEducationData(email)
+                        dialog.dismiss()
                     }
                     .addOnFailureListener {
-                        Toast.makeText(requireContext(), "Error: ${it.message}", Toast.LENGTH_SHORT)
-                            .show()
+                        Toast.makeText(requireContext(), "Error: ${it.message}", Toast.LENGTH_SHORT).show()
                     }
             }
-            .setNegativeButton("Cancel", null)
-            .show()
+        }
+
+        dialog.show()
     }
+
 
     private fun fetchAndDisplayUserData(email: String) {
         firestore.collection("Users").document(email).get()
@@ -773,6 +791,66 @@ class ProfileFrag : Fragment() {
     }
 
 
+}
+
+private fun FeedBackDialogBox(context: Context, email: String) {
+    val dialogView = LayoutInflater.from(context).inflate(R.layout.dialog_feedback, null)
+    val feedbackEditText = dialogView.findViewById<EditText>(R.id.editTextFeedback)
+    val usermail = FirebaseAuth.getInstance().currentUser?.email
+
+    val dialog = MaterialAlertDialogBuilder(context)
+        .setTitle("Share Your Experience")
+        .setView(dialogView)
+        .setPositiveButton("Submit") { _, _ ->
+            val feedbackText = feedbackEditText.text.toString().trim()
+
+            if (feedbackText.isNotEmpty()) {
+                val db = FirebaseFirestore.getInstance()
+                val userDocRef = db.collection("Users").document(usermail.toString())
+
+                // Fetch profile URL
+                userDocRef.get()
+                    .addOnSuccessListener { document ->
+                        if (document != null && document.exists()) {
+                            val profileUrl = document.getString("profileImageUrl") ?: ""
+
+                            val feedbackMap = mapOf(
+                                "feedcontent" to feedbackText,
+                                "profileImageUrl" to profileUrl
+                            )
+
+                            // Save to FeedBacks/allfeeds
+                            db.collection("FeedBacks")
+                                .document("allfeeds")
+                                .update("feedbackList", FieldValue.arrayUnion(feedbackMap))
+                                .addOnSuccessListener {
+                                    Log.d("Feedback", "Added to FeedBacks/allfeeds")
+                                }
+                                .addOnFailureListener {
+                                    // Create doc if doesn't exist
+                                    db.collection("FeedBacks")
+                                        .document("allfeeds")
+                                        .set(mapOf("feedbackList" to arrayListOf(feedbackMap)))
+                                }
+
+                            // Save to Users/{email}/FeedBackContent
+                            userDocRef.update("FeedBackContent", feedbackText)
+                                .addOnSuccessListener {
+                                    Toast.makeText(context, "Shared Successfully", Toast.LENGTH_SHORT).show()
+                                }
+                        }
+                    }
+                    .addOnFailureListener {
+                        Toast.makeText(context, "Failed to fetch profile URL.", Toast.LENGTH_SHORT).show()
+                    }
+            } else {
+                Toast.makeText(context, "Write something.", Toast.LENGTH_SHORT).show()
+            }
+        }
+        .setNegativeButton("Cancel", null)
+        .create()
+
+    dialog.show()
 }
 
 

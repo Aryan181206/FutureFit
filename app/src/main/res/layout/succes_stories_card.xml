@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginTop="5dp"
+    app:cardCornerRadius="10dp"
+    app:strokeColor="@color/white"
+    app:strokeWidth="0dp"
+    app:cardElevation="5dp"
+    android:layout_marginVertical="8dp"
+    app:cardBackgroundColor="@color/white"
+    android:layout_marginHorizontal="9dp"
+    >
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:padding="10dp"
+        android:orientation="horizontal">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profileImage"
+            android:layout_width="110dp"
+            android:layout_height="110dp"
+            android:src="@drawable/demoimg"
+            android:layout_marginHorizontal="10dp"
+            android:layout_gravity="center"/>
+        <TextView
+            android:id="@+id/feedbackContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginHorizontal="3dp"
+            android:textSize="16dp"
+            android:textColor="@color/textcolor"
+            android:text="By this app I had made my career my good and i had started working on the skills suggested by the Futer Fit thihs give me a confidence "/>
+
+    </LinearLayout>
+
+
+
+</com.google.android.material.card.MaterialCardView>

@@ -27,7 +27,7 @@ class SkillsAdapter(
 
     override fun onBindViewHolder(holder: SkillViewHolder, position: Int) {
         val (type, skill) = skillList[position]
-        holder.skillText.text = "$skill ($type)"
+        holder.skillText.text = "$skill ($type Skill)"
         holder.itemView.setOnLongClickListener {
             onLongClick(type, skill)
             true

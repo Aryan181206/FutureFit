@@ -91,13 +91,13 @@ class AddSkillss : AppCompatActivity() {
         val cardView = CardView(context).apply {
             radius = 24f
             cardElevation = 8f
-            setContentPadding(32, 32, 32, 32)
+            setContentPadding(28, 28, 28, 28)
             useCompatPadding = true
             layoutParams = ViewGroup.MarginLayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.WRAP_CONTENT
             ).apply {
-                setMargins(32, 16, 32, 16)
+                setMargins(28, 16, 28, 16)
             }
         }
 

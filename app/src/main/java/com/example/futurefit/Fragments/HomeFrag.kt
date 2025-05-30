@@ -21,6 +21,7 @@ import com.example.futurefit.AssessmentInstructions.InterestTestInstruction
 import com.example.futurefit.AssessmentInstructions.PersonalityTestInstruction
 import com.example.futurefit.ProfileStatus
 import com.example.futurefit.R
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
 
@@ -105,8 +106,9 @@ class HomeFrag : Fragment() {
         val fitnessLevels = listOf("Good", "Better", "Best")
         spinner.adapter = ArrayAdapter(context, android.R.layout.simple_spinner_dropdown_item, fitnessLevels)
 
-        val alertDialog = AlertDialog.Builder(context)
+        val alertDialog = MaterialAlertDialogBuilder(context)
             .setView(dialogView)
+            .setCancelable(true)
             .create()
 
         saveButton.setOnClickListener {
@@ -126,4 +128,5 @@ class HomeFrag : Fragment() {
 
         alertDialog.show()
     }
+
 }

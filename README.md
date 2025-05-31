@@ -135,7 +135,7 @@ Make sure your emulator or physical device has internet access
 Click the Run button (green play icon) in Android Studio
 The app will launch and initialize with all features
 
-# Project Structure
+Project Structure
 
 /FutureFit/
 ├── app/

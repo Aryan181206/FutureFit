@@ -1,8 +1,22 @@
+import java.io.FileInputStream
+import java.util.Properties
+android.buildFeatures.buildConfig true
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.google.gms.google.services)
 }
+
+
+fun getGeminiApiKey(): String {
+    val properties = Properties()
+    val localPropertiesFile = rootProject.file("local.properties")
+    if (localPropertiesFile.exists()) {
+        properties.load(FileInputStream(localPropertiesFile))
+    }
+    return properties.getProperty("GEMINI_API_KEY") ?: ""
+}
+
 
 android {
     namespace = "com.example.futurefit"
@@ -16,7 +30,14 @@ android {
         versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        // Secure API Key access
+        buildConfigField("String", "GEMINI_API_KEY", "\"${getGeminiApiKey()}\"")
     }
+    buildFeatures {
+        buildConfig = true
+    }
+
 
     buildTypes {
         release {
@@ -104,9 +125,6 @@ dependencies {
     implementation ("com.afollestad.material-dialogs:input:3.3.0")
 
     implementation ("com.afollestad.material-dialogs:core:3.3.0")
-
-
-
 
 
 

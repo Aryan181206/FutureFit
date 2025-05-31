@@ -15,8 +15,12 @@ import com.bumptech.glide.Glide
 import com.example.futurefit.DataClass.UserProfile
 import com.example.futurefit.R
 import com.example.futurefit.Util.generatePromptForGemini
+
+
+
 import com.google.ai.client.generativeai.GenerativeModel
 import com.google.firebase.auth.FirebaseAuth
+
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.launch
 import java.io.File

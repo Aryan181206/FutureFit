@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main"
+    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#D6E6F4"
@@ -10,23 +11,29 @@
 
 
 
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="289dp"
+        android:layout_height="171dp"
+        android:layout_gravity="center_horizontal"
+        app:srcCompat="@drawable/finallogo" />
+
     <androidx.cardview.widget.CardView
         android:id="@+id/cardView"
-        android:layout_width="767dp"
+        android:layout_width="match_parent"
         android:layout_height="1075dp"
-        android:layout_marginTop="250dp"
-        app:cardCornerRadius="80dp"
+
+        android:layout_weight="1"
+        app:cardCornerRadius="40dp"
         app:cardBackgroundColor="@color/Royalwhite"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+      >
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="368dp"
             android:orientation="vertical"
             android:padding="24dp"
-            android:paddingEnd="55dp">
+            >
 
             <TextView
                 android:layout_width="match_parent"
@@ -169,25 +176,7 @@
             </androidx.cardview.widget.CardView>
         </LinearLayout>
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/e3"
-            android:layout_gravity="right|bottom"
-            android:layout_marginBottom="300dp"
-            android:layout_marginRight="140dp"/>
 
     </androidx.cardview.widget.CardView>
 
-    <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="289dp"
-        android:layout_height="171dp"
-        app:layout_constraintBottom_toTopOf="@+id/cardView"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.516"
-        app:srcCompat="@drawable/finallogo" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+</LinearLayout>

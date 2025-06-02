@@ -177,7 +177,7 @@ PDF report generation for career predictions
 Multi-language support for accessibility
 
 
-👨‍💻 Developer
+👨‍💻 Developer :
 Aryan Sharma
 📧 Email: aryan180906@gmail.com
 🔗 LinkedIn: https://www.linkedin.com/in/aryan-sharma-26276131a/

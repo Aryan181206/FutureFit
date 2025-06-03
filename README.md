@@ -139,24 +139,29 @@ The app will launch and initialize with all features
 
 ## Screenshots 
 
-![WhatsApp Image 2025-05-31 at 12 37 23_2f765aef](https://github.com/user-attachments/assets/3a8ab3ab-9a0b-4108-b9d9-78fd72a03c1a)
-![WhatsApp Image 2025-05-31 at 12 37 22_36709380](https://github.com/user-attachments/assets/65e3414b-3e9d-4fa4-bdb6-6aa170e7da4b)
-![WhatsApp Image 2025-05-31 at 12 37 22_564945db](https://github.com/user-attachments/assets/d79501f9-15e6-45b3-8ee9-b31e372327e0)
-![WhatsApp Image 2025-05-31 at 12 37 21_c2f869a5](https://github.com/user-attachments/assets/4a98eed2-52db-4dee-a577-553229b1dd76)
-![WhatsApp Image 2025-05-31 at 12 37 21_b01b94bf](https://github.com/user-attachments/assets/8afbcade-7d02-4474-b5b7-1e641a4851a0)
-![WhatsApp Image 2025-05-31 at 12 37 21_8db22c01](https://github.com/user-attachments/assets/253e9343-6182-467b-ab89-16028aa5dac0)
-![WhatsApp Image 2025-05-31 at 12 37 20_53ffb3bc](https://github.com/user-attachments/assets/1d340c4c-539f-45c2-9327-c4ec02769d66)
-![WhatsApp Image 2025-05-31 at 12 37 20_5dddb394](https://github.com/user-attachments/assets/ce539add-cba0-4a8b-aa94-7d2ad3feb41f)
-![WhatsApp Image 2025-05-31 at 12 37 19_f60c2766](https://github.com/user-attachments/assets/86bf64f8-fdbd-49c2-8ba3-dbcee5091e63)
-![WhatsApp Image 2025-05-31 at 12 37 19_233a851a](https://github.com/user-attachments/assets/3f7f16a4-5515-41be-b3b4-216dcb636a45)
-![WhatsApp Image 2025-05-31 at 12 37 18_cdba6256](https://github.com/user-attachments/assets/8380f68e-fb70-4603-affb-9a3887ecdc95)
-![WhatsApp Image 2025-05-31 at 12 37 18_883c6ec5](https://github.com/user-attachments/assets/ba6fb0a2-3a2c-4ccd-9942-f766f2b5d60e)
-![WhatsApp Image 2025-05-31 at 12 37 17_abee0f64](https://github.com/user-attachments/assets/ee49f08a-be6f-4c6d-9f6c-7d1b6c0af9f5)
-![WhatsApp Image 2025-05-31 at 12 37 17_1bd2f021](https://github.com/user-attachments/assets/0d3964b0-0103-46d9-ad0a-1633b3817028)
-![WhatsApp Image 2025-05-31 at 12 37 16_fb0cf5c2](https://github.com/user-attachments/assets/4837e05e-4b87-413d-b15c-06d7be08c85e)
-![WhatsApp Image 2025-05-31 at 12 37 16_00227581](https://github.com/user-attachments/assets/de7549c2-f32a-4a1e-b625-2700af358b98)
-![WhatsApp Image 2025-05-31 at 12 37 23_1192397a](https://github.com/user-attachments/assets/53952118-b360-4bad-9b36-e90707e9ed19)
-![WhatsApp Image 2025-05-31 at 12 37 23_6676d430](https://github.com/user-attachments/assets/4f54b0b7-2727-4c3c-8086-e3d3651a85a6)
+### 📷 Screenshots
+
+<div style="display: flex; flex-wrap: wrap; gap: 10px;">
+  <img src="https://github.com/user-attachments/assets/3a8ab3ab-9a0b-4108-b9d9-78fd72a03c1a" width="200">
+  <img src="https://github.com/user-attachments/assets/65e3414b-3e9d-4fa4-bdb6-6aa170e7da4b" width="200">
+  <img src="https://github.com/user-attachments/assets/d79501f9-15e6-45b3-8ee9-b31e372327e0" width="200">
+  <img src="https://github.com/user-attachments/assets/4a98eed2-52db-4dee-a577-553229b1dd76" width="200">
+  <img src="https://github.com/user-attachments/assets/8afbcade-7d02-4474-b5b7-1e641a4851a0" width="200">
+  <img src="https://github.com/user-attachments/assets/253e9343-6182-467b-ab89-16028aa5dac0" width="200">
+  <img src="https://github.com/user-attachments/assets/1d340c4c-539f-45c2-9327-c4ec02769d66" width="200">
+  <img src="https://github.com/user-attachments/assets/ce539add-cba0-4a8b-aa94-7d2ad3feb41f" width="200">
+  <img src="https://github.com/user-attachments/assets/86bf64f8-fdbd-49c2-8ba3-dbcee5091e63" width="200">
+  <img src="https://github.com/user-attachments/assets/3f7f16a4-5515-41be-b3b4-216dcb636a45" width="200">
+  <img src="https://github.com/user-attachments/assets/8380f68e-fb70-4603-affb-9a3887ecdc95" width="200">
+  <img src="https://github.com/user-attachments/assets/ba6fb0a2-3a2c-4ccd-9942-f766f2b5d60e" width="200">
+  <img src="https://github.com/user-attachments/assets/ee49f08a-be6f-4c6d-9f6c-7d1b6c0af9f5" width="200">
+  <img src="https://github.com/user-attachments/assets/0d3964b0-0103-46d9-ad0a-1633b3817028" width="200">
+  <img src="https://github.com/user-attachments/assets/4837e05e-4b87-413d-b15c-06d7be08c85e" width="200">
+  <img src="https://github.com/user-attachments/assets/de7549c2-f32a-4a1e-b625-2700af358b98" width="200">
+  <img src="https://github.com/user-attachments/assets/53952118-b360-4bad-9b36-e90707e9ed19" width="200">
+  <img src="https://github.com/user-attachments/assets/4f54b0b7-2727-4c3c-8086-e3d3651a85a6" width="200">
+</div>
+
 
 ## Contributing
 
@@ -171,10 +176,10 @@ Contributions are welcome! Please follow these steps:
 
 🌱 Future Scope
 
-Resume builder based on user data
-Voice-based AI mock interview
-PDF report generation for career predictions
-Multi-language support for accessibility
+- Resume builder based on user data
+- Voice-based AI mock interview
+- PDF report generation for career predictions
+- Multi-language support for accessibility
 
 
 👨‍💻 Developer :

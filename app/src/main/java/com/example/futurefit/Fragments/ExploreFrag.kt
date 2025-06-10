@@ -1,6 +1,7 @@
 package com.example.futurefit.Fragments
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -44,17 +45,25 @@ class ExploreFrag : Fragment() {
 
         gotocourses = view.findViewById(R.id.tocourses)
         gotocourses.setOnClickListener {
-            startActivity(Intent(requireContext(), CoursesWebView::class.java))
-        }
+            val url = "https://alison.com/"
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            startActivity(intent) }
 
         gotojob = view.findViewById(R.id.tojob)
         gotojob.setOnClickListener {
-            startActivity(Intent(requireContext(), JobWebView::class.java))
+            val url = "https://www.naukri.com/"
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            startActivity(intent)
         }
 
         gotoblog = view.findViewById(R.id.toblog)
         gotoblog.setOnClickListener {
-            startActivity(Intent(requireContext(), BlogWebview::class.java))
+            val url = "https://medium.com/tag/careers"
+            val intent = Intent(Intent.ACTION_VIEW)
+            intent.data = Uri.parse(url)
+            startActivity(intent)
         }
         recyclerView.adapter = adapter
         fetchSuccessStories()

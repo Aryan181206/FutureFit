@@ -147,6 +147,7 @@ class PredicitionResult : AppCompatActivity() {
         val back = findViewById<MaterialButton>(R.id.backhome)
         back.setOnClickListener {
             startActivity(Intent(this, BottomBar ::class.java))
+            finish()
         }
 
         feedback = findViewById(R.id.feedback)

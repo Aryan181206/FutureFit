@@ -11,10 +11,9 @@
 
     <ImageView
         android:id="@+id/backgroundGif"
-        android:layout_width="400dp"
-        android:layout_height="308dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_gravity="center"
-        android:layout_marginTop="270dp"
         android:src="@drawable/universalgif" />
 
 </LinearLayout>

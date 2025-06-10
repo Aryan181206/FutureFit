@@ -76,16 +76,18 @@ class ExploreFrag : Fragment() {
 
         docRef.get()
             .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    val feedbackArray = document.get("feedbackList") as? List<Map<String, Any>>
-                    storyList.clear()
+                if (isAdded && isVisible && view != null) {
+                    if (document.exists()) {
+                        val feedbackArray = document.get("feedbackList") as? List<Map<String, Any>>
+                        storyList.clear()
 
-                    feedbackArray?.forEach { item ->
-                        val content = item["feedcontent"] as? String ?: ""
-                        val imageUrl = item["profileImageUrl"] as? String ?: ""
-                        storyList.add(SuccessStory(content, imageUrl))
+                        feedbackArray?.forEach { item ->
+                            val content = item["feedcontent"] as? String ?: ""
+                            val imageUrl = item["profileImageUrl"] as? String ?: ""
+                            storyList.add(SuccessStory(content, imageUrl))
+                        }
+                        adapter.notifyDataSetChanged()
                     }
-                    adapter.notifyDataSetChanged()
                 }
             }
             .addOnFailureListener { e ->

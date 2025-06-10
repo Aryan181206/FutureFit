@@ -384,11 +384,13 @@ class ProfileFrag : Fragment() {
         val docRef = db.collection("Users").document(email.text.toString())
         docRef.get()
             .addOnSuccessListener { document ->
-                if (document != null && document.exists()) {
-                    val name = document.getString("Name")
-                    nameTV.text = name
-                } else {
-                    Log.d("Skills", "No such document")
+                if (isAdded && isVisible && view != null) {
+                    if (document != null && document.exists()) {
+                        val name = document.getString("Name")
+                        nameTV.text = name
+                    } else {
+                        Log.d("Skills", "No such document")
+                    }
                 }
             }
     }
@@ -399,22 +401,25 @@ class ProfileFrag : Fragment() {
 
         docRef.get()
             .addOnSuccessListener { document ->
-                if (document != null && document.exists()) {
-                    val softSkills = document.get("SoftSkills") as? List<String> ?: emptyList()
-                    val techSkills = document.get("TechnicalSkills") as? List<String> ?: emptyList()
+                if (isAdded && isVisible && view != null) {
+                    if (document != null && document.exists()) {
+                        val softSkills = document.get("SoftSkills") as? List<String> ?: emptyList()
+                        val techSkills =
+                            document.get("TechnicalSkills") as? List<String> ?: emptyList()
 
-                    val oneSoftSkill = softSkills.firstOrNull() ?: "No Soft Skill"
-                    val oneTechSkill = techSkills.firstOrNull() ?: "No Technical Skill"
+                        val oneSoftSkill = softSkills.firstOrNull() ?: "No Soft Skill"
+                        val oneTechSkill = techSkills.firstOrNull() ?: "No Technical Skill"
 
-                    // Example: display in TextViews
-                    skillTV1= view?.findViewById(R.id.skill1)!!
-                    skillTV2= view?.findViewById(R.id.skill2)!!
+                        // Example: display in TextViews
+                        skillTV1 = view?.findViewById(R.id.skill1)!!
+                        skillTV2 = view?.findViewById(R.id.skill2)!!
 
 
-                    skillTV1.text = oneSoftSkill
-                    skillTV2.text = oneTechSkill
-                } else {
-                    Log.d("Skills", "No such document")
+                        skillTV1.text = oneSoftSkill
+                        skillTV2.text = oneTechSkill
+                    } else {
+                        Log.d("Skills", "No such document")
+                    }
                 }
             }
             .addOnFailureListener { exception ->
@@ -428,12 +433,15 @@ class ProfileFrag : Fragment() {
         val userRef = FirebaseFirestore.getInstance().collection("Users").document(userEmail)
 
         userRef.get().addOnSuccessListener { document ->
+            if (isAdded && isVisible &&view != null){
             val url = document.getString("profileImageUrl")
             if (!url.isNullOrEmpty()) {
                 Glide.with(this)
                     .load(url)
                     .placeholder(R.drawable.demoimg)
                     .into(profileImageView)
+            }
+
             }
         }
     }
@@ -473,11 +481,13 @@ class ProfileFrag : Fragment() {
 
         userRef.update("profileImageUrl", url)
             .addOnSuccessListener {
-                Glide.with(this)
-                    .load(url)
-                    .placeholder(R.drawable.demoimg)
-                    .into(profileImageView)
-                Toast.makeText(requireContext(), "Profile updated", Toast.LENGTH_SHORT).show()
+                if (isAdded && isVisible && view != null) {
+                    Glide.with(this)
+                        .load(url)
+                        .placeholder(R.drawable.demoimg)
+                        .into(profileImageView)
+                    Toast.makeText(requireContext(), "Profile updated", Toast.LENGTH_SHORT).show()
+                }
             }
             .addOnFailureListener {
                 Toast.makeText(requireContext(), "Failed to update Firestore", Toast.LENGTH_SHORT).show()
@@ -491,30 +501,33 @@ class ProfileFrag : Fragment() {
         db.collection("Users").document(email)
             .get()
             .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    Log.d("FirestoreDebug", "Document found: ${document.data}")
+                if (isAdded && isVisible && view != null) {
+                    if (document.exists()) {
+                        Log.d("FirestoreDebug", "Document found: ${document.data}")
 
-                    val experienceList = document.get("Experience") as? List<HashMap<String, Any>>
-                    Log.d("FirestoreDebug", "Experience List: $experienceList")
+                        val experienceList =
+                            document.get("Experience") as? List<HashMap<String, Any>>
+                        Log.d("FirestoreDebug", "Experience List: $experienceList")
 
-                    if (!experienceList.isNullOrEmpty()) {
-                        val firstExp = experienceList[0]
-                        val company = firstExp["Company"]?.toString() ?: "N/A"
-                        val position = firstExp["Position"]?.toString() ?: "N/A"
-                        val location = firstExp["Location"]?.toString() ?: "N/A"
-                        val years = firstExp["ExperienceYears"]?.toString() ?: "N/A"
+                        if (!experienceList.isNullOrEmpty()) {
+                            val firstExp = experienceList[0]
+                            val company = firstExp["Company"]?.toString() ?: "N/A"
+                            val position = firstExp["Position"]?.toString() ?: "N/A"
+                            val location = firstExp["Location"]?.toString() ?: "N/A"
+                            val years = firstExp["ExperienceYears"]?.toString() ?: "N/A"
 
-                        val result = "$position at $company\n$location · $years year(s)"
-                        experience1?.text = result
+                            val result = "$position at $company\n$location · $years year(s)"
+                            experience1?.text = result
 
-                        Log.d("FirestoreDebug", "Displayed: $result")
+                            Log.d("FirestoreDebug", "Displayed: $result")
+                        } else {
+                            Log.d("FirestoreDebug", "Experience list is empty")
+                            experience1?.text = "No experience data found"
+                        }
                     } else {
-                        Log.d("FirestoreDebug", "Experience list is empty")
-                        experience1?.text = "No experience data found"
+                        Log.d("FirestoreDebug", "Document does not exist")
+                        experience1?.text = "User data not found"
                     }
-                } else {
-                    Log.d("FirestoreDebug", "Document does not exist")
-                    experience1?.text = "User data not found"
                 }
             }
             .addOnFailureListener { e ->
@@ -526,11 +539,13 @@ class ProfileFrag : Fragment() {
     private fun fetchAndDisplayInterest(email: String) {
         firestore.collection("Users").document(email).get()
             .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    val interest = document.getString("Interest") ?: "Not set"
-                    interestTextView.text = interest
-                } else {
-                    interestTextView.text = "Not set"
+                if (isAdded && isVisible && view != null) {
+                    if (document.exists()) {
+                        val interest = document.getString("Interest") ?: "Not set"
+                        interestTextView.text = interest
+                    } else {
+                        interestTextView.text = "Not set"
+                    }
                 }
             }
             .addOnFailureListener {
@@ -544,13 +559,16 @@ class ProfileFrag : Fragment() {
             .document(email)
             .get()
             .addOnSuccessListener { document ->
+                if (isAdded && isVisible &&view != null){
+
                 if (document != null && document.exists()) {
                     val personalityFull = document.getString("Personality")
 
                     if (!personalityFull.isNullOrEmpty() && personalityFull.contains(" - ")) {
                         val parts = personalityFull.split(" - ")
                         val type = parts[0].trim() // e.g., "INFJ"
-                        val description = parts[1].trim() // e.g., "Introversion, Intuition, Feeling, Judging"
+                        val description =
+                            parts[1].trim() // e.g., "Introversion, Intuition, Feeling, Judging"
 
                         mbtiPersonalityText.text = type
                         personalityDescText.text = description
@@ -563,6 +581,7 @@ class ProfileFrag : Fragment() {
                     personalityDescText.text = "Not available"
                 }
             }
+    }
             .addOnFailureListener {
                 mbtiPersonalityText.text = "Error"
                 personalityDescText.text = "Error loading"
@@ -573,16 +592,19 @@ class ProfileFrag : Fragment() {
     private fun fetchAndDisplayAptitudeScores(email: String) {
         firestore.collection("Users").document(email).get()
             .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    val logicalScore = document.getString("Aptitude_Logical_Score") ?: "0.0 %"
-                    val numericalScore = document.getString("Aptitude_Numerical_Score") ?: "0.0 %"
-                    val verbalScore = document.getString("Aptitude_Verbal_Score") ?: "0.0 %"
+                if (isAdded && isVisible && view != null) {
+                    if (document.exists()) {
+                        val logicalScore = document.getString("Aptitude_Logical_Score") ?: "0.0 %"
+                        val numericalScore =
+                            document.getString("Aptitude_Numerical_Score") ?: "0.0 %"
+                        val verbalScore = document.getString("Aptitude_Verbal_Score") ?: "0.0 %"
 
-                    logicalScoreText.text = "$logicalScore"
-                    numericalScoreText.text = "$numericalScore"
-                    verbalScoreText.text = "$verbalScore"
+                        logicalScoreText.text = "$logicalScore"
+                        numericalScoreText.text = "$numericalScore"
+                        verbalScoreText.text = "$verbalScore"
 
 
+                    }
                 }
             }
             .addOnFailureListener {
@@ -596,11 +618,13 @@ class ProfileFrag : Fragment() {
     private fun fetchAndDisplayFitnessData(email: String) {
         firestore.collection("Users").document(email).get()
             .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    val status = document.getString("Physical_Fitness") ?: "Not set"
-                    fitnessView.text = "Status : $status"
-                } else {
-                    fitnessView.text = "Status : Not set"
+                if (isAdded && isVisible && view != null) {
+                    if (document.exists()) {
+                        val status = document.getString("Physical_Fitness") ?: "Not set"
+                        fitnessView.text = "Status : $status"
+                    } else {
+                        fitnessView.text = "Status : Not set"
+                    }
                 }
             }
             .addOnFailureListener {
@@ -624,11 +648,13 @@ class ProfileFrag : Fragment() {
         // Fetch existing data from Firestore and pre-fill the dialog
         firestore.collection("Users").document(email).get()
             .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    dob.setText(document.getString("DateOfBirth") ?: "")
-                    gender.setText(document.getString("Gender") ?: "")
-                    phone.setText(document.getString("Phone") ?: "")
-                    location.setText(document.getString("Location") ?: "")
+                if (isAdded && isVisible && view != null) {
+                    if (document.exists()) {
+                        dob.setText(document.getString("DateOfBirth") ?: "")
+                        gender.setText(document.getString("Gender") ?: "")
+                        phone.setText(document.getString("Phone") ?: "")
+                        location.setText(document.getString("Location") ?: "")
+                    }
                 }
             }
 
@@ -751,42 +777,56 @@ class ProfileFrag : Fragment() {
     private fun fetchAndDisplayUserData(email: String) {
         firestore.collection("Users").document(email).get()
             .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    dobTextView.text = "Date Of Birth : ${document.getString("DateOfBirth")}" ?: "Not set"
-                    genderTextView.text = "Gender : ${document.getString("Gender")}" ?: "Not set"
-                    phoneTextView.text = "Phone No. : ${document.getString("Phone")}" ?: "Not set"
-                    locationTextView.text = "Location : ${document.getString("Location")}" ?: "Not set"
-                } else {
-                    dobTextView.text = "No data"
-                    genderTextView.text = "No data"
-                    phoneTextView.text = "No data"
-                    locationTextView.text = "No data"
+                if (isAdded && isVisible && view != null) {
+                    if (document.exists()) {
+                        dobTextView.text =
+                            "Date Of Birth : ${document.getString("DateOfBirth") ?: "Not Set! Edit it"}"
+                        genderTextView.text =
+                            "Gender : ${document.getString("Gender") ?: "Not Set! Edit it"}"
+                        phoneTextView.text =
+                            "Phone No. : ${document.getString("Phone") ?: "Not Set! Edit it"}"
+                        locationTextView.text =
+                            "Location : ${document.getString("Location") ?: "Not Set! Edit it"}"
+                    } else {
+                        dobTextView.text = "Date Of Birth : No data"
+                        genderTextView.text = "Gender : No data"
+                        phoneTextView.text = "Phone No. : No data"
+                        locationTextView.text = "Location : No data"
+                    }
                 }
             }
             .addOnFailureListener {
-                dobTextView.text = "Error"
-                genderTextView.text = "Error"
-                phoneTextView.text = "Error"
-                locationTextView.text = "Error"
+                if (isAdded && isVisible && view != null) {
+                    dobTextView.text = "Date Of Birth : Error"
+                    genderTextView.text = "Gender : Error"
+                    phoneTextView.text = "Phone No. : Error"
+                    locationTextView.text = "Location : Error"
+                }
             }
     }
+
     private fun fetchandDisplayEducationData(email : String) {
         firestore.collection("Users").document(email).get()
             .addOnSuccessListener { document ->
-                if (document.exists()){
-                    streamView.text = "Stream : ${document.getString("Stream")}" ?: "Not set"
-                    qualificationView.text = "Qualification : ${document.getString("Qualification")}" ?: "Not set"
-                    cgpaView.text = "CGPA : ${document.getString("CGPA")}" ?: "Not set"
-                }else{
-                    streamView.text = "No data"
-                    qualificationView.text = "No data"
-                    cgpaView.text = "No data"
+                if (isAdded && isVisible && view != null) {
+                    if (document.exists()) {
+                        streamView.text = "Stream : ${document.getString("Stream") ?:  "Not Set ! Edit it"}"
+                        qualificationView.text =
+                            "Qualification : ${document.getString("Qualification") ?: "Not Set! Edit it"}"
+                        cgpaView.text = "CGPA : ${document.getString("CGPA") ?: "Not Set! Edit it"}"
+                    } else {
+                        streamView.text = "No data"
+                        qualificationView.text = "No data"
+                        cgpaView.text = "No data"
+                    }
                 }
             }
             .addOnFailureListener {
-                streamView.text = "Error"
-                qualificationView.text = "Error"
-                cgpaView.text = "Error"
+                if (isAdded && isVisible && view != null) {
+                    streamView.text = "Error"
+                    qualificationView.text = "Error"
+                    cgpaView.text = "Error"
+                }
             }
     }
 

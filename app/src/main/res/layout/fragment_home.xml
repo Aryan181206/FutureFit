@@ -6,412 +6,461 @@
     android:id="@+id/homeFrag"
     android:layout_height="match_parent"
     tools:context=".Fragments.HomeFrag">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
-        >
+        android:orientation="vertical">
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
-        <ImageView
-            android:id="@+id/imageView1"
-            android:layout_width="200dp"
-            android:layout_marginStart="15dp"
-            android:layout_height="65dp"
-            android:src="@drawable/finallogo2" />
-    </androidx.cardview.widget.CardView>
+        <include layout="@layout/toolbar"/>
 
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="vertical" >
+                android:orientation="vertical"
+                android:paddingBottom="16dp">
 
                 <!-- Assessment Introduction Card -->
                 <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_margin="16dp"
-                    android:elevation="7dp"
-                    app:cardCornerRadius="10dp">
+                    android:elevation="4dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="4dp">
 
-                <!-- Assessment Introduction Card -->
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:padding="16dp">
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
-                        android:fontFamily="@font/ar_one_sans"
-                        android:text="Discover Your Perfect Career Path"
-                        android:textColor="#353333"
-                        android:textSize="22sp"
-                        android:textStyle="bold" />
-
-                    <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="16dp"
-                        android:fontFamily="@font/ar_one_sans"
-                        android:paddingStart="8dp"
-                        android:text="Take our comprehensive assessment to\ntest your potential"
-                        android:textSize="18sp" />
-
-                    <androidx.cardview.widget.CardView
-                        android:id="@+id/startassessment"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:layout_marginTop="24dp"
-                        android:layout_marginHorizontal="8dp"
-                        android:clickable="true"
-                        android:backgroundTint="@color/Sky"
-                        app:cardCornerRadius="10dp">
-
-                        <TextView
-                            android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:gravity="center"
-                            android:text="Start Assessment"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            android:fontFamily="@font/ar_one_sans" />
-                    </androidx.cardview.widget.CardView>
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="5dp">
-
-                    <!-- Assessment Categories -->
                     <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:orientation="vertical">
+                        android:orientation="vertical"
+                        android:padding="20dp">
 
                         <TextView
-                            android:layout_width="match_parent"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_gravity="center_horizontal"
                             android:fontFamily="@font/ar_one_sans"
-                            android:paddingStart="25dp"
-                            android:paddingTop="16dp"
-                            android:text="Assessment Categories"
+                            android:text="Discover Your Perfect Career Path"
                             android:textColor="#353333"
                             android:textSize="20sp"
                             android:textStyle="bold" />
 
-                        <LinearLayout
+                        <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:orientation="horizontal">
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/AssessmentAptitudeTest"
-                                android:layout_width="170dp"
-                                android:layout_height="100dp"
-                                android:layout_marginEnd="26dp"
-                                app:cardCornerRadius="10dp"
-                                android:layout_marginVertical="10dp"
-                                android:layout_gravity="center">
+                            android:layout_marginTop="12dp"
+                            android:fontFamily="@font/ar_one_sans"
+                            android:lineSpacingExtra="4sp"
+                            android:text="Take our comprehensive assessment to test your potential and discover careers that match your skills and interests."
+                            android:textSize="16sp" />
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:background="#F3F1FD">
-                                    <ImageView
-                                        android:layout_width="35dp"
-                                        android:layout_height="35dp"
-                                        android:src="@drawable/brain"
-                                        android:layout_marginLeft="10dp"
-                                        android:layout_marginTop="10dp"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold"
-                                        android:textColor="@color/textcolor"
-                                        android:layout_marginTop="1dp"
-                                        android:text="Aptitude Test"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Measure your abilities"
-                                        android:textSize="12dp"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_marginLeft="10dp"/>
-                                </LinearLayout>
-
-
-                            </androidx.cardview.widget.CardView>
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/AssessmentPersonalityTest"
-                                android:layout_width="170dp"
-                                android:layout_height="100dp"
-                                app:cardCornerRadius="10dp"
-                                android:clickable="true"
-                                android:layout_marginVertical="10dp"
-                                android:layout_gravity="center">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:background="#EAFBF3">
-                                    <ImageView
-                                        android:layout_width="35dp"
-                                        android:layout_height="35dp"
-                                        android:src="@drawable/persontick"
-                                        android:layout_marginLeft="10dp"
-                                        android:layout_marginTop="10dp"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold"
-                                        android:textColor="@color/textcolor"
-                                        android:layout_marginTop="1dp"
-                                        android:text="Personality"/>
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Know your traits"
-                                        android:textSize="12dp"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_marginLeft="10dp"/>
-                                </LinearLayout>
-                            </androidx.cardview.widget.CardView>
-                        </LinearLayout>
-
-                        <LinearLayout
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/startassessment"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_gravity="center_horizontal"
-                            android:gravity="center"
-                            android:layout_marginTop="5dp"
-                            android:orientation="horizontal">
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/AssessmentInterestTest"
-                                android:layout_width="170dp"
-                                android:layout_height="100dp"
-                                android:layout_marginEnd="26dp"
-                                app:cardCornerRadius="10dp"
-                                android:clickable="true"
-                                android:layout_marginVertical="3dp"
-                                android:layout_gravity="center">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:background="#FDF5EB">
-                                    <ImageView
-                                        android:layout_width="35dp"
-                                        android:layout_height="35dp"
-                                        android:src="@drawable/star"
-                                        android:layout_marginLeft="10dp"
-                                        android:layout_marginTop="10dp"/>
+                            android:layout_height="48dp"
+                            android:layout_marginTop="20dp"
+                            app:cardCornerRadius="8dp"
+                            app:strokeColor="@color/Sky"
+                            app:strokeWidth="1dp">
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:layout_marginTop="1dp"
-                                        android:text="Interests"
-                                        android:textColor="@color/textcolor"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold" />
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:background="@color/Sky"
+                                android:fontFamily="@font/ar_one_sans"
+                                android:gravity="center"
+                                android:text="Start Assessment"
+                                android:textAllCaps="false"
+                                android:textColor="@color/white"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
 
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Explore passions"
-                                        android:textSize="12dp"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_marginLeft="10dp"/>
-                                </LinearLayout>
+                <!-- Assessment Categories -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="8dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
 
-                            </androidx.cardview.widget.CardView>
-
-                            <androidx.cardview.widget.CardView
-                                android:id="@+id/ProvideSkills"
-                                android:layout_width="170dp"
-                                android:layout_height="100dp"
-                                android:clickable="true"
-                                app:cardCornerRadius="10dp"
-                                android:layout_gravity="center">
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="match_parent"
-                                    android:orientation="vertical"
-                                    android:background="#EDF4FD">
-                                    <ImageView
-                                        android:layout_width="35dp"
-                                        android:layout_height="35dp"
-                                        android:src="@drawable/skills"
-                                        android:layout_marginLeft="10dp"
-                                        android:layout_marginTop="10dp"/>
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_marginLeft="10dp"
-                                        android:layout_marginTop="1dp"
-                                        android:text="Skills"
-                                        android:textColor="@color/textcolor"
-                                        android:textSize="15dp"
-                                        android:textStyle="bold" />
-
-                                    <TextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:text="Add your expertise"
-                                        android:textSize="12dp"
-                                        android:layout_marginTop="2dp"
-                                        android:layout_marginLeft="10dp"/>
-                                </LinearLayout>
-                            </androidx.cardview.widget.CardView>
-                        </LinearLayout>
-
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="8dp">
 
                         <TextView
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:fontFamily="@font/ar_one_sans"
-                            android:paddingStart="25dp"
-                            android:paddingTop="16dp"
-                            android:layout_marginTop="5dp"
-                            android:text="Recommondations"
+                            android:paddingStart="12dp"
+                            android:paddingTop="12dp"
+                            android:text="Assessment Categories"
                             android:textColor="#353333"
-                            android:textSize="20dp"
+                            android:textSize="18sp"
                             android:textStyle="bold" />
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/ProvideExperience"
-                            android:layout_width="match_parent"
-                            android:layout_height="68dp"
-                            android:clickable="true"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginHorizontal="22dp"
-                            app:cardCornerRadius="10dp"
-                            android:layout_marginBottom="3dp"
-                            >
-                            <ImageView
-                                android:layout_width="45dp"
-                                android:layout_height="45dp"
-                                android:src="@drawable/experience"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="10dp"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="70dp"
-                                android:layout_marginTop="10dp"
-                                android:text="Experience"
-                                android:textColor="@color/textcolor"
-                                android:textSize="18dp"
-                                android:textStyle="bold"
-                                />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Add you work experience for right AI Guidance"
-                                android:textSize="13dp"
-                                android:layout_marginTop="35dp"
-                                android:layout_marginLeft="70dp"/>
-                        </androidx.cardview.widget.CardView>
-
-                        <androidx.cardview.widget.CardView
-                            android:id="@+id/ProvideFitness"
-                            android:layout_width="match_parent"
-                            android:layout_height="68dp"
-                            android:clickable="true"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginHorizontal="22dp"
-                            app:cardCornerRadius="10dp"
-                            android:layout_marginBottom="3dp"
-                            >
-                            <ImageView
-                                android:layout_width="55dp"
-                                android:layout_height="55dp"
-                                android:src="@drawable/fitness"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="5dp"/>
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginLeft="70dp"
-                                android:layout_marginTop="10dp"
-                                android:text="Physical Fitness"
-                                android:textColor="@color/textcolor"
-                                android:textSize="18dp"
-                                android:textStyle="bold"
-                                />
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Add Your Physical Fitness for proper Career Guidance"
-                                android:textSize="13dp"
-                                android:layout_marginTop="35dp"
-                                android:layout_marginLeft="70dp"/>
-                        </androidx.cardview.widget.CardView>
 
                         <LinearLayout
                             android:layout_width="match_parent"
-                            android:layout_height="match_parent"
-                            android:layout_marginTop="25dp"
-                            android:layout_marginBottom="15dp"
-                            android:orientation="horizontal">
-                            <TextView
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:text="Career Prediction :"
-                                android:textSize="20dp"
-                                android:textColor="@color/textcolor"
-                                android:textStyle="bold"
-                                android:fontFamily="@font/ar_one_sans"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginLeft="18dp"/>
-                            <com.google.android.material.card.MaterialCardView
-                                android:id="@+id/profilestatus"
-                                android:layout_width="match_parent"
-                                android:layout_height="60dp"
-                                app:cardCornerRadius="7dp"
-                                android:layout_gravity="center_vertical"
-                                android:layout_marginStart="12dp"
-                                android:backgroundTint="@color/Sky"
-                                android:layout_marginEnd="22dp">
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="8dp"
+                            android:weightSum="2">
 
-                                <TextView
+                            <!-- Aptitude Test Card -->
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/AssessmentAptitudeTest"
+                                android:layout_width="0dp"
+                                android:layout_height="120dp"
+                                android:layout_margin="8dp"
+                                android:layout_weight="1"
+                                app:cardCornerRadius="8dp"
+                                app:strokeColor="#F3F1FD"
+                                app:strokeWidth="1dp">
+
+                                <LinearLayout
                                     android:layout_width="match_parent"
                                     android:layout_height="match_parent"
-                                    android:layout_gravity="center"
-                                    android:fontFamily="@font/ar_one_sans"
-                                    android:gravity="center"
-                                    android:text="Check Profile Status"
-                                    android:textColor="@color/white"
-                                    android:textSize="20dp"/>
+                                    android:background="#F3F1FD"
+                                    android:orientation="vertical"
+                                    android:padding="12dp">
+
+                                    <ImageView
+                                        android:layout_width="32dp"
+                                        android:layout_height="32dp"
+                                        android:layout_marginBottom="8dp"
+                                        android:src="@drawable/brain" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/ar_one_sans"
+                                        android:text="Aptitude Test"
+                                        android:textColor="@color/textcolor"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/ar_one_sans"
+                                        android:text="Measure your abilities"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <!-- Personality Test Card -->
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/AssessmentPersonalityTest"
+                                android:layout_width="0dp"
+                                android:layout_height="120dp"
+                                android:layout_margin="8dp"
+                                android:layout_weight="1"
+                                app:cardCornerRadius="8dp"
+                                app:strokeColor="#EAFBF3"
+                                app:strokeWidth="1dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#EAFBF3"
+                                    android:orientation="vertical"
+                                    android:padding="12dp">
+
+                                    <ImageView
+                                        android:layout_width="32dp"
+                                        android:layout_height="32dp"
+                                        android:layout_marginBottom="8dp"
+                                        android:src="@drawable/persontick" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/ar_one_sans"
+                                        android:text="Personality"
+                                        android:textColor="@color/textcolor"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/ar_one_sans"
+                                        android:text="Know your traits"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+                            </com.google.android.material.card.MaterialCardView>
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="horizontal"
+                            android:paddingHorizontal="8dp"
+                            android:weightSum="2">
+
+                            <!-- Interest Test Card -->
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/AssessmentInterestTest"
+                                android:layout_width="0dp"
+                                android:layout_height="120dp"
+                                android:layout_margin="8dp"
+                                android:layout_weight="1"
+                                app:cardCornerRadius="8dp"
+                                app:strokeColor="#FDF5EB"
+                                app:strokeWidth="1dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#FDF5EB"
+                                    android:orientation="vertical"
+                                    android:padding="12dp">
+
+                                    <ImageView
+                                        android:layout_width="32dp"
+                                        android:layout_height="32dp"
+                                        android:layout_marginBottom="8dp"
+                                        android:src="@drawable/star" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/ar_one_sans"
+                                        android:text="Interests"
+                                        android:textColor="@color/textcolor"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/ar_one_sans"
+                                        android:text="Explore passions"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+                            </com.google.android.material.card.MaterialCardView>
+
+                            <!-- Skills Card -->
+                            <com.google.android.material.card.MaterialCardView
+                                android:id="@+id/ProvideSkills"
+                                android:layout_width="0dp"
+                                android:layout_height="120dp"
+                                android:layout_margin="8dp"
+                                android:layout_weight="1"
+                                app:cardCornerRadius="8dp"
+                                app:strokeColor="#EDF4FD"
+                                app:strokeWidth="1dp">
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="match_parent"
+                                    android:background="#EDF4FD"
+                                    android:orientation="vertical"
+                                    android:padding="12dp">
+
+                                    <ImageView
+                                        android:layout_width="32dp"
+                                        android:layout_height="32dp"
+                                        android:layout_marginBottom="8dp"
+                                        android:src="@drawable/skills" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/ar_one_sans"
+                                        android:text="Skills"
+                                        android:textColor="@color/textcolor"
+                                        android:textSize="14sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/ar_one_sans"
+                                        android:text="Add your expertise"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
                             </com.google.android.material.card.MaterialCardView>
                         </LinearLayout>
                     </LinearLayout>
                 </androidx.cardview.widget.CardView>
 
+                <!-- Recommendations Section -->
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="12dp"
+                    app:cardElevation="2dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:padding="12dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/ar_one_sans"
+                            android:paddingStart="4dp"
+                            android:paddingTop="4dp"
+                            android:text="Recommendations"
+                            android:textColor="#353333"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+
+                        <!-- Experience Card -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/ProvideExperience"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:layout_marginTop="12dp"
+                            android:layout_marginHorizontal="4dp"
+                            app:cardCornerRadius="8dp"
+                            app:strokeColor="#F5F5F5"
+                            app:strokeWidth="1dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginStart="12dp"
+                                    android:src="@drawable/experience" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginStart="68dp"
+                                    android:layout_marginEnd="12dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/ar_one_sans"
+                                        android:text="Experience"
+                                        android:textColor="@color/textcolor"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/ar_one_sans"
+                                        android:text="Add your work experience for better AI guidance"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </com.google.android.material.card.MaterialCardView>
+
+                        <!-- Fitness Card -->
+                        <com.google.android.material.card.MaterialCardView
+                            android:id="@+id/ProvideFitness"
+                            android:layout_width="match_parent"
+                            android:layout_height="80dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginHorizontal="4dp"
+                            app:cardCornerRadius="8dp"
+                            app:strokeColor="#F5F5F5"
+                            app:strokeWidth="1dp">
+
+                            <RelativeLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <ImageView
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_alignParentStart="true"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginStart="12dp"
+                                    android:src="@drawable/fitness" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:layout_centerVertical="true"
+                                    android:layout_marginStart="68dp"
+                                    android:layout_marginEnd="12dp"
+                                    android:orientation="vertical">
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/ar_one_sans"
+                                        android:text="Physical Fitness"
+                                        android:textColor="@color/textcolor"
+                                        android:textSize="16sp"
+                                        android:textStyle="bold" />
+
+                                    <TextView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="wrap_content"
+                                        android:fontFamily="@font/ar_one_sans"
+                                        android:text="Add your fitness level for proper career guidance"
+                                        android:textSize="12sp" />
+                                </LinearLayout>
+                            </RelativeLayout>
+                        </com.google.android.material.card.MaterialCardView>
+                    </LinearLayout>
+                </androidx.cardview.widget.CardView>
+
+                <!-- Career Prediction Section -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_vertical"
+                        android:fontFamily="@font/ar_one_sans"
+                        android:text="Career Prediction:"
+                        android:textColor="@color/textcolor"
+                        android:textSize="18sp"
+                        android:textStyle="bold" />
+
+                    <com.google.android.material.card.MaterialCardView
+                        android:id="@+id/profilestatus"
+                        android:layout_width="match_parent"
+                        android:layout_height="56dp"
+                        android:layout_marginStart="12dp"
+                        android:backgroundTint="@color/Sky"
+                        app:cardCornerRadius="8dp">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/ar_one_sans"
+                            android:gravity="center"
+                            android:text="Check Profile Status"
+                            android:textColor="@color/white"
+                            android:textSize="16sp" />
+                    </com.google.android.material.card.MaterialCardView>
+                </LinearLayout>
             </LinearLayout>
         </ScrollView>
-
-
     </LinearLayout>
 </FrameLayout>

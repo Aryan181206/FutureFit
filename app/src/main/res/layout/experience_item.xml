@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:orientation="vertical"
         android:padding="10dp">
-        
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -59,14 +59,13 @@
             android:layout_height="wrap_content"
             android:text="Location:"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
             android:fontFamily="@font/monda"
             android:textSize="18sp" />
 
         <TextView
             android:id="@+id/yearsTV"
             android:layout_marginLeft="20dp"
-            android:layout_marginTop="5dp"
+
             android:fontFamily="@font/monda"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

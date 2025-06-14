@@ -4,6 +4,9 @@
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
+    <style name="Theme.FutureFit." parent="Theme.MaterialComponents.DayNight">
+        <!-- Your custom theme attributes -->
+    </style>
 
     <style name="Theme.FutureFit" parent="Base.Theme.FutureFit" />
 </resources>

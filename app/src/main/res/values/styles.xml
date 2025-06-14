@@ -8,6 +8,9 @@
         <item name="android:padding">16dp</item>
         <item name="android:textSize">16sp</item>
         <item name="android:buttonTint">@color/Sky</item> <!-- Optional -->
+        <!-- Force light theme -->
+        
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
 </resources>

@@ -2,6 +2,7 @@ package com.example.futurefit
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import com.example.futurefit.Fragments.ExploreFrag
 import com.example.futurefit.Fragments.HomeFrag
@@ -13,6 +14,7 @@ class BottomBar : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_bottom_bar)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         val bottomNav = findViewById<BottomNavigationView>(R.id.bottomNavigationView)
 

@@ -18,6 +18,7 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.cardview.widget.CardView
 import com.bumptech.glide.Glide
 import com.cloudinary.android.MediaManager
@@ -119,6 +120,7 @@ class ProfileFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_profile, container, false)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
 
         gotosetting = view?.findViewById(R.id.gotosetting)!!
@@ -851,37 +853,49 @@ private fun FeedBackDialogBox(context: Context, email: String) {
                 // Fetch profile URL
                 userDocRef.get()
                     .addOnSuccessListener { document ->
-                        if (document != null && document.exists()) {
-                            val profileUrl = document.getString("profileImageUrl") ?: ""
+                        if (isAdded && isVisible && view != null) {
+                            if (document != null && document.exists()) {
+                                val profileUrl = document.getString("profileImageUrl") ?: ""
 
-                            val feedbackMap = mapOf(
-                                "feedcontent" to feedbackText,
-                                "profileImageUrl" to profileUrl
-                            )
+                                val feedbackMap = mapOf(
+                                    "feedcontent" to feedbackText,
+                                    "profileImageUrl" to profileUrl
+                                )
 
-                            // Save to FeedBacks/allfeeds
-                            db.collection("FeedBacks")
-                                .document("allfeeds")
-                                .update("feedbackList", FieldValue.arrayUnion(feedbackMap))
-                                .addOnSuccessListener {
-                                    Log.d("Feedback", "Added to FeedBacks/allfeeds")
-                                }
-                                .addOnFailureListener {
-                                    // Create doc if doesn't exist
-                                    db.collection("FeedBacks")
-                                        .document("allfeeds")
-                                        .set(mapOf("feedbackList" to arrayListOf(feedbackMap)))
-                                }
+                                // Save to FeedBacks/allfeeds
+                                db.collection("FeedBacks")
+                                    .document("allfeeds")
+                                    .update("feedbackList", FieldValue.arrayUnion(feedbackMap))
+                                    .addOnSuccessListener {
+                                        Log.d("Feedback", "Added to FeedBacks/allfeeds")
+                                    }
+                                    .addOnFailureListener {
+                                        // Create doc if doesn't exist
+                                        db.collection("FeedBacks")
+                                            .document("allfeeds")
+                                            .set(mapOf("feedbackList" to arrayListOf(feedbackMap)))
+                                    }
 
-                            // Save to Users/{email}/FeedBackContent
-                            userDocRef.update("FeedBackContent", feedbackText)
-                                .addOnSuccessListener {
-                                    Toast.makeText(context, "Shared Successfully", Toast.LENGTH_SHORT).show()
-                                }
+                                // Save to Users/{email}/FeedBackContent
+                                userDocRef.update("FeedBackContent", feedbackText)
+                                    .addOnSuccessListener {
+                                        Toast.makeText(
+                                            context,
+                                            "Shared Successfully",
+                                            Toast.LENGTH_SHORT
+                                        ).show()
+                                    }
+                            }
                         }
                     }
                     .addOnFailureListener {
-                        Toast.makeText(context, "Failed to fetch profile URL.", Toast.LENGTH_SHORT).show()
+                        if (isAdded && isVisible && view != null) {
+                            Toast.makeText(
+                                context,
+                                "Failed to fetch profile URL.",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
             } else {
                 Toast.makeText(context, "Write something.", Toast.LENGTH_SHORT).show()

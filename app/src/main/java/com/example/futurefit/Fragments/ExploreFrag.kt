@@ -6,12 +6,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatDelegate
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.futurefit.Explore.BlogWebview
-import com.example.futurefit.Explore.CoursesWebView
-import com.example.futurefit.Explore.JobWebView
 import com.example.futurefit.Explore.SuccessStoryAdapter
 import com.example.futurefit.R
 import com.google.android.material.card.MaterialCardView
@@ -38,6 +36,7 @@ class ExploreFrag : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_explore, container, false)
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
         recyclerView = view.findViewById(R.id.successStoriesRV)
 
         recyclerView.layoutManager = LinearLayoutManager(requireContext())

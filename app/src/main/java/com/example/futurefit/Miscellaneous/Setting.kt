@@ -7,6 +7,7 @@ import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.example.futurefit.R
 import android.widget.EditText
+import androidx.appcompat.app.AppCompatDelegate
 
 import com.google.android.material.button.MaterialButton
 
@@ -30,6 +31,7 @@ class Setting : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting) // Adjust if your file is named differently
+        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         auth = FirebaseAuth.getInstance()
         firestore = FirebaseFirestore.getInstance()

@@ -425,7 +425,9 @@ class ProfileFrag : Fragment() {
                 }
             }
             .addOnFailureListener { exception ->
-                Log.d("Skills", "get failed with ", exception)
+                if (isAdded && isVisible && view != null) {
+                    Log.d("Skills", "get failed with ", exception)
+                }
             }
     }
 
@@ -492,7 +494,13 @@ class ProfileFrag : Fragment() {
                 }
             }
             .addOnFailureListener {
-                Toast.makeText(requireContext(), "Failed to update Firestore", Toast.LENGTH_SHORT).show()
+                if (isAdded && isVisible && view != null) {
+                    Toast.makeText(
+                        requireContext(),
+                        "Failed to update Firestore",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                }
             }
     }
 
@@ -551,7 +559,9 @@ class ProfileFrag : Fragment() {
                 }
             }
             .addOnFailureListener {
-                interestTextView.text = "Error loading"
+                if (isAdded && isVisible && view != null) {
+                    interestTextView.text = "Error loading"
+                }
             }
     }
 
@@ -585,8 +595,10 @@ class ProfileFrag : Fragment() {
             }
     }
             .addOnFailureListener {
-                mbtiPersonalityText.text = "Error"
-                personalityDescText.text = "Error loading"
+                if (isAdded && isVisible && view != null) {
+                    mbtiPersonalityText.text = "Error"
+                    personalityDescText.text = "Error loading"
+                }
             }
     }
 
@@ -610,7 +622,10 @@ class ProfileFrag : Fragment() {
                 }
             }
             .addOnFailureListener {
-                Toast.makeText(requireContext(), "Failed to load scores", Toast.LENGTH_SHORT).show()
+                if (isAdded && isVisible && view != null) {
+                    Toast.makeText(requireContext(), "Failed to load scores", Toast.LENGTH_SHORT)
+                        .show()
+                }
             }
     }
 
@@ -630,7 +645,9 @@ class ProfileFrag : Fragment() {
                 }
             }
             .addOnFailureListener {
-                fitnessView.text = "Status : Error"
+                if (isAdded && isVisible && view != null) {
+                    fitnessView.text = "Status : Error"
+                }
             }
     }
 
@@ -730,10 +747,12 @@ class ProfileFrag : Fragment() {
         // Fetch existing education data
         firestore.collection("Users").document(email).get()
             .addOnSuccessListener { document ->
-                if (document.exists()) {
-                    stream.setText(document.getString("Stream") ?: "")
-                    qualification.setText(document.getString("Qualification") ?: "")
-                    cgpa.setText(document.getString("CGPA") ?: "")
+                if (isAdded && isVisible && view != null) {
+                    if (document.exists()) {
+                        stream.setText(document.getString("Stream") ?: "")
+                        qualification.setText(document.getString("Qualification") ?: "")
+                        cgpa.setText(document.getString("CGPA") ?: "")
+                    }
                 }
             }
 
@@ -758,16 +777,24 @@ class ProfileFrag : Fragment() {
                 firestore.collection("Users").document(email)
                     .update(updatedData)
                     .addOnSuccessListener {
-                        Toast.makeText(
-                            requireContext(),
-                            "Education Info Updated Successfully",
-                            Toast.LENGTH_SHORT
-                        ).show()
-                        fetchandDisplayEducationData(email)
-                        dialog.dismiss()
+                        if (isAdded && isVisible && view != null) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Education Info Updated Successfully",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                            fetchandDisplayEducationData(email)
+                            dialog.dismiss()
+                        }
                     }
                     .addOnFailureListener {
-                        Toast.makeText(requireContext(), "Error: ${it.message}", Toast.LENGTH_SHORT).show()
+                        if (isAdded && isVisible && view != null) {
+                            Toast.makeText(
+                                requireContext(),
+                                "Error: ${it.message}",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
                     }
             }
         }
@@ -853,49 +880,38 @@ private fun FeedBackDialogBox(context: Context, email: String) {
                 // Fetch profile URL
                 userDocRef.get()
                     .addOnSuccessListener { document ->
-                        if (isAdded && isVisible && view != null) {
-                            if (document != null && document.exists()) {
-                                val profileUrl = document.getString("profileImageUrl") ?: ""
 
-                                val feedbackMap = mapOf(
-                                    "feedcontent" to feedbackText,
-                                    "profileImageUrl" to profileUrl
-                                )
+                        if (document != null && document.exists()) {
+                            val profileUrl = document.getString("profileImageUrl") ?: ""
 
-                                // Save to FeedBacks/allfeeds
-                                db.collection("FeedBacks")
-                                    .document("allfeeds")
-                                    .update("feedbackList", FieldValue.arrayUnion(feedbackMap))
-                                    .addOnSuccessListener {
-                                        Log.d("Feedback", "Added to FeedBacks/allfeeds")
-                                    }
-                                    .addOnFailureListener {
-                                        // Create doc if doesn't exist
-                                        db.collection("FeedBacks")
-                                            .document("allfeeds")
-                                            .set(mapOf("feedbackList" to arrayListOf(feedbackMap)))
-                                    }
+                            val feedbackMap = mapOf(
+                                "feedcontent" to feedbackText,
+                                "profileImageUrl" to profileUrl
+                            )
 
-                                // Save to Users/{email}/FeedBackContent
-                                userDocRef.update("FeedBackContent", feedbackText)
-                                    .addOnSuccessListener {
-                                        Toast.makeText(
-                                            context,
-                                            "Shared Successfully",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    }
-                            }
+                            // Save to FeedBacks/allfeeds
+                            db.collection("FeedBacks")
+                                .document("allfeeds")
+                                .update("feedbackList", FieldValue.arrayUnion(feedbackMap))
+                                .addOnSuccessListener {
+                                    Log.d("Feedback", "Added to FeedBacks/allfeeds")
+                                }
+                                .addOnFailureListener {
+                                    // Create doc if doesn't exist
+                                    db.collection("FeedBacks")
+                                        .document("allfeeds")
+                                        .set(mapOf("feedbackList" to arrayListOf(feedbackMap)))
+                                }
+
+                            // Save to Users/{email}/FeedBackContent
+                            userDocRef.update("FeedBackContent", feedbackText)
+                                .addOnSuccessListener {
+                                    Toast.makeText(context, "Shared Successfully", Toast.LENGTH_SHORT).show()
+                                }
                         }
                     }
                     .addOnFailureListener {
-                        if (isAdded && isVisible && view != null) {
-                            Toast.makeText(
-                                context,
-                                "Failed to fetch profile URL.",
-                                Toast.LENGTH_SHORT
-                            ).show()
-                        }
+                        Toast.makeText(context, "Failed to fetch profile URL.", Toast.LENGTH_SHORT).show()
                     }
             } else {
                 Toast.makeText(context, "Write something.", Toast.LENGTH_SHORT).show()
